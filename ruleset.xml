@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="BE Integration coding standard">
+    <description>Loader for the main BE sniffer.</description>
+
+    <rule ref="vendor/brandembassy/integration-coding-standard/src/BE/CodingStandard/ruleset.xml" />
+</ruleset>
