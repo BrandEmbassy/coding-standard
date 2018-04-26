@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="BE Integration coding standard">
+<ruleset name="BE">
 
     <arg name="extensions" value="php"/>
     <arg name="tab-width" value="4"/>
@@ -317,7 +317,7 @@
         <!-- Disable alignment of braces -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned"/>
         <!-- Disable alignment of values with opening brace -->
-        <!--<exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned"/>-->
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned"/>
         <!-- Checked by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.NoCommaAfterLast"/>
     </rule>
@@ -369,20 +369,20 @@
         <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
         <!-- Doc comment is not required for every method -->
         <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+        <!-- Comment is not required for `@throws` tag -->
+        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows"/>
     </rule>
 
     <!-- Force rules for inline comments -->
     <rule ref="Squiz.Commenting.InlineComment">
-        <!-- Allow inline phpDoc `/** @var ... */`-->
         <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
-        <!-- Allow inline phpDoc `/** @var ... */`-->
-        <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
-        <!-- Allow inline phpDoc `/** @var ... */`-->
-        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     </rule>
 
     <!-- Force rules for variable comments -->
-    <rule ref="Squiz.Commenting.VariableComment"/>
+    <rule ref="Squiz.Commenting.VariableComment">
+        <!-- Allow short versions of scalar types (i.e. int instead of integer) -->
+        <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
+    </rule>
 
     <!-- Force rules for function argument spacing -->
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
