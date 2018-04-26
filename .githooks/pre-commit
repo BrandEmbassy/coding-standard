@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Running Code Sniffer..."
+./vendor/bin/phpcs --standard=src/BE/CodingStandard/ruleset.xml --extensions=php src tests
+if [ $? != 0 ]
+then
+    echo "Fix the error before commit."
+    exit 1
+fi
+
+echo "Running PHPstan"
+./vendor/bin/phpstan analyze -l 7 -c phpstan.neon src
+if [ $? != 0 ]
+then
+    echo "Fix the error before commit."
+    exit 1
+fi
+
+exit $?

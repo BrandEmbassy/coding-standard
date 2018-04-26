@@ -1,0 +1,13 @@
+#!/bin/bash
+
+REGEX="^[^0-9]*([0-9]+)[^0-9]*"
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+if [[ "${BRANCH_NAME}" =~ ${REGEX} ]]; then
+  TASK_ID="#${BASH_REMATCH[1]}"
+  TASK_IN_COMMIT=$(grep -c "${TASK_ID}" $1)
+
+  if [ -n "${TASK_ID}" ] && ! [[ ${TASK_IN_COMMIT} -ge 1 ]]; then
+    sed -i -e "1s/^/${TASK_ID} /" $1
+  fi
+fi
