@@ -12,7 +12,7 @@
 
     <!-- Import PSR-2 coding standard (base) -->
     <rule ref="PSR2">
-        <!-- checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
+        <!-- Checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
         <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
     </rule>
 
@@ -309,7 +309,7 @@
     <!-- Force array declaration structure -->
     <rule ref="Squiz.Arrays.ArrayDeclaration">
         <!-- Disable arrow alignment -->
-        <!--<exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>-->
+        <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
         <!-- Uses indentation of only single space -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned"/>
         <!-- Allow multiple values on a single line -->
@@ -375,13 +375,20 @@
 
     <!-- Force rules for inline comments -->
     <rule ref="Squiz.Commenting.InlineComment">
+        <!-- Allow inline phpDoc comments -->
         <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
+        <!-- Comments don't have to be sentences -->
+        <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
+        <!-- Comments don't have to be sentences -->
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     </rule>
 
     <!-- Force rules for variable comments -->
     <rule ref="Squiz.Commenting.VariableComment">
         <!-- Allow short versions of scalar types (i.e. int instead of integer) -->
         <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
+        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
+        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
     <!-- Force rules for function argument spacing -->
@@ -438,7 +445,7 @@
     <!-- Forbid blank line after function opening brace -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
-    <!-- TODO: after next release of PHP_CodeSniffer, current  -->
+    <!-- TODO: after next release of PHP_CodeSniffer, current doesn't have spacingBeforeFirst, spacingAfterLast -->
     <!-- Forbid blank line after function opening brace -->
     <!--<rule ref="Squiz.WhiteSpace.FunctionSpacing">-->
     <!--<properties>-->
