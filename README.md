@@ -18,7 +18,7 @@ You have two possibilities to use the BE Integration Coding Standard with PHP_Co
 You can install the BE Integration Coding Standard as a composer dependency to your project:
 
 ```bash
-$ php composer require --dev brandembassy/integration-coding-standard
+$ composer require --dev brandembassy/integration-coding-standard
 ```
 
 Then you can use it like:
