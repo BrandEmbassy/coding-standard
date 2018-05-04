@@ -22,7 +22,9 @@ class MethodSpacingSniff implements Sniff
 {
     public const CODE_INCORRECT_SPACING = 'IncorrectSpacing';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     public $spacing = 1;
 
     /**
@@ -40,7 +42,7 @@ class MethodSpacingSniff implements Sniff
      */
     public function process(File $phpcsFile, $pointer): void
     {
-        if (!FunctionHelper::isMethod($phpcsFile, $pointer)) {
+        if (FunctionHelper::isMethod($phpcsFile, $pointer) === false) {
             return;
         }
 

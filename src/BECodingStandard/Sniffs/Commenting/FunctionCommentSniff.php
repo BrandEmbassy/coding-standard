@@ -14,7 +14,9 @@ class FunctionCommentSniff implements Sniff
 {
     private const NAME = 'BECodingStandard.Commenting.FunctionComment';
 
-    /** @var BaseFunctionCommentSniff */
+    /**
+     * @var BaseFunctionCommentSniff
+     */
     private $decoratedSniff;
 
 
@@ -39,7 +41,7 @@ class FunctionCommentSniff implements Sniff
      */
     public function process(File $phpcsFile, $pointer): void
     {
-        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME)) {
+        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME) === true) {
             return;
         }
 

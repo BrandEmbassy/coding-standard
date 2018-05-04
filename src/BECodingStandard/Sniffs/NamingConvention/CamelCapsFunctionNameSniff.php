@@ -14,10 +14,14 @@ class CamelCapsFunctionNameSniff implements Sniff
 {
     private const NAME = 'BECodingStandard.NamingConvention.CamelCapsFunctionName';
 
-    /** @var BaseCamelCapsFunctionNameSniff */
+    /**
+     * @var BaseCamelCapsFunctionNameSniff
+     */
     private $decoratedSniff;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $strict;
 
 
@@ -43,7 +47,7 @@ class CamelCapsFunctionNameSniff implements Sniff
      */
     public function process(File $phpcsFile, $pointer): void
     {
-        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME)) {
+        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME) === true) {
             return;
         }
 

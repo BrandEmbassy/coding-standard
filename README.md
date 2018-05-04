@@ -8,6 +8,19 @@ Standards
 
 For full reference of enforcements, go through `src/BECodingStandard/ruleset.xml` where each sniff is briefly described.
 
+### Skippable sniffs
+For example to skip Function comment sniff:
+```
+/**
+ * @phpcsSuppress BECodingStandard.Commenting.FunctionComment
+ */
+```
+
+- BECodingStandard.Commenting.FunctionComment
+- BECodingStandard.NamingConvention.CamelCapsFunctionName
+- BECodingStandard.WhiteSpace.MethodSpacing
+- Some sniffs from [SlevomatCodingStandards](https://github.com/slevomat/coding-standard)
+
 Installation
 ------------
 
