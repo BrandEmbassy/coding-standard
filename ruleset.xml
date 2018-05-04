@@ -2,5 +2,5 @@
 <ruleset name="BE">
     <description>Loader for the main BE sniffer.</description>
 
-    <rule ref="vendor/brandembassy/integration-coding-standard/src/BE/CodingStandard/ruleset.xml" />
+    <rule ref="vendor/brandembassy/integration-coding-standard/src/BECodingStandard/ruleset.xml" />
 </ruleset>

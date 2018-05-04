@@ -1,2 +1,5 @@
 parameters:
+    autoload_files:
+        - %rootDir%/../../../vendor/squizlabs/php_codesniffer/autoload.php
     ignoreErrors:
+

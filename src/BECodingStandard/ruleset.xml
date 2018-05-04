@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="BE">
+<ruleset name="BECodingStandard">
 
     <arg name="extensions" value="php"/>
     <arg name="tab-width" value="4"/>
@@ -12,6 +12,9 @@
 
     <!-- Import PSR-2 coding standard (base) -->
     <rule ref="PSR2">
+        <!-- Checked by BECodingStandard.NamingConvention.CamelCapsFunctionNameSniff -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+
         <!-- Checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
         <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
     </rule>
@@ -66,9 +69,6 @@
     <!-- Forbid space after cast -->
     <rule ref="Generic.Formatting.NoSpaceAfterCast"/>
 
-    <!-- Require camelCase function names -->
-    <rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
-
     <!-- Forbid any content before opening tag -->
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
 
@@ -102,7 +102,9 @@
                     settype => null,
                     show_source => highlight_file,
                     sizeof => count,
-                    strchr => strstr
+                    strchr => strstr,
+                    var_dump => null,
+                    dump => null
                 "/>
         </properties>
     </rule>
@@ -140,6 +142,22 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
+            <property
+                name="usefulAnnotations"
+                type="array"
+                value="
+                    @dataProvider,
+                    @runInSeparateProcess
+                "
+            />
+            <property
+                name="traversableTypeHints"
+                type="array"
+                value="
+                    \Doctrine\Common\Collections\ArrayCollection,
+                    \Doctrine\Common\Collections\Collection,
+                "
+            />
         </properties>
     </rule>
 
@@ -297,12 +315,6 @@
     <!-- Forbid empty comments -->
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
 
-    <!-- Report invalid format of inline phpDocs with @var -->
-    <!--<rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>-->
-
-    <!-- Require comments with single line written as one-liners -->
-    <!--<rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>-->
-
     <!-- Forbid spacing after and before array brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
@@ -342,36 +354,6 @@
 
     <!-- Forbid empty catch without comment -->
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
-
-    <!-- Force rules for function phpDoc -->
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <!-- Do not require `@return` -->
-        <exclude name="Squiz.Commenting.FunctionComment.MissingReturn"/>
-        <!-- Do not require comments for `@param` -->
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
-        <!-- Do not require `@param` for all parameters -->
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
-        <!-- Breaks when all params are not documented -->
-        <exclude name="Squiz.Commenting.FunctionComment.ParamNameNoMatch"/>
-        <!-- Does not support collections, i.e. `string[]` -->
-        <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
-        <!-- Doesn't respect inheritance -->
-        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <!-- Breaks when all params are not documented -->
-        <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint"/>
-        <!-- Does not work properly with PHP 7 / short-named types -->
-        <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
-        <!-- Breaks with compound return types, i.e. `string|null` -->
-        <exclude name="Squiz.Commenting.FunctionComment.InvalidReturnNotVoid"/>
-        <!-- Comments don't have to be sentences -->
-        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentNotCapital"/>
-        <!-- Comments don't have to be sentences -->
-        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
-        <!-- Doc comment is not required for every method -->
-        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
-        <!-- Comment is not required for `@throws` tag -->
-        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows"/>
-    </rule>
 
     <!-- Force rules for inline comments -->
     <rule ref="Squiz.Commenting.InlineComment">
@@ -445,16 +427,6 @@
     <!-- Forbid blank line after function opening brace -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
-    <!-- TODO: after next release of PHP_CodeSniffer, current doesn't have spacingBeforeFirst, spacingAfterLast -->
-    <!-- Forbid blank line after function opening brace -->
-    <!--<rule ref="Squiz.WhiteSpace.FunctionSpacing">-->
-    <!--<properties>-->
-    <!--<property name="spacing" value="1"/>-->
-    <!--<property name="spacingBeforeFirst" value="0"/>-->
-    <!--<property name="spacingAfterLast" value="0"/>-->
-    <!--</properties>-->
-    <!--</rule>-->
-
     <!-- Force spacing around logical operators -->
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
 
@@ -500,5 +472,47 @@
 
     <!-- Force space after comma -->
     <rule ref="Symfony.WhiteSpace.CommaSpacing"/>
+
+    <!-- Force two spaces between class methods -->
+    <rule ref="BECodingStandard.WhiteSpace.MethodSpacing">
+        <properties>
+            <property name="spacing" value="2"/>
+        </properties>
+    </rule>
+
+    <!-- Require camelCase function names -->
+    <rule ref="BECodingStandard.NamingConvention.CamelCapsFunctionName"/>
+
+    <!-- Force rules for function phpDoc -->
+    <rule ref="BECodingStandard.Commenting.FunctionComment">
+        <!-- Do not require `@return` -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingReturn"/>
+        <!-- Do not require comments for `@param` -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingParamComment"/>
+        <!-- Do not require `@param` for all parameters -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingParamTag"/>
+        <!-- Breaks when all params are not documented -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamNameNoMatch"/>
+        <!-- Does not support collections, i.e. `string[]` -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
+        <!-- Doesn't respect inheritance -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
+        <!-- Breaks when all params are not documented -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>
+        <!-- Does not work properly with PHP 7 / short-named types -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.IncorrectParamVarName"/>
+        <!-- Breaks with compound return types, i.e. `string|null` -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.InvalidReturnNotVoid"/>
+        <!-- Comments don't have to be sentences -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamCommentNotCapital"/>
+        <!-- Comments don't have to be sentences -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <!-- Doc comment is not required for every method -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.Missing"/>
+        <!-- Comment is not required for `@throws` tag -->
+        <exclude name="BECodingStandard.Commenting.FunctionComment.EmptyThrows"/>
+    </rule>
 
 </ruleset>
