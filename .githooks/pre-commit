@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Running Code Sniffer..."
-./vendor/bin/phpcs --standard=src/BE/CodingStandard/ruleset.xml --extensions=php src tests
+./vendor/bin/phpcs --standard=BECodingStandard --extensions=php src tests
 if [ $? != 0 ]
 then
     echo "Fix the error before commit."

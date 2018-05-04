@@ -6,7 +6,7 @@ repositories are following the unified coding standard for BE integrations
 Standards
 ---------
 
-For full reference of enforcements, go through `src/BE/CodingStandard/ruleset.xml` where each sniff is briefly described.
+For full reference of enforcements, go through `src/BECodingStandard/ruleset.xml` where each sniff is briefly described.
 
 Installation
 ------------
@@ -24,13 +24,13 @@ $ composer require --dev brandembassy/integration-coding-standard
 Then you can use it like:
 
 ```bash
-$ ./vendor/bin/phpcs --standard=vendor/brandembassy/integration-coding-standard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcs --standard=BECodingStandard /path/to/some/file/to/sniff.php
 ```
 
 You might also do automatic fixes using `phpcbf`:
 
 ```bash
-$ ./vendor/bin/phpcbf --standard=vendor/brandembassy/integration-coding-standard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcbf --standard=BECodingStandard /path/to/some/file/to/sniff.php
 ```
 
 Versioning
