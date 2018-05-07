@@ -3,6 +3,7 @@
     "description": "Unified coding standard for BE integrations",
     "minimum-stability": "stable",
     "license": "proprietary",
+    "type": "phpcodesniffer-standard",
     "authors": [
         {
             "name": "Brand Embassy"
@@ -10,12 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "BECodingStandard\\": "src/BECodingStandard"
+            "BEIntegrationCodingStandard\\": "BEIntegrationCodingStandard"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\BECodingStandard\\": "tests/BECodingStandard"
+            "Tests\\BEIntegrationCodingStandard\\": "tests/BEIntegrationCodingStandard"
         }
     },
     "require": {
@@ -31,8 +32,10 @@
     },
     "scripts": {
         "post-deploy": [],
+        "phpcs": "vendor/bin/phpcs --standard=BEIntegrationCodingStandard --extensions=php BEIntegrationCodingStandard tests",
+        "phpcbf": "vendor/bin/phpcbf --standard=BEIntegrationCodingStandard --extensions=php BEIntegrationCodingStandard tests",
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyze -l max src --memory-limit 200M",
+        "phpstan": "vendor/bin/phpstan analyze -l max -c phpstan.neon BEIntegrationCodingStandard --memory-limit 200M",
         "post-install": "git config core.hooksPath .githooks",
         "post-update": "git config core.hooksPath .githooks"
     }

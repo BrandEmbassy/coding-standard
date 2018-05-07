@@ -6,27 +6,23 @@ repositories are following the unified coding standard for BE integrations
 Standards
 ---------
 
-For full reference of enforcements, go through `src/BECodingStandard/ruleset.xml` where each sniff is briefly described.
+For full reference of enforcements, go through `src/BEIntegrationCodingStandard/ruleset.xml` where each sniff is briefly described.
 
 ### Skippable sniffs
 For example to skip Function comment sniff:
 ```
 /**
- * @phpcsSuppress BECodingStandard.Commenting.FunctionComment
+ * @phpcsSuppress BEIntegrationCodingStandard.Commenting.FunctionComment
  */
 ```
 
-- BECodingStandard.Commenting.FunctionComment
-- BECodingStandard.NamingConvention.CamelCapsFunctionName
-- BECodingStandard.WhiteSpace.MethodSpacing
+- BEIntegrationCodingStandard.Commenting.FunctionComment
+- BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName
+- BEIntegrationCodingStandard.WhiteSpace.MethodSpacing
 - Some sniffs from [SlevomatCodingStandards](https://github.com/slevomat/coding-standard)
 
 Installation
 ------------
-
-You have two possibilities to use the BE Integration Coding Standard with PHP_CodeSniffer in a particular project.
-
-### 1. As a composer dependency of your project
 
 You can install the BE Integration Coding Standard as a composer dependency to your project:
 
@@ -37,13 +33,13 @@ $ composer require --dev brandembassy/integration-coding-standard
 Then you can use it like:
 
 ```bash
-$ ./vendor/bin/phpcs --standard=BECodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcs --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
 ```
 
 You might also do automatic fixes using `phpcbf`:
 
 ```bash
-$ ./vendor/bin/phpcbf --standard=BECodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcbf --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
 ```
 
 Versioning

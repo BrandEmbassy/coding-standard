@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BECodingStandard\Sniffs\WhiteSpace;
+namespace BEIntegrationCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
