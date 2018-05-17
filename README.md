@@ -8,6 +8,8 @@ Standards
 
 For full reference of enforcements, go through `src/BEIntegrationCodingStandard/ruleset.xml` where each sniff is briefly described.
 
+@TODO list of important sniffs
+
 ### Skippable sniffs
 For example to skip Function comment sniff:
 ```
@@ -41,6 +43,14 @@ You might also do automatic fixes using `phpcbf`:
 ```bash
 $ ./vendor/bin/phpcbf --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
 ```
+
+PhpStorm
+--------
+This project contains inspections and code style configurations for PhpStorm.
+- `BE Code Style.xml`
+- `BE Inspections.xml`
+
+Importing these configurations reduces number of errors in `phpcs` check before committing.
 
 Versioning
 ----------

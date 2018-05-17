@@ -180,9 +180,6 @@
     <!-- Requires use of null coalesce operator when possible -->
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
 
-    <!-- Requires use of early exit -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
-
     <!-- Forbid dead code -->
     <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
 
