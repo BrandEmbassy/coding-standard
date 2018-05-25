@@ -1,11 +1,11 @@
 # BE Integration Coding Standard
-
-The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) ruleset to check that
-repositories are following the unified coding standard for BE integrations
+- The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) ruleset to check that
+repositories are following the unified coding standard for BE integrations.
+- The [PHPStan](https://github.com/phpstan/phpstan) default configuration file.
+- PhpStorm code style and inspections (with [Php Inspections (EA Extended)](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) plugin) configuration files.
 
 Standards
 ---------
-
 For full reference of enforcements, go through `src/BEIntegrationCodingStandard/ruleset.xml` where each sniff is briefly described.
 
 @TODO list of important sniffs
@@ -25,14 +25,15 @@ For example to skip Function comment sniff:
 
 Installation
 ------------
-
 You can install the BE Integration Coding Standard as a composer dependency to your project:
 
 ```bash
 $ composer require --dev brandembassy/integration-coding-standard
 ```
 
-Then you can use it like:
+PHP_CodeSniffer
+---------------
+You can run PHP_CodeSniffer with this command:
 
 ```bash
 $ ./vendor/bin/phpcs --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
@@ -42,6 +43,19 @@ You might also do automatic fixes using `phpcbf`:
 
 ```bash
 $ ./vendor/bin/phpcbf --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
+```
+
+PHPStan
+-------
+- includes [phpstan-strict-rules](https://github.com/phpstan/phpstan-strict-rules) extension
+- includes [phpstan-nette](https://github.com/phpstan/phpstan-nette) extension
+- includes max level configuration by default
+
+To use default configuration include integration-phpstan.neon in your project's PHPStan config:
+
+``` yaml
+includes:
+    - vendor/brandembassy/integration-coding-standard/integration-phpstan.neon
 ```
 
 PhpStorm
@@ -54,7 +68,6 @@ Importing these configurations reduces number of errors in `phpcs` check before 
 
 Versioning
 ----------
-
 This library follows semantic versioning, and additions to the code ruleset
 are only performed in major releases.
 

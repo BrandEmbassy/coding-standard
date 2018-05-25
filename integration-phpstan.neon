@@ -1,0 +1,4 @@
+includes:
+    - ../../../vendor/phpstan/phpstan/conf/config.levelmax.neon
+    - ../../../vendor/phpstan/phpstan-strict-rules/rules.neon
+    - ../../../vendor/phpstan/phpstan-nette/extension.neon

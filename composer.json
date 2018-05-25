@@ -23,19 +23,21 @@
         "squizlabs/php_codesniffer": "^3.2",
         "slevomat/coding-standard": "~4.5.2",
         "escapestudios/symfony2-coding-standard": "^3.2",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+        "phpstan/phpstan": "^0.9.2",
+        "phpstan/phpstan-strict-rules": "^0.9.0",
+        "phpstan/phpstan-nette": "^0.9.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.1",
-        "mockery/mockery": "^1.0",
-        "phpstan/phpstan": "^0.9.2"
+        "mockery/mockery": "^1.0"
     },
     "scripts": {
         "post-deploy": [],
-        "phpcs": "vendor/bin/phpcs --standard=BEIntegrationCodingStandard --extensions=php BEIntegrationCodingStandard tests",
-        "phpcbf": "vendor/bin/phpcbf --standard=BEIntegrationCodingStandard --extensions=php BEIntegrationCodingStandard tests",
+        "phpcs": "vendor/bin/phpcs --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
+        "phpcbf": "vendor/bin/phpcbf --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyze -l max -c phpstan.neon BEIntegrationCodingStandard --memory-limit 200M",
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BEIntegrationCodingStandard --memory-limit 200M",
         "post-install": "git config core.hooksPath .githooks",
         "post-update": "git config core.hooksPath .githooks"
     }
