@@ -145,7 +145,8 @@
                 type="array"
                 value="
                     @dataProvider,
-                    @runInSeparateProcess
+                    @runInSeparateProcess,
+                    @deprecated,
                 "
             />
             <property
