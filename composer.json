@@ -37,8 +37,6 @@
         "phpcs": "vendor/bin/phpcs --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
         "phpcbf": "vendor/bin/phpcbf --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BEIntegrationCodingStandard",
-        "post-install": "git config core.hooksPath .githooks",
-        "post-update": "git config core.hooksPath .githooks"
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BEIntegrationCodingStandard"
     }
 }
