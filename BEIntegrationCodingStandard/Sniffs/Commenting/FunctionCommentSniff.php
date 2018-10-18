@@ -14,6 +14,7 @@ class FunctionCommentSniff implements Sniff
 {
     private const NAME = 'BEIntegrationCodingStandard.Commenting.FunctionComment';
 
+
     /**
      * @var BaseFunctionCommentSniff
      */
