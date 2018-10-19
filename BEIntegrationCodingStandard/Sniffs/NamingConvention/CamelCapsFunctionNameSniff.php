@@ -14,10 +14,12 @@ class CamelCapsFunctionNameSniff implements Sniff
 {
     private const NAME = 'BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName';
 
+
     /**
      * @var BaseCamelCapsFunctionNameSniff
      */
     private $decoratedSniff;
+
 
     /**
      * @var bool
