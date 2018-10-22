@@ -472,7 +472,7 @@
     <!-- Force spacing around member variables -->
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
         <properties>
-            <property name="spacing" value="2"/>
+            <property name="spacing" value="1"/>
             <property name="spacingBeforeFirst" value="0"/>
         </properties>
     </rule>
