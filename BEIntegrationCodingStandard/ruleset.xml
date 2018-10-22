@@ -319,14 +319,15 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
 
+    <!-- @TODO: conflict with method/field spacing -->
     <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
-        <properties>
-            <property name="linesCountBeforeFirstUse" type="boolean" value="0"/>
-            <property name="linesCountAfterLastUse" type="boolean" value="2"/>
-            <property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>
-        </properties>
-    </rule>
+    <!--<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">-->
+        <!--<properties>-->
+            <!--<property name="linesCountBeforeFirstUse" type="boolean" value="0"/>-->
+            <!--<property name="linesCountAfterLastUse" type="boolean" value="1"/>-->
+            <!--<property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>-->
+        <!--</properties>-->
+    <!--</rule>-->
 
     <!-- Looks for unused variables -->
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
@@ -472,7 +473,7 @@
     <!-- Force spacing around member variables -->
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
         <properties>
-            <property name="spacing" value="2"/>
+            <property name="spacing" value="1"/>
             <property name="spacingBeforeFirst" value="0"/>
         </properties>
     </rule>
