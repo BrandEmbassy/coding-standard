@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BECodingStandard\Sniffs\Classes;
+namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHP_CodeSniffer\Files\File;

@@ -1,6 +1,6 @@
 {
     "name": "brandembassy/coding-standard",
-    "description": "Unified BE Coding Standard",
+    "description": "Brand Embassy Coding Standard",
     "license": "proprietary",
     "type": "phpcodesniffer-standard",
     "authors": [
@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "BECodingStandard\\": "BECodingStandard"
+            "src\\BrandEmbassyCodingStandard\\": "src/BrandEmbassyCodingStandard"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\BECodingStandard\\": "tests/BECodingStandard"
+            "Tests\\BrandEmbassyCodingStandard\\": "tests/BrandEmbassyCodingStandard"
         }
     },
     "require": {
@@ -31,9 +31,9 @@
         "mockery/mockery": "^1.2"
     },
     "scripts": {
-        "phpcs": "vendor/bin/phpcs --standard=BECodingStandard BECodingStandard tests",
-        "phpcbf": "vendor/bin/phpcbf --standard=BECodingStandard BECodingStandard tests",
+        "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src tests",
+        "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src tests",
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BECodingStandard"
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src"
     }
 }

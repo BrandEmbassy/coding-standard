@@ -1,15 +1,15 @@
 <?php declare(strict_types = 1);
 
-namespace BECodingStandard\Sniffs\WhiteSpace;
+namespace BrandEmbassyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use const T_RETURN;
+use const T_THROW;
 use function count;
 
-class BlankLineBeforeReturnSniff implements Sniff
+class BlankLineBeforeThrowSniff implements Sniff
 {
-    public const CODE_NO_BLANK_LINE_BEFORE_RETURN = 'NoBlankLineBeforeReturn';
+    public const CODE_NO_BLANK_LINE_BEFORE_THROW = 'NoBlankLineBeforeThrow';
 
 
     /**
@@ -17,7 +17,7 @@ class BlankLineBeforeReturnSniff implements Sniff
      */
     public function register(): array
     {
-        return [T_RETURN];
+        return [T_THROW];
     }
 
 
@@ -49,9 +49,9 @@ class BlankLineBeforeReturnSniff implements Sniff
 
         if (count($prevLineTokens) > 0) {
             $fix = $phpcsFile->addFixableError(
-                'Missing blank line before return statement',
+                'Missing blank line before throw statement',
                 $pointer,
-                self::CODE_NO_BLANK_LINE_BEFORE_RETURN
+                self::CODE_NO_BLANK_LINE_BEFORE_THROW
             );
 
             if ($fix) {
