@@ -31,7 +31,6 @@
         "mockery/mockery": "^1.2"
     },
     "scripts": {
-        "post-deploy": [],
         "phpcs": "vendor/bin/phpcs --standard=BECodingStandard BECodingStandard tests",
         "phpcbf": "vendor/bin/phpcbf --standard=BECodingStandard BECodingStandard tests",
         "phpunit": "vendor/bin/phpunit",
