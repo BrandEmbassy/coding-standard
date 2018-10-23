@@ -345,9 +345,6 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
 
-    <!-- Requires ternary operator when possible -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator"/>
-
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
 
