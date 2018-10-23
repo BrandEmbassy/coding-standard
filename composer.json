@@ -1,6 +1,6 @@
 {
-    "name": "brandembassy/integration-coding-standard",
-    "description": "Unified coding standard for BE integrations",
+    "name": "brandembassy/coding-standard",
+    "description": "Unified BE Coding Standard",
     "license": "proprietary",
     "type": "phpcodesniffer-standard",
     "authors": [
@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "BEIntegrationCodingStandard\\": "BEIntegrationCodingStandard"
+            "BECodingStandard\\": "BECodingStandard"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\BEIntegrationCodingStandard\\": "tests/BEIntegrationCodingStandard"
+            "Tests\\BECodingStandard\\": "tests/BECodingStandard"
         }
     },
     "require": {
@@ -31,10 +31,9 @@
         "mockery/mockery": "^1.2"
     },
     "scripts": {
-        "post-deploy": [],
-        "phpcs": "vendor/bin/phpcs --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
-        "phpcbf": "vendor/bin/phpcbf --standard=BEIntegrationCodingStandard BEIntegrationCodingStandard tests",
+        "phpcs": "vendor/bin/phpcs --standard=BECodingStandard BECodingStandard tests",
+        "phpcbf": "vendor/bin/phpcbf --standard=BECodingStandard BECodingStandard tests",
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BEIntegrationCodingStandard"
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon BECodingStandard"
     }
 }

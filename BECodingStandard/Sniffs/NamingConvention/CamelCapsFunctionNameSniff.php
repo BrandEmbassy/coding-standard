@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BEIntegrationCodingStandard\Sniffs\NamingConvention;
+namespace BECodingStandard\Sniffs\NamingConvention;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -12,14 +12,12 @@ use SlevomatCodingStandard\Helpers\SuppressHelper;
  */
 class CamelCapsFunctionNameSniff implements Sniff
 {
-    private const NAME = 'BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName';
-
+    private const NAME = 'BECodingStandard.NamingConvention.CamelCapsFunctionName';
 
     /**
      * @var BaseCamelCapsFunctionNameSniff
      */
     private $decoratedSniff;
-
 
     /**
      * @var bool
@@ -45,6 +43,7 @@ class CamelCapsFunctionNameSniff implements Sniff
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
      * @param int $pointer
      */
     public function process(File $phpcsFile, $pointer): void
