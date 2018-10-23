@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="BEIntegrationCodingStandard">
+<ruleset name="BECodingStandard">
 
     <arg name="extensions" value="php"/>
     <arg name="tab-width" value="4"/>
@@ -10,7 +10,7 @@
 
     <!-- Import PSR-2 coding standard (base) -->
     <rule ref="PSR2">
-        <!-- Checked by BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName -->
+        <!-- Checked by BECodingStandard.NamingConvention.CamelCapsFunctionName -->
         <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
 
         <!-- Checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
@@ -506,47 +506,47 @@
     </rule>
 
     <!-- Require camelCase function names -->
-    <rule ref="BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName"/>
+    <rule ref="BECodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
     <!-- Force blank line before return statement -->
-    <rule ref="BEIntegrationCodingStandard.WhiteSpace.BlankLineBeforeReturn"/>
+    <rule ref="BECodingStandard.WhiteSpace.BlankLineBeforeReturn"/>
 
     <!-- Force blank line before throw statement -->
-    <rule ref="BEIntegrationCodingStandard.WhiteSpace.BlankLineBeforeThrow"/>
+    <rule ref="BECodingStandard.WhiteSpace.BlankLineBeforeThrow"/>
 
     <!-- Require MockeryPHPUnitIntegration trait in classes that use Mockery -->
-    <rule ref="BEIntegrationCodingStandard.Classes.MockeryTrait"/>
+    <rule ref="BECodingStandard.Classes.MockeryTrait"/>
 
     <!-- Force rules for function phpDoc -->
-    <rule ref="BEIntegrationCodingStandard.Commenting.FunctionComment">
+    <rule ref="BECodingStandard.Commenting.FunctionComment">
         <!-- Do not require `@return` -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.MissingReturn"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingReturn"/>
         <!-- Do not require comments for `@param` -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.MissingParamComment"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingParamComment"/>
         <!-- Do not require `@param` for all parameters -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.MissingParamTag"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.MissingParamTag"/>
         <!-- Breaks when all params are not documented -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.ParamNameNoMatch"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamNameNoMatch"/>
         <!-- Does not support collections, i.e. `string[]` -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
         <!-- Doesn't respect inheritance -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
         <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
         <!-- Breaks when all params are not documented -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>
         <!-- Does not work properly with PHP 7 / short-named types -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.IncorrectParamVarName"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.IncorrectParamVarName"/>
         <!-- Breaks with compound return types, i.e. `string|null` -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.InvalidReturnNotVoid"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.InvalidReturnNotVoid"/>
         <!-- Comments don't have to be sentences -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.ParamCommentNotCapital"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamCommentNotCapital"/>
         <!-- Comments don't have to be sentences -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.ParamCommentFullStop"/>
         <!-- Doc comment is not required for every method -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.Missing"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.Missing"/>
         <!-- Comment is not required for `@throws` tag -->
-        <exclude name="BEIntegrationCodingStandard.Commenting.FunctionComment.EmptyThrows"/>
+        <exclude name="BECodingStandard.Commenting.FunctionComment.EmptyThrows"/>
     </rule>
 
 </ruleset>

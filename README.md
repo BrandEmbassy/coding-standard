@@ -1,12 +1,12 @@
-# BE Integration Coding Standard
+# BE Coding Standard
 - The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) ruleset to check that
-repositories are following the unified coding standard for BE integrations.
+repositories are following the unified coding standard for BE projects.
 - The [PHPStan](https://github.com/phpstan/phpstan) default configuration file.
 - PhpStorm code style and inspections (with [Php Inspections (EA Extended)](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) plugin) configuration files.
 
 Standards
 ---------
-For full reference of enforcements, go through `src/BEIntegrationCodingStandard/ruleset.xml` where each sniff is briefly described.
+For full reference of enforcements, go through `src/BECodingStandard/ruleset.xml` where each sniff is briefly described.
 
 @TODO list of important sniffs
 
@@ -14,21 +14,21 @@ For full reference of enforcements, go through `src/BEIntegrationCodingStandard/
 For example to skip Function comment sniff:
 ```
 /**
- * @phpcsSuppress BEIntegrationCodingStandard.Commenting.FunctionComment
+ * @phpcsSuppress BECodingStandard.Commenting.FunctionComment
  */
 ```
 
-- BEIntegrationCodingStandard.Commenting.FunctionComment
-- BEIntegrationCodingStandard.NamingConvention.CamelCapsFunctionName
-- BEIntegrationCodingStandard.WhiteSpace.MethodSpacing
+- BECodingStandard.Commenting.FunctionComment
+- BECodingStandard.NamingConvention.CamelCapsFunctionName
+- BECodingStandard.WhiteSpace.MethodSpacing
 - Some sniffs from [SlevomatCodingStandards](https://github.com/slevomat/coding-standard)
 
 Installation
 ------------
-You can install the BE Integration Coding Standard as a composer dependency to your project:
+You can install the BE Coding Standard as a composer dependency to your project:
 
 ```bash
-$ composer require --dev brandembassy/integration-coding-standard
+$ composer require --dev brandembassy/coding-standard
 ```
 
 PHP_CodeSniffer
@@ -36,13 +36,13 @@ PHP_CodeSniffer
 You can run PHP_CodeSniffer with this command:
 
 ```bash
-$ ./vendor/bin/phpcs --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcs --standard=BECodingStandard /path/to/some/file/to/sniff.php
 ```
 
 You might also do automatic fixes using `phpcbf`:
 
 ```bash
-$ ./vendor/bin/phpcbf --standard=BEIntegrationCodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/phpcbf --standard=BECodingStandard /path/to/some/file/to/sniff.php
 ```
 
 PHPStan
@@ -55,7 +55,7 @@ To use default configuration include integration-phpstan.neon in your project's 
 
 ``` yaml
 includes:
-    - vendor/brandembassy/integration-coding-standard/integration-phpstan.neon
+    - vendor/brandembassy/coding-standard/integration-phpstan.neon
 ```
 
 PhpStorm
@@ -75,7 +75,7 @@ Testing
 -------
 @TODO: inspiration - https://github.com/doctrine/coding-standard/tree/master/tests
 
-If you are contributing to the BE Integration Coding Standard and want to test your contribution, you just
+If you are contributing to the BE Coding Standard and want to test your contribution, you just
 need to execute PHPCS with the tests folder and ensure it matches the expected report:
 
 ```bash

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BEIntegrationCodingStandard\Sniffs\Commenting;
+namespace BECodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -12,8 +12,7 @@ use SlevomatCodingStandard\Helpers\SuppressHelper;
  */
 class FunctionCommentSniff implements Sniff
 {
-    private const NAME = 'BEIntegrationCodingStandard.Commenting.FunctionComment';
-
+    private const NAME = 'BECodingStandard.Commenting.FunctionComment';
 
     /**
      * @var BaseFunctionCommentSniff
@@ -38,6 +37,7 @@ class FunctionCommentSniff implements Sniff
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
      * @param int $pointer
      */
     public function process(File $phpcsFile, $pointer): void
