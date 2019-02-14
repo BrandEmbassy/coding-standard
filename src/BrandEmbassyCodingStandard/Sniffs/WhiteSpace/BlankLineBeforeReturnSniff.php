@@ -4,8 +4,8 @@ namespace BrandEmbassyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use const T_RETURN;
 use function count;
+use const T_RETURN;
 
 class BlankLineBeforeReturnSniff implements Sniff
 {

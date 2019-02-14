@@ -83,14 +83,16 @@ class MockeryTraitSniff implements Sniff
      */
     private function doesClassUseMockery(File $phpcsFile, $pointer): bool
     {
-        $useStatements = UseStatementHelper::getUseStatements($phpcsFile, $pointer);
+        $allUseStatements = UseStatementHelper::getUseStatements($phpcsFile, $pointer);
 
         $mockeryUse = null;
-        foreach ($useStatements as $useStatement) {
-            if ($useStatement->getFullyQualifiedTypeName() === 'Mockery') {
-                $mockeryUse = $useStatement;
+        foreach ($allUseStatements as $useStatements) {
+            foreach ($useStatements as $useStatement) {
+                if ($useStatement->getFullyQualifiedTypeName() === 'Mockery') {
+                    $mockeryUse = $useStatement;
 
-                break;
+                    break;
+                }
             }
         }
 
