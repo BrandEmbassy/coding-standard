@@ -514,9 +514,6 @@
     <!-- Force blank line before throw statement -->
     <rule ref="BrandEmbassyCodingStandard.WhiteSpace.BlankLineBeforeThrow"/>
 
-    <!-- Require MockeryPHPUnitIntegration trait in classes that use Mockery -->
-    <rule ref="BrandEmbassyCodingStandard.Classes.MockeryTrait"/>
-
     <!-- Force rules for function phpDoc -->
     <rule ref="BrandEmbassyCodingStandard.Commenting.FunctionComment">
         <!-- Do not require `@return` -->
