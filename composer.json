@@ -24,12 +24,12 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.4",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-strict-rules": "^0.11",
-        "phpstan/phpstan-nette": "^0.11"
+        "phpstan/phpstan-nette": "^0.11",
+        "phpstan/phpstan-mockery": "^0.11.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4",
-        "mockery/mockery": "^1.2",
-        "phpstan/phpstan-mockery": "^0.11.0"
+        "mockery/mockery": "^1.2"
     },
     "scripts": {
         "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src tests",
