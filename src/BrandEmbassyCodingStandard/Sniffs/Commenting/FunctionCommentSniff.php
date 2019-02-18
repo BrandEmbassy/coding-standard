@@ -2,7 +2,6 @@
 
 namespace BrandEmbassyCodingStandard\Sniffs\Commenting;
 
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\FunctionCommentSniff as BaseFunctionCommentSniff;
@@ -13,7 +12,6 @@ use SlevomatCodingStandard\Helpers\SuppressHelper;
  */
 class FunctionCommentSniff implements Sniff
 {
-    use MockeryPHPUnitIntegration;
     private const NAME = 'BrandEmbassyCodingStandard.Commenting.FunctionComment';
 
     /**

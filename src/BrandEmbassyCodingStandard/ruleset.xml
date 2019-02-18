@@ -502,14 +502,8 @@
         </properties>
     </rule>
 
-    <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
-    <rule ref="BrandEmbassyCodingStandard.Classes.TraitUseSpacing">
-        <properties>
-            <property name="linesCountBeforeFirstUse" type="boolean" value="0"/>
-            <property name="linesCountAfterLastUse" type="boolean" value="2"/>
-            <property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>
-        </properties>
-    </rule>
+    <!-- Force trait use as first statement in class -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.TraitUsePosition"/>
 
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
