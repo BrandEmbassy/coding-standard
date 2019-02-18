@@ -315,15 +315,6 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
 
-    <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
-        <properties>
-            <property name="linesCountBeforeFirstUse" type="boolean" value="0"/>
-            <property name="linesCountAfterLastUse" type="boolean" value="1"/>
-            <property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>
-        </properties>
-    </rule>
-
     <!-- Looks for unused variables -->
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
         <properties>
@@ -508,6 +499,15 @@
                 <element value="@runInSeparateProcess"/>
                 <element value="@deprecated"/>
             </property>
+        </properties>
+    </rule>
+
+    <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <property name="linesCountBeforeFirstUse" type="boolean" value="0"/>
+            <property name="linesCountAfterLastUse" type="boolean" value="2"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>
         </properties>
     </rule>
 
