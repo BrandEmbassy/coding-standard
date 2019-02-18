@@ -154,6 +154,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
+            <property name="$allAnnotationsAreUseful" value="true"/>
             <property name="traversableTypeHints" type="array">
                 <element value="\Doctrine\Common\Collections\ArrayCollection"/>
                 <element value="\Doctrine\Common\Collections\Collection"/>
