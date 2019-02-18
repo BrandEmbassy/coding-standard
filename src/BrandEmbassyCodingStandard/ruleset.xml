@@ -154,11 +154,6 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
-            <property name="usefulAnnotations" type="array">
-                <element value="@dataProvider"/>
-                <element value="@runInSeparateProcess"/>
-                <element value="@deprecated"/>
-            </property>
             <property name="traversableTypeHints" type="array">
                 <element value="\Doctrine\Common\Collections\ArrayCollection"/>
                 <element value="\Doctrine\Common\Collections\Collection"/>
@@ -503,6 +498,17 @@
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
         <!-- turned off by PSR2 -> turning back on -->
         <severity>5</severity>
+    </rule>
+
+    <!-- Checks for missing typehints -->
+    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
+        <properties>
+            <property name="usefulAnnotations" type="array">
+                <element value="@dataProvider"/>
+                <element value="@runInSeparateProcess"/>
+                <element value="@deprecated"/>
+            </property>
+        </properties>
     </rule>
 
     <!-- Require camelCase function names -->

@@ -4,6 +4,7 @@ namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
@@ -14,6 +15,9 @@ use function sprintf;
 
 class PostConditionsTraitUsedRule implements Rule
 {
+    /**
+     * @var string[]
+     */
     private static $callCountMethods = [
         'zero',
         'once',
@@ -46,10 +50,12 @@ class PostConditionsTraitUsedRule implements Rule
 
     /**
      * @param MethodCall $node
+     *
+     * @return string[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if (!$node->name instanceof Node\Identifier) {
+        if (!$node->name instanceof Identifier) {
             return [];
         }
 
@@ -77,7 +83,7 @@ class PostConditionsTraitUsedRule implements Rule
 
         $classReflection = $scope->getClassReflection();
 
-        if($classReflection === null){
+        if ($classReflection === null) {
             return [];
         }
 
