@@ -154,7 +154,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
-            <property name="$allAnnotationsAreUseful" value="true"/>
+            <property name="allAnnotationsAreUseful" value="true"/>
             <property name="traversableTypeHints" type="array">
                 <element value="\Doctrine\Common\Collections\ArrayCollection"/>
                 <element value="\Doctrine\Common\Collections\Collection"/>
@@ -315,15 +315,14 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
 
-    <!-- @TODO: conflict with method/field spacing -->
     <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
-    <!--<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">-->
-        <!--<properties>-->
-            <!--<property name="linesCountBeforeFirstUse" type="boolean" value="0"/>-->
-            <!--<property name="linesCountAfterLastUse" type="boolean" value="1"/>-->
-            <!--<property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>-->
-        <!--</properties>-->
-    <!--</rule>-->
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <property name="linesCountBeforeFirstUse" type="boolean" value="0"/>
+            <property name="linesCountAfterLastUse" type="boolean" value="1"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>
+        </properties>
+    </rule>
 
     <!-- Looks for unused variables -->
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
