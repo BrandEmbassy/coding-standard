@@ -154,11 +154,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
-            <property name="usefulAnnotations" type="array">
-                <element value="@dataProvider"/>
-                <element value="@runInSeparateProcess"/>
-                <element value="@deprecated"/>
-            </property>
+            <property name="allAnnotationsAreUseful" value="true"/>
             <property name="traversableTypeHints" type="array">
                 <element value="\Doctrine\Common\Collections\ArrayCollection"/>
                 <element value="\Doctrine\Common\Collections\Collection"/>
@@ -182,7 +178,7 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
 
     <!-- Forbid == and != -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+    <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
 
     <!-- Requires short ternary operator ?: when possible -->
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator"/>
@@ -273,7 +269,7 @@
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
 
     <!-- Forbid empty lines around type declarations -->
-    <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces">
+    <rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces">
         <properties>
             <property name="linesCountAfterOpeningBrace" value="0"/>
             <property name="linesCountBeforeClosingBrace" value="0"/>
@@ -318,16 +314,6 @@
 
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
-
-    <!-- @TODO: conflict with method/field spacing -->
-    <!-- Enforces configurable number of lines before first use, after last use and between two use statements -->
-    <!--<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">-->
-        <!--<properties>-->
-            <!--<property name="linesCountBeforeFirstUse" type="boolean" value="0"/>-->
-            <!--<property name="linesCountAfterLastUse" type="boolean" value="1"/>-->
-            <!--<property name="linesCountAfterLastUseWhenLastInClass" type="boolean" value="0"/>-->
-        <!--</properties>-->
-    <!--</rule>-->
 
     <!-- Looks for unused variables -->
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
@@ -505,6 +491,20 @@
         <severity>5</severity>
     </rule>
 
+    <!-- Checks for missing typehints -->
+    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
+        <properties>
+            <property name="usefulAnnotations" type="array">
+                <element value="@dataProvider"/>
+                <element value="@runInSeparateProcess"/>
+                <element value="@deprecated"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Force trait use as first statement in class -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.TraitUsePosition"/>
+
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
@@ -513,9 +513,6 @@
 
     <!-- Force blank line before throw statement -->
     <rule ref="BrandEmbassyCodingStandard.WhiteSpace.BlankLineBeforeThrow"/>
-
-    <!-- Require MockeryPHPUnitIntegration trait in classes that use Mockery -->
-    <rule ref="BrandEmbassyCodingStandard.Classes.MockeryTrait"/>
 
     <!-- Force rules for function phpDoc -->
     <rule ref="BrandEmbassyCodingStandard.Commenting.FunctionComment">

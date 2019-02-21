@@ -2,3 +2,5 @@ includes:
     - ../../../vendor/phpstan/phpstan/conf/config.levelmax.neon
     - ../../../vendor/phpstan/phpstan-strict-rules/rules.neon
     - ../../../vendor/phpstan/phpstan-nette/extension.neon
+    - ../../../vendor/phpstan/phpstan-mockery/extension.neon
+    - ../../../vendor/brandembassy/coding-standard/phpstan-extension.neon

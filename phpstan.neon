@@ -3,8 +3,12 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
+        - %rootDir%/../../../src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUsePositionSniff.php
     autoload_files:
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
     ignoreErrors:
+        - '#Parameter \#1 \$node \(PhpParser\\Node\\Expr\\MethodCall\) of method BrandEmbassyCodingStandard\\PhpStan\\Rules\\Mockery\\PostConditionsTraitUsedRule::processNode\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule::processNode\(\)#'
 

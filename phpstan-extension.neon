@@ -1,0 +1,5 @@
+services:
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule
+        tags:
+            - phpstan.rules.rule
