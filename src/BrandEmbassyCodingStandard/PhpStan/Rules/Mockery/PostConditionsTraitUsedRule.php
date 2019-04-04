@@ -74,10 +74,9 @@ class PostConditionsTraitUsedRule implements Rule
             }
         );
 
-        /** @var ObjectType $type */
         $type = $typeResult->getType();
 
-        if ($type->getClassName() !== 'Mockery\\Expectation') {
+        if (!$type instanceof ObjectType || $type->getClassName() !== 'Mockery\\Expectation') {
             return [];
         }
 
