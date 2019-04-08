@@ -498,6 +498,7 @@
                 <element value="@dataProvider"/>
                 <element value="@runInSeparateProcess"/>
                 <element value="@deprecated"/>
+                <element value="@throws"/>
             </property>
         </properties>
     </rule>
