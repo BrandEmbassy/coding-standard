@@ -346,6 +346,8 @@
         <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned"/>
         <!-- Disable alignment of values with opening brace -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned"/>
+        <!-- Disable alignment of double arrow -->
+        <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
         <!-- Checked by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.NoCommaAfterLast"/>
     </rule>
