@@ -290,7 +290,6 @@
                 <element value="@since"/>
                 <element value="@subpackage"/>
                 <element value="@version"/>
-                <element value="@throws"/>
             </property>
         </properties>
     </rule>
