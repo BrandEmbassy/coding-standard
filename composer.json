@@ -19,13 +19,13 @@
         }
     },
     "require": {
-        "squizlabs/php_codesniffer": "~3.4.0",
-        "slevomat/coding-standard": "^5.0",
+        "squizlabs/php_codesniffer": "~3.5.3",
+        "slevomat/coding-standard": "dev-master",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
-        "phpstan/phpstan": "^0.11",
-        "phpstan/phpstan-strict-rules": "^0.11",
-        "phpstan/phpstan-nette": "^0.11",
-        "phpstan/phpstan-mockery": "^0.11.0"
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpstan/phpstan-nette": "^0.12",
+        "phpstan/phpstan-mockery": "^0.12"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -37,5 +37,11 @@
         "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src tests",
         "phpunit": "vendor/bin/phpunit",
         "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "process-timeout": 1200
     }
 }
