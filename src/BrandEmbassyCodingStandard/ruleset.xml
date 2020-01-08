@@ -546,6 +546,8 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.Missing"/>
         <!-- Comment is not required for `@throws` tag -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.EmptyThrows"/>
+        <!-- Spacing after param type is not checked -->
+        <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.SpacingAfterParamType"/>
     </rule>
 
 </ruleset>
