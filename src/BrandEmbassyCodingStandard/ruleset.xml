@@ -21,7 +21,28 @@
     </rule>
 
     <!-- Import PSR-12 coding standard (base) -->
-    <rule ref="PSR12"/>
+    <rule ref="PSR12">
+        <!-- Disable spaces between header blocks (uses for class, const, function) -->
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+
+        <!-- Allow space between directive and the equals sign in a declare statement -->
+        <exclude name="PSR12.Files.DeclareStatement.SpaceFoundAfterDirective"/>
+
+        <!-- Allow space between equal sign and the directive value in a declare statement -->
+        <exclude name="PSR12.Files.DeclareStatement.SpaceFoundBeforeDirectiveValue"/>
+
+        <!-- Disable that first expression of a multi-line control structure must be on the line after the opening parenthesis -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
+
+        <!-- Disable line indent in a multi-line control structure -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.LineIndent"/>
+
+        <!-- Disable that closing parenthesis of a multi-line control structure must be on the line after the last expression -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.CloseParenthesisLine"/>
+
+        <!-- Disable opening PHP tag must be on a line by itself -->
+        <exclude name="PSR12.Files.OpenTag.NotAlone"/>
+    </rule>
 
     <!-- Require array element indentation with 4 spaces -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
@@ -151,7 +172,7 @@
     <rule ref="PEAR.Commenting.InlineComment"/>
 
     <!-- Checks for missing typehints -->
-    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
             <property name="allAnnotationsAreUseful" value="true"/>
@@ -387,7 +408,7 @@
     <rule ref="Squiz.Commenting.VariableComment">
         <!-- Allow short versions of scalar types (i.e. int instead of integer) -->
         <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
-        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
+        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
@@ -530,7 +551,7 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
         <!-- Doesn't respect inheritance -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
+        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
         <!-- Breaks when all params are not documented -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>

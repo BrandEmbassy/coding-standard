@@ -38,7 +38,7 @@ use const T_FUNCTION;
 
 class TypeHintDeclarationSniff implements Sniff
 {
-    private const NAME = 'SlevomatCodingStandard.TypeHints.TypeHintDeclaration';
+    private const NAME = 'BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration';
     public const CODE_MISSING_PARAMETER_TYPE_HINT = 'MissingParameterTypeHint';
     public const CODE_MISSING_PROPERTY_TYPE_HINT = 'MissingPropertyTypeHint';
     public const CODE_MISSING_RETURN_TYPE_HINT = 'MissingReturnTypeHint';
@@ -52,12 +52,14 @@ class TypeHintDeclarationSniff implements Sniff
 
     /**
      * @var bool
+     *
      * @deprecated
      */
     public $enableNullableTypeHints = true;
 
     /**
      * @var bool
+     *
      * @deprecated
      */
     public $enableVoidTypeHint = true;
@@ -85,7 +87,7 @@ class TypeHintDeclarationSniff implements Sniff
 
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      *
      * @param File $phpcsFile
      * @param int  $pointer
