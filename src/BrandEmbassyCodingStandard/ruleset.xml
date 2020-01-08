@@ -550,4 +550,11 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.SpacingAfterParamType"/>
     </rule>
 
+    <!-- Empty lines between different annotation types e.g. param, return... -->
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1" />
+        </properties>
+    </rule>
+
 </ruleset>
