@@ -13,7 +13,7 @@
     <option name="INDENT_CHAINED_CALLS" value="false" />
   </JSCodeStyleSettings>
   <PHPCodeStyleSettings>
-    <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
+    <option name="ALIGN_KEY_VALUE_PAIRS" value="false" />
     <option name="COMMA_AFTER_LAST_ARRAY_ELEMENT" value="true" />
     <option name="PHPDOC_BLANK_LINE_BEFORE_TAGS" value="true" />
     <option name="PHPDOC_BLANK_LINES_AROUND_PARAMETERS" value="true" />
