@@ -36,7 +36,7 @@ class FunctionCommentSniff implements Sniff
 
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      *
      * @param int $pointer
      */

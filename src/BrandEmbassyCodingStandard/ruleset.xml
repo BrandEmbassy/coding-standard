@@ -21,7 +21,22 @@
     </rule>
 
     <!-- Import PSR-12 coding standard (base) -->
-    <rule ref="PSR12"/>
+    <rule ref="PSR12">
+        <!-- Disable spaces between header blocks (uses for class, const, function) -->
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+        <!-- Allow space between directive and the equals sign in a declare statement -->
+        <exclude name="PSR12.Files.DeclareStatement.SpaceFoundAfterDirective"/>
+        <!-- Allow space between equal sign and the directive value in a declare statement -->
+        <exclude name="PSR12.Files.DeclareStatement.SpaceFoundBeforeDirectiveValue"/>
+        <!-- Disable that first expression of a multi-line control structure must be on the line after the opening parenthesis -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
+        <!-- Disable line indent in a multi-line control structure -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.LineIndent"/>
+        <!-- Disable that closing parenthesis of a multi-line control structure must be on the line after the last expression -->
+        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.CloseParenthesisLine"/>
+        <!-- Disable opening PHP tag must be on a line by itself -->
+        <exclude name="PSR12.Files.OpenTag.NotAlone"/>
+    </rule>
 
     <!-- Require array element indentation with 4 spaces -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
@@ -151,7 +166,7 @@
     <rule ref="PEAR.Commenting.InlineComment"/>
 
     <!-- Checks for missing typehints -->
-    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableObjectTypeHint" value="false"/>
             <property name="allAnnotationsAreUseful" value="true"/>
@@ -333,6 +348,28 @@
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
 
+    <!-- PHPDoc annotation formatting -->
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <!-- Empty lines between different annotation types e.g. param, return... -->
+            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1"/>
+
+            <!-- Group ORM annotations and force order of annotation types-->
+            <property name="annotationsGroups" type="array">
+                <element value="@deprecated"/>
+                <element value="@phpcsSuppress"/>
+                <element value="@dataProvider"/>
+                <element value="@property"/>
+                <element value="@method"/>
+                <element value="@var"/>
+                <element value="@param"/>
+                <element value="@ORM\"/>
+                <element value="@return"/>
+                <element value="@throws"/>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Forbid spacing after and before array brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
@@ -387,7 +424,7 @@
     <rule ref="Squiz.Commenting.VariableComment">
         <!-- Allow short versions of scalar types (i.e. int instead of integer) -->
         <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
-        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
+        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
@@ -530,7 +567,7 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
         <!-- Doesn't respect inheritance -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <!-- Checked by SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
+        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
         <!-- Breaks when all params are not documented -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>
@@ -548,13 +585,6 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.EmptyThrows"/>
         <!-- Spacing after param type is not checked -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.SpacingAfterParamType"/>
-    </rule>
-
-    <!-- Empty lines between different annotation types e.g. param, return... -->
-    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
-        <properties>
-            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1" />
-        </properties>
     </rule>
 
 </ruleset>
