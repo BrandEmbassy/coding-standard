@@ -354,6 +354,22 @@
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
 
+    <!-- Group ORM annotations and force order of annotation types -->
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <property name="annotationsGroups" type="array">
+                <element value="@phpcsSuppress"/>
+                <element value="@dataProvider"/>
+                <element value="@method"/>
+                <element value="@var"/>
+                <element value="@param"/>
+                <element value="@ORM\"/>
+                <element value="@return"/>
+                <element value="@throws"/>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Forbid spacing after and before array brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
@@ -574,7 +590,7 @@
     <!-- Empty lines between different annotation types e.g. param, return... -->
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
-            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1" />
+            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1"/>
         </properties>
     </rule>
 
