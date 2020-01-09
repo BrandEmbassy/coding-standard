@@ -165,18 +165,6 @@
     <!-- Forbid comments starting with # -->
     <rule ref="PEAR.Commenting.InlineComment"/>
 
-    <!-- Checks for missing typehints -->
-    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
-        <properties>
-            <property name="enableObjectTypeHint" value="false"/>
-            <property name="allAnnotationsAreUseful" value="true"/>
-            <property name="traversableTypeHints" type="array">
-                <element value="\Doctrine\Common\Collections\ArrayCollection"/>
-                <element value="\Doctrine\Common\Collections\Collection"/>
-            </property>
-        </properties>
-    </rule>
-
     <!-- Forbid catching exceptions with Exception -->
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
 
@@ -188,6 +176,49 @@
             <property name="spacesCountAroundEqualsSign" value="1"/>
         </properties>
     </rule>
+
+    <!-- Require parameter type hints -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+        <properties>
+            <property name="enableObjectTypeHint" value="false"/>
+            <property name="traversableTypeHints" type="array">
+                <element value="\Doctrine\Common\Collections\ArrayCollection"/>
+                <element value="\Doctrine\Common\Collections\Collection"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Require property type hints -->
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+        <properties>
+            <property name="traversableTypeHints" type="array">
+                <element value="\Doctrine\Common\Collections\ArrayCollection"/>
+                <element value="\Doctrine\Common\Collections\Collection"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Require return type hints -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+        <properties>
+            <property name="enableObjectTypeHint" value="false"/>
+            <property name="traversableTypeHints" type="array">
+                <element value="\Doctrine\Common\Collections\ArrayCollection"/>
+                <element value="\Doctrine\Common\Collections\Collection"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Disallow useless function annotations -->
+    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment">
+        <properties>
+            <property name="traversableTypeHints" type="array">
+                <element value="\Doctrine\Common\Collections\ArrayCollection"/>
+                <element value="\Doctrine\Common\Collections\Collection"/>
+            </property>
+        </properties>
+    </rule>
+
 
     <!-- Forbid assignment in if, elseif and do-while -->
     <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
