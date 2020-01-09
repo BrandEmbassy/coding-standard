@@ -455,7 +455,7 @@
     <rule ref="Squiz.Commenting.VariableComment">
         <!-- Allow short versions of scalar types (i.e. int instead of integer) -->
         <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
-        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint -->
+        <!-- Checked by SlevomatCodingStandard.TypeHints sniffs -->
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
@@ -560,18 +560,6 @@
         <severity>5</severity>
     </rule>
 
-    <!-- Checks for missing typehints -->
-    <rule ref="BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration">
-        <properties>
-            <property name="usefulAnnotations" type="array">
-                <element value="@dataProvider"/>
-                <element value="@runInSeparateProcess"/>
-                <element value="@deprecated"/>
-                <element value="@throws"/>
-            </property>
-        </properties>
-    </rule>
-
     <!-- Force trait use as first statement in class -->
     <rule ref="BrandEmbassyCodingStandard.Classes.TraitUsePosition"/>
 
@@ -598,7 +586,7 @@
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.IncorrectTypeHint"/>
         <!-- Doesn't respect inheritance -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <!-- Checked by BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint -->
+        <!-- Checked by SlevomatCodingStandard.TypeHints sniffs -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.TypeHintMissing"/>
         <!-- Breaks when all params are not documented -->
         <exclude name="BrandEmbassyCodingStandard.Commenting.FunctionComment.InvalidTypeHint"/>

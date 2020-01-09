@@ -42,7 +42,7 @@ class CamelCapsFunctionNameSniff implements Sniff
 
 
     /**
-     * @phpcsSuppress BrandEmbassyCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      *
      * @param int $pointer
      */
