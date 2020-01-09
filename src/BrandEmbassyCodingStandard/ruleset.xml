@@ -358,8 +358,10 @@
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
             <property name="annotationsGroups" type="array">
+                <element value="@deprecated"/>
                 <element value="@phpcsSuppress"/>
                 <element value="@dataProvider"/>
+                <element value="@property"/>
                 <element value="@method"/>
                 <element value="@var"/>
                 <element value="@param"/>
