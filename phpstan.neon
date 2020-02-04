@@ -5,6 +5,7 @@ parameters:
     level: max
     excludes_analyse:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
+        - src/BrandEmbassyCodingStandard/Sniffs/Classes/__fixtures__
     autoload_files:
         - vendor/squizlabs/php_codesniffer/autoload.php
         - vendor/squizlabs/php_codesniffer/src/Util/Tokens.php

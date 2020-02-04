@@ -360,6 +360,16 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
 
+    <!-- Require empty newlines after uses -->
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <property name="linesCountBeforeFirstUse" value="0"/>
+            <property name="linesCountBetweenUses" value="0"/>
+            <property name="linesCountAfterLastUse" value="2"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
+        </properties>
+    </rule>
+
     <!-- Looks for unused variables -->
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
         <properties>
