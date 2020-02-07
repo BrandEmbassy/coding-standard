@@ -15,7 +15,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\BrandEmbassyCodingStandard\\": "tests/BrandEmbassyCodingStandard"
+            "SlevomatCodingStandard\\": "vendor/slevomat/coding-standard/tests"
         }
     },
     "require": {
@@ -33,9 +33,9 @@
         "mockery/mockery": "^1.2"
     },
     "scripts": {
-        "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src tests",
-        "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src tests",
-        "phpunit": "vendor/bin/phpunit",
+        "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
+        "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
+        "phpunit": "vendor/bin/phpunit src  --bootstrap src/BrandEmbassyCodingStandard/TestsBootstrap.php",
         "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src"
     }
 }
