@@ -73,7 +73,7 @@ final class TraitUseSpacingSniff implements Sniff
 
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      *
      * @param int $classPointer
      */
