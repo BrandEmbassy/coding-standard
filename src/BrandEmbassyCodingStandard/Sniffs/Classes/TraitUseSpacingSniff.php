@@ -171,6 +171,7 @@ final class TraitUseSpacingSniff implements Sniff
             $lastUsePointer + 1
         );
         if ($tokens[$lastUseEndPointer]['code'] === T_OPEN_CURLY_BRACKET) {
+            /** @var int $lastUseEndPointer */
             $lastUseEndPointer = $tokens[$lastUseEndPointer]['bracket_closer'];
         }
 
