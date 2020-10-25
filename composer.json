@@ -16,12 +16,16 @@
     "autoload-dev": {
         "psr-4": {
             "SlevomatCodingStandard\\": "vendor/slevomat/coding-standard/tests"
-        }
+        },
+        "files": [
+            "vendor/squizlabs/php_codesniffer/autoload.php",
+            "vendor/squizlabs/php_codesniffer/src/Util/Tokens.php"
+        ]
     },
     "require": {
         "squizlabs/php_codesniffer": "~3.5.3",
         "slevomat/coding-standard": "^6.0",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.7",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-strict-rules": "^0.12",
         "phpstan/phpstan-nette": "^0.12",
@@ -35,7 +39,7 @@
     "scripts": {
         "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
         "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
-        "phpunit": "vendor/bin/phpunit src  --bootstrap src/BrandEmbassyCodingStandard/TestsBootstrap.php",
+        "phpunit": "vendor/bin/phpunit src",
         "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src"
     },
     "minimum-stability": "dev",

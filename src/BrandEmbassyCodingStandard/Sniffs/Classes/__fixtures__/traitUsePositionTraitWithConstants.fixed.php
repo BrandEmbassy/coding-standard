@@ -5,7 +5,7 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes\__fixtures__;
 use Bar;
 use FooTrait;
 
-final class FooBarClass
+final class FooBarClass1
 {
 
     use Bar;

@@ -4,7 +4,7 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes\__fixtures__;
 
 use Bar;
 
-final class FooBarClass
+final class FooBarClass2
 {
     use Bar;
     private const FOO = 'foo';
