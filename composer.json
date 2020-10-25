@@ -11,7 +11,8 @@
     "autoload": {
         "psr-4": {
             "BrandEmbassyCodingStandard\\": "src/BrandEmbassyCodingStandard"
-        }
+        },
+        "exclude-from-classmap": ["**/__fixtures__/**"]
     },
     "autoload-dev": {
         "psr-4": {
