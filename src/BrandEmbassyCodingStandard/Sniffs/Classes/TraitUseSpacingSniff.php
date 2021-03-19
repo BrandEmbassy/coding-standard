@@ -217,7 +217,7 @@ final class TraitUseSpacingSniff implements Sniff
 
         $phpcsFile->fixer->beginChangeset();
         for ($i = $lastUseEndPointer + 1; $i <= $whitespaceEnd; $i++) {
-            $phpcsFile->fixer->replaceToken($i, '');
+            $phpcsFile->fixer->replaceToken((int)$i, '');
         }
         for ($i = 0; $i <= $requiredLinesCountAfterLastUse; $i++) {
             $phpcsFile->fixer->addNewline($lastUseEndPointer);

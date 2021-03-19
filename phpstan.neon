@@ -3,13 +3,10 @@ includes:
 
 parameters:
     level: max
+    checkGenericClassInNonGenericObjectType: false
     excludes_analyse:
         - %rootDir%/../../../src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - %rootDir%/../../../src/BrandEmbassyCodingStandard/Sniffs/Classes/__fixtures__
-    autoload_files:
+    bootstrapFiles:
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
-    ignoreErrors:
-        -
-            message: '#Parameter \#1 \$node \(PhpParser\\Node\\Expr\\MethodCall\) of method BrandEmbassyCodingStandard\\PhpStan\\Rules\\Mockery\\PostConditionsTraitUsedRule::processNode\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule::processNode\(\)#'
-            path: src/BrandEmbassyCodingStandard/PhpStan/Rules/Mockery/PostConditionsTraitUsedRule.php

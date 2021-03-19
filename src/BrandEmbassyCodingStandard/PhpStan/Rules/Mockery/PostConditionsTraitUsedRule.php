@@ -10,6 +10,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
+use function assert;
 use function in_array;
 use function sprintf;
 
@@ -49,12 +50,12 @@ class PostConditionsTraitUsedRule implements Rule
 
 
     /**
-     * @param MethodCall $node
-     *
      * @return string[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        assert($node instanceof MethodCall);
+
         if (!$node->name instanceof Identifier) {
             return [];
         }
