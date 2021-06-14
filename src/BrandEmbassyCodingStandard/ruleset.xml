@@ -168,6 +168,9 @@
     <!-- Forbid catching exceptions with Exception -->
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
 
+    <!-- Enforces maximum length of a single line of code-->
+    <rule ref="SlevomatCodingStandard.Files.LineLength"/>
+
     <!-- Require strict types declaration and its format -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
@@ -196,9 +199,6 @@
                 <element value="\Doctrine\Common\Collections\Collection"/>
             </property>
         </properties>
-
-        <!-- Excluded because of update to php 7.4 -->
-        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
     </rule>
 
     <!-- Require return type hints -->
@@ -238,6 +238,9 @@
     <!-- Forbid dead code -->
     <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
 
+    <!-- Enforces configurable number of lines around parent method call -->
+    <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing"/>
+
     <!-- Forbid unused use statements -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
@@ -253,6 +256,9 @@
 
     <!-- Require comma after last element in multi-line array -->
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
+
+    <!-- Checks whitespace in single line array declarations -->
+    <rule ref="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace"/>
 
     <!-- Require language constructs without parentheses -->
     <rule ref="SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses"/>
@@ -370,6 +376,9 @@
         </properties>
     </rule>
 
+    <!-- Disallows use of super global variables -->
+    <rule ref="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable"/>
+
     <!-- Looks for useless parameter default value -->
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
 
@@ -379,8 +388,20 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
 
+    <!-- Reports empty functions body and require at least a comment inside -->
+    <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
+
+    <!-- Checks fn declaration -->
+    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration"/>
+
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
+
+    <!-- Disallows direct call of __invoke() -->
+    <rule ref="SlevomatCodingStandard.PHP.DisallowDirectMagicInvokeCall"/>
+
+    <!-- Checks duplicate spaces anywhere -->
+    <rule ref="SlevomatCodingStandard.Whitespaces.DuplicateSpaces"/>
 
     <!-- PHPDoc annotation formatting -->
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
@@ -403,6 +424,9 @@
             </property>
         </properties>
     </rule>
+
+    <!-- Reports @deprecated annotations without description -->
+    <rule ref="SlevomatCodingStandard.Commenting.DeprecatedAnnotationDeclaration"/>
 
     <!-- Forbid spacing after and before array brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
