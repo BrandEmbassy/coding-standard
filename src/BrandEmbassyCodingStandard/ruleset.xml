@@ -421,6 +421,8 @@
         <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
         <!-- Checked by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.NoCommaAfterLast"/>
+        <!-- Disable forcing one line arrays if there is only one value -->
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
     </rule>
 
     <!-- Forbid class being in a file with different name -->
