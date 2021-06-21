@@ -199,6 +199,7 @@
 
         <!-- Excluded because of update to php 7.4 -->
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
+        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
     </rule>
 
     <!-- Require return type hints -->
