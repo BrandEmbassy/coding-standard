@@ -241,6 +241,22 @@
     <!-- Enforces configurable number of lines around parent method call -->
     <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing"/>
 
+    <!-- Enforces configurable number of lines around properties -->
+    <rule ref="SlevomatCodingStandard.Classes.PropertySpacing">
+        <properties>
+            <property name="minLinesCountBeforeWithComment" value="1"/>
+            <property name="maxLinesCountBeforeWithComment" value="1"/>
+            <property name="minLinesCountBeforeWithoutComment" value="1"/>
+            <property name="maxLinesCountBeforeWithoutComment" value="1"/>
+        </properties>
+    </rule>
+    <!-- Enforces configurable number of lines around properties -->
+    <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing">
+        <properties>
+            <property name="linesCountBetweenMembers" value="1"/>
+        </properties>
+    </rule>
+
     <!-- Forbid unused use statements -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
@@ -540,20 +556,10 @@
     <!-- Forbid blank line after function opening brace -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
-    <!-- Force correct function spacing -->
-    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+    <rule ref="SlevomatCodingStandard.Classes.MethodSpacing">
         <properties>
-            <property name="spacing" value="2"/>
-            <property name="spacingBeforeFirst" value="0"/>
-            <property name="spacingAfterLast" value="0"/>
-        </properties>
-    </rule>
-
-    <!-- Force spacing around member variables -->
-    <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
-        <properties>
-            <property name="spacing" value="1"/>
-            <property name="spacingBeforeFirst" value="0"/>
+            <property name="minLinesCount" value="2"/>
+            <property name="maxLinesCount" value="2"/>
         </properties>
     </rule>
 

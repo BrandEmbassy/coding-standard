@@ -32,7 +32,6 @@ class PostConditionsTraitUsedRule implements Rule
 
     private RuleLevelHelper $ruleLevelHelper;
 
-
     public function __construct(RuleLevelHelper $ruleLevelHelper)
     {
         $this->ruleLevelHelper = $ruleLevelHelper;

@@ -20,7 +20,6 @@ class TraitUsePositionSniff implements Sniff
 {
     public const CODE_TRAIT_USE_IS_NOT_FIRST_IN_CLASS = 'NotFirstInClass';
 
-
     /**
      * @return int[]|string[]
      */

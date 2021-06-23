@@ -40,7 +40,6 @@ final class TraitUseSpacingSniff implements Sniff
 
     public int $linesCountAfterLastUseWhenLastInClass = 1;
 
-
     /**
      * @return array<int, (int|string)>
      */

@@ -18,7 +18,6 @@ class CamelCapsFunctionNameSniff implements Sniff
 
     public bool $strict;
 
-
     public function __construct()
     {
         $this->decoratedSniff = new BaseCamelCapsFunctionNameSniff();

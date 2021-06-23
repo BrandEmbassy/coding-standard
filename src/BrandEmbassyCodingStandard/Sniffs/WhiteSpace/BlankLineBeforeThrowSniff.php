@@ -11,7 +11,6 @@ class BlankLineBeforeThrowSniff implements Sniff
 {
     public const CODE_NO_BLANK_LINE_BEFORE_THROW = 'NoBlankLineBeforeThrow';
 
-
     /**
      * @return int[]
      */

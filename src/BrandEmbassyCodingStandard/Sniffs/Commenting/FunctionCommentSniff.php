@@ -16,7 +16,6 @@ class FunctionCommentSniff implements Sniff
 
     private BaseFunctionCommentSniff $decoratedSniff;
 
-
     public function __construct()
     {
         $this->decoratedSniff = new BaseFunctionCommentSniff();
