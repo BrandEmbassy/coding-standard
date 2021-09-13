@@ -12,6 +12,8 @@ final class FooTest extends TestCase
         Assert::assertTrue(true);
         self::assertFalse(false);
         static::assertEquals(1, 2);
+        static  ::
+        assertEquals(1, 2);
         self::any();
     }
 

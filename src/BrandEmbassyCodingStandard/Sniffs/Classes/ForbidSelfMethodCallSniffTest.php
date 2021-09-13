@@ -15,7 +15,7 @@ final class ForbidSelfMethodCallSniffTest extends TestCase
         $report = self::checkFile($file);
 
 //        Assert::assertSame(2, $report->getErrorCount());
-        Assert::assertSame(2, $report->getFixedCount());
+        Assert::assertSame(3, $report->getFixedCount());
 
         self::assertAllFixedInFile($report);
     }

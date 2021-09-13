@@ -12,6 +12,8 @@ final class FooTest extends TestCase
         Assert::assertTrue(true);
         \PHPUnit\Framework\Assert::assertFalse(false);
         \PHPUnit\Framework\Assert::assertEquals(1, 2);
+        \PHPUnit\Framework\Assert  ::
+        assertEquals(1, 2);
         self::any();
     }
 
