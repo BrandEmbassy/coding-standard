@@ -580,6 +580,17 @@
         </properties>
     </rule>
 
+    <!-- Forbid using self::assertX in TestCase -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <property name="linesCountBeforeFirstUse" value="0"/>
+            <property name="linesCountBetweenUses" value="0"/>
+            <property name="linesCountAfterLastUse" value="2"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
+            <property name="linesBeforeFollowingPropertyOrConstant" value="1"/>
+        </properties>
+    </rule>
+
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
