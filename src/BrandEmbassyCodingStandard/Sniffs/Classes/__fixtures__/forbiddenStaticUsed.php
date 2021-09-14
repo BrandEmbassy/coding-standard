@@ -5,9 +5,9 @@ namespace Foo\Bar;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-final class FooTest extends TestCase
+final class FooFooFoo extends TestCase
 {
-    public function testFoo(): void
+    public function barBarBar(): void
     {
         Assert::assertTrue(true);
         self::assertFalse(false);

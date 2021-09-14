@@ -24,11 +24,14 @@ final class ForbiddenStaticMethodSniff implements Sniff
     private const FORBIDDEN_SELF_METHOD_CALL = 'ForbiddenSelfMethodCall';
 
     /**
-     * @var array<string, string>
+     * @var array<string, class-string>
      */
     public $forbiddenClasses = [];
 
 
+    /**
+     * @return string[]
+     */
     public function register(): array
     {
         return [
@@ -38,9 +41,19 @@ final class ForbiddenStaticMethodSniff implements Sniff
     }
 
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     *
+     * @param int $stackPtr
+     */
     public function process(File $phpcsFile, $stackPtr): void
     {
         $classPointer = TokenHelper::findPrevious($phpcsFile, [T_CLASS], $stackPtr);
+
+        if ($classPointer === null) {
+            return;
+        }
+
         $className = ClassHelper::getFullyQualifiedName($phpcsFile, $classPointer);
 
         $forbiddenClass = $this->findForbiddenClass($className);
@@ -53,6 +66,9 @@ final class ForbiddenStaticMethodSniff implements Sniff
     }
 
 
+    /**
+     * @param class-string $forbiddenClass
+     */
     private function checkForbiddenClass(File $phpcsFile, int $staticCallPointer, string $forbiddenClass): void
     {
         $reflection = new ReflectionClass($forbiddenClass);
@@ -99,6 +115,9 @@ final class ForbiddenStaticMethodSniff implements Sniff
     }
 
 
+    /**
+     * @param string[] $forbiddenMethods
+     */
     private function isForbiddenStaticMethodCall(File $phpcsFile, int $staticPointer, array $forbiddenMethods): bool
     {
         $tokens = $phpcsFile->getTokens();
@@ -139,6 +158,9 @@ final class ForbiddenStaticMethodSniff implements Sniff
     }
 
 
+    /**
+     * @return class-string|null
+     */
     private function findForbiddenClass(string $className): ?string
     {
         foreach ($this->forbiddenClasses as $forbiddenClass) {
