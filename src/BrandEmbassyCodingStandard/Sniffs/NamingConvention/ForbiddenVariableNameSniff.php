@@ -13,6 +13,8 @@ use const T_VARIABLE;
 
 final class ForbiddenVariableNameSniff implements Sniff
 {
+    private const FORBIDDEN_VARIABLE_NAME = 'ForbiddenVariableName';
+
     /**
      * @var array<string, class-string>
      */
@@ -61,7 +63,7 @@ final class ForbiddenVariableNameSniff implements Sniff
         );
 
         if ($this->variableWithSameNameAlreadyExists($tokens, $variablesInScope, $replacement)) {
-            $phpcsFile->addError($errorMessage, $stackPtr, 'ForbiddenVariableName');
+            $phpcsFile->addError($errorMessage, $stackPtr, self::FORBIDDEN_VARIABLE_NAME);
 
             return;
         }
@@ -70,7 +72,7 @@ final class ForbiddenVariableNameSniff implements Sniff
             $fix = $phpcsFile->addFixableError(
                 $errorMessage,
                 $variableToReplace,
-                'ForbiddenVariableName'
+                self::FORBIDDEN_VARIABLE_NAME
             );
 
             if (!$fix) {
