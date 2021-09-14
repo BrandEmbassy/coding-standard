@@ -30,7 +30,7 @@ final class ForbiddenStaticMethodSniff implements Sniff
 
 
     /**
-     * @return int[]
+     * @return int[]|string[]
      */
     public function register(): array
     {
