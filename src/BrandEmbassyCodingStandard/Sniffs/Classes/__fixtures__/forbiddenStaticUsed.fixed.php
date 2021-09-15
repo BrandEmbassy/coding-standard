@@ -17,7 +17,7 @@ final class FooFooFoo extends TestCase
         \PHPUnit\Framework\Assert::assertEquals(1, 2);
         self::$lol = 'B';
         \PHPUnit\Framework\Assert  ::
-        assertEquals(1, 2);
+        assertTrue(false);
         self::lolSelf();
         static::lolStatic();
         self::any();

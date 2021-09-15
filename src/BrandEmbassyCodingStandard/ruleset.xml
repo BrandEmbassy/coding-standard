@@ -581,7 +581,7 @@
     </rule>
 
     <!-- Forbid using self::assertX in TestCase -->
-    <rule ref="BrandEmbassyCodingStandard.Classes.ForbiddenStaticMethod">
+    <rule ref="BrandEmbassyCodingStandard.Classes.ForbiddenStaticMethodCall">
         <properties>
             <property name="forbiddenClasses" type="array">
                 <element value="\PHPUnit\Framework\Assert"/>
