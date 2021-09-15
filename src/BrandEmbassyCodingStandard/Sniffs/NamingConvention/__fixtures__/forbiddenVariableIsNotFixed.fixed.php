@@ -13,5 +13,9 @@ class Foo
     public function throwException(Exception $exception): void
     {
         throw $exception;
+
+        function () {
+
+        }
     }
 }

@@ -18,7 +18,12 @@ try {
     echo $exception->getMessage();
 }
 
-function handle(RuntimeException $exception)
+function handle(RuntimeException $e)
 {
-    echo $exception->getMessage();
+    echo $e->getMessage();
+
+    foreach (['a', 'b'] as $foo) {
+        $exception = new Exception();
+        echo $e->getMessage() . $foo;
+    }
 }

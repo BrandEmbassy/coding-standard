@@ -21,4 +21,9 @@ try {
 function handle(RuntimeException $e)
 {
     echo $e->getMessage();
+
+    foreach (['a', 'b'] as $foo) {
+        $exception = new Exception();
+        echo $e->getMessage() . $foo;
+    }
 }

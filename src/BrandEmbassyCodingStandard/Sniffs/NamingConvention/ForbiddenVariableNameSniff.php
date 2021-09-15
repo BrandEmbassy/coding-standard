@@ -88,7 +88,7 @@ final class ForbiddenVariableNameSniff implements Sniff
 
     private function getVariablesInTheSameScope(File $phpcsFile, int $scopeStartPointer): array
     {
-        $allVariables = TokenHelper::findNextAll($phpcsFile, [T_VARIABLE], $scopeStartPointer);
+        $allVariables = TokenHelper::findNextAll($phpcsFile, [T_VARIABLE], 0);
 
         return array_filter(
             $allVariables,
