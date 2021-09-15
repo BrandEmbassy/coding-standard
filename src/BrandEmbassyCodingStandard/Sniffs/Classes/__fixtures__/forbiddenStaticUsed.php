@@ -7,14 +7,21 @@ use PHPUnit\Framework\TestCase;
 
 final class FooFooFoo extends TestCase
 {
+    private static $lol;
+
     public function barBarBar(): void
     {
+        self::$lol = 'A';
         Assert::assertTrue(true);
         self::assertFalse(false);
         static::assertEquals(1, 2);
+        self::$lol = 'B';
         static  ::
         assertEquals(1, 2);
+        self::lolSelf();
+        static::lolStatic();
         self::any();
+        self::$lol = 'C';
     }
 
 

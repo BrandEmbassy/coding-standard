@@ -9,6 +9,7 @@ use ReflectionMethod;
 use SlevomatCodingStandard\Helpers\ClassHelper;
 use SlevomatCodingStandard\Helpers\StringHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
+use function array_filter;
 use function array_map;
 use function in_array;
 use function is_a;
@@ -28,16 +29,18 @@ final class ForbiddenStaticMethodSniff implements Sniff
      */
     public $forbiddenClasses = [];
 
+    /**
+     * @var array<class-string, string[]>
+     */
+    private static $forbiddenMethods = [];
+
 
     /**
      * @return int[]|string[]
      */
     public function register(): array
     {
-        return [
-            T_SELF,
-            T_STATIC,
-        ];
+        return [T_DOUBLE_COLON];
     }
 
 
@@ -56,31 +59,29 @@ final class ForbiddenStaticMethodSniff implements Sniff
 
         $className = ClassHelper::getFullyQualifiedName($phpcsFile, $classPointer);
 
-        $forbiddenClass = $this->findForbiddenClass($className);
+        $forbiddenClasses = $this->findForbiddenClasses($className);
 
-        if ($forbiddenClass === null) {
-            return;
+        foreach ($forbiddenClasses as $forbiddenClass) {
+            $this->checkForbiddenClass($phpcsFile, $stackPtr, $forbiddenClass);
         }
-
-        $this->checkForbiddenClass($phpcsFile, $stackPtr, $forbiddenClass);
     }
 
 
     /**
      * @param class-string $forbiddenClass
      */
-    private function checkForbiddenClass(File $phpcsFile, int $staticCallPointer, string $forbiddenClass): void
+    private function checkForbiddenClass(File $phpcsFile, int $doubleColonPointer, string $forbiddenClass): void
     {
-        $reflection = new ReflectionClass($forbiddenClass);
-        $forbiddenClassStaticMethods = array_map(
-            static function (ReflectionMethod $method): string {
-                return $method->name;
-            },
-            $reflection->getMethods(ReflectionMethod::IS_STATIC)
+        $forbiddenClassStaticMethods = $this->getStaticMethodsInForbiddenClass($forbiddenClass);
+
+        $methodCallPointer = $this->findForbiddenStaticMethodPointer(
+            $phpcsFile,
+            $doubleColonPointer,
+            $forbiddenClassStaticMethods
         );
 
-        if ($this->isForbiddenStaticMethodCall($phpcsFile, $staticCallPointer, $forbiddenClassStaticMethods)) {
-            $this->addMethodCallError($phpcsFile, $staticCallPointer, $forbiddenClass);
+        if ($methodCallPointer !== null) {
+            $this->addMethodCallError($phpcsFile, $methodCallPointer, $forbiddenClass);
         }
     }
 
@@ -90,11 +91,9 @@ final class ForbiddenStaticMethodSniff implements Sniff
         int $staticMethodCallPointer,
         string $forbiddenClass
     ): void {
-        $methodNamePointer = $staticMethodCallPointer + 2;
-        $call = TokenHelper::getContent($phpcsFile, $staticMethodCallPointer, $methodNamePointer);
-        $expectedCall = TokenHelper::getContent($phpcsFile, $staticMethodCallPointer + 1, $methodNamePointer);
+        $call = TokenHelper::getContent($phpcsFile, $staticMethodCallPointer, $staticMethodCallPointer);
 
-        $errorMessage = sprintf('Using %s is forbidden, %s%s should be used.', $call, $forbiddenClass, $expectedCall);
+        $errorMessage = sprintf('Using %s:: is forbidden. Call %s:: directly', $call, $forbiddenClass);
         $fix = $phpcsFile->addFixableError(
             $errorMessage,
             $staticMethodCallPointer,
@@ -118,57 +117,78 @@ final class ForbiddenStaticMethodSniff implements Sniff
     /**
      * @param string[] $forbiddenMethods
      */
-    private function isForbiddenStaticMethodCall(File $phpcsFile, int $staticPointer, array $forbiddenMethods): bool
-    {
+    private function findForbiddenStaticMethodPointer(
+        File $phpcsFile,
+        int $doubleColonPointer,
+        array $forbiddenMethods
+    ): ?int {
         $tokens = $phpcsFile->getTokens();
-        $methodCallPointer = $this->findStaticMethodPointer($phpcsFile, $staticPointer);
-
-        if ($methodCallPointer === null) {
-            return false;
-        }
-
-        if (in_array($tokens[$methodCallPointer]['content'], $forbiddenMethods, true)) {
-            return true;
-        }
-
-        return false;
-    }
-
-
-    private function findStaticMethodPointer(File $phpcsFile, int $staticPointer): ?int
-    {
-        $methodCallPointer = TokenHelper::findNext($phpcsFile, [T_STRING], $staticPointer);
-
-        if ($methodCallPointer === null) {
-            return null;
-        }
 
         $previousPointer = TokenHelper::findPreviousExcluding(
             $phpcsFile,
             TokenHelper::$ineffectiveTokenCodes,
-            $methodCallPointer - 1
+            $doubleColonPointer - 1
         );
 
-        $previousToken = $phpcsFile->getTokens()[$previousPointer];
-        if ($previousToken['code'] !== T_DOUBLE_COLON) {
+        if (!in_array($tokens[$previousPointer]['code'], [T_STATIC, T_SELF], true)) {
             return null;
         }
 
-        return $methodCallPointer;
+        $methodCallPointer = TokenHelper::findNextExcluding(
+            $phpcsFile,
+            TokenHelper::$ineffectiveTokenCodes,
+            $doubleColonPointer + 1
+        );
+
+        $methodCallToken = $tokens[$methodCallPointer];
+
+        if (!isset($tokens[$methodCallPointer]) || $methodCallToken['code'] !== T_STRING) {
+            return null;
+        }
+
+        if (!in_array($methodCallToken['content'], $forbiddenMethods, true)) {
+            return null;
+        }
+
+        return $previousPointer;
     }
 
 
     /**
-     * @return class-string|null
+     * @return class-string[]
      */
-    private function findForbiddenClass(string $className): ?string
+    private function findForbiddenClasses(string $className): array
     {
-        foreach ($this->forbiddenClasses as $forbiddenClass) {
-            if (is_a($className, $forbiddenClass, true)) {
-                return $forbiddenClass;
+        return array_filter(
+            $this->forbiddenClasses,
+            static function (string $forbiddenClass) use ($className): bool {
+                return is_a($className, $forbiddenClass, true);
             }
+        );
+    }
+
+
+    /**
+     * @param class-string $forbiddenClass
+     *
+     * @return string[]
+     */
+    private function getStaticMethodsInForbiddenClass(string $forbiddenClass): array
+    {
+        if (isset(self::$forbiddenMethods[$forbiddenClass])) {
+            return self::$forbiddenMethods[$forbiddenClass];
         }
 
-        return null;
+        $reflection = new ReflectionClass($forbiddenClass);
+        $forbiddenClassStaticMethods = array_map(
+            static function (ReflectionMethod $method): string {
+                return $method->name;
+            },
+            $reflection->getMethods(ReflectionMethod::IS_STATIC)
+        );
+
+        self::$forbiddenMethods[$forbiddenClass] = $forbiddenClassStaticMethods;
+
+        return $forbiddenClassStaticMethods;
     }
 }
