@@ -70,6 +70,24 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
 
 
     /**
+     * @return class-string[]
+     */
+    private function findClassesWithoutSelfReferencing(string $className): array
+    {
+        if (!isset($this->classesWithoutSelfReferencing)) {
+            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
+        }
+
+        return array_filter(
+            $this->classesWithoutSelfReferencing,
+            static function (string $forbiddenClass) use ($className): bool {
+                return is_a($className, $forbiddenClass, true);
+            }
+        );
+    }
+
+
+    /**
      * @param class-string $className
      */
     private function checkClassHasNoSelfReferences(File $phpcsFile, int $doubleColonPointer, string $className): void
@@ -89,38 +107,27 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
 
 
     /**
-     * @param array<string, int> $selfReferencingStaticMethodCallPointers
+     * @param class-string $className
+     *
+     * @return string[]
      */
-    private function addMethodCallError(
-        File $phpcsFile,
-        array $selfReferencingStaticMethodCallPointers,
-        string $classWithoutSelfReferencing
-    ): void {
-        $selfReferencePointer = $selfReferencingStaticMethodCallPointers['selfReferencePointer'];
-        $methodNamePointer = $selfReferencingStaticMethodCallPointers['methodNamePointer'];
+    private function getClassStaticMethods(string $className): array
+    {
+        if (isset(self::$classStaticMethods[$className])) {
+            return self::$classStaticMethods[$className];
+        }
 
-        $selfReference = TokenHelper::getContent($phpcsFile, $selfReferencePointer, $selfReferencePointer);
-        $methodName = TokenHelper::getContent($phpcsFile, $methodNamePointer, $methodNamePointer);
-
-        $errorMessage = sprintf(
-            'Using %1$s::%2$s is forbidden. Call %3$s::%2$s directly.',
-            $selfReference,
-            $methodName,
-            $classWithoutSelfReferencing
+        $reflection = new ReflectionClass($className);
+        $classStaticMethods = array_map(
+            static function (ReflectionMethod $method): string {
+                return $method->name;
+            },
+            $reflection->getMethods(ReflectionMethod::IS_STATIC)
         );
-        $fix = $phpcsFile->addFixableError($errorMessage, $selfReferencePointer, self::VIOLATION_CODE);
 
-        if (!$fix) {
-            return;
-        }
+        self::$classStaticMethods[$className] = $classStaticMethods;
 
-        if (!StringHelper::startsWith($classWithoutSelfReferencing, '\\')) {
-            $classWithoutSelfReferencing = '\\' . $classWithoutSelfReferencing;
-        }
-
-        $phpcsFile->fixer->beginChangeset();
-        $phpcsFile->fixer->replaceToken($selfReferencePointer, $classWithoutSelfReferencing);
-        $phpcsFile->fixer->endChangeset();
+        return $classStaticMethods;
     }
 
 
@@ -159,44 +166,37 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
 
 
     /**
-     * @return class-string[]
+     * @param array<string, int> $selfReferencingStaticMethodCallPointers
      */
-    private function findClassesWithoutSelfReferencing(string $className): array
-    {
-        if (!isset($this->classesWithoutSelfReferencing)) {
-            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
+    private function addMethodCallError(
+        File $phpcsFile,
+        array $selfReferencingStaticMethodCallPointers,
+        string $classWithoutSelfReferencing
+    ): void {
+        $selfReferencePointer = $selfReferencingStaticMethodCallPointers['selfReferencePointer'];
+        $methodNamePointer = $selfReferencingStaticMethodCallPointers['methodNamePointer'];
+
+        $selfReference = TokenHelper::getContent($phpcsFile, $selfReferencePointer, $selfReferencePointer);
+        $methodName = TokenHelper::getContent($phpcsFile, $methodNamePointer, $methodNamePointer);
+
+        $errorMessage = sprintf(
+            'Using %1$s::%2$s is forbidden. Call %3$s::%2$s directly.',
+            $selfReference,
+            $methodName,
+            $classWithoutSelfReferencing
+        );
+        $fix = $phpcsFile->addFixableError($errorMessage, $selfReferencePointer, self::VIOLATION_CODE);
+
+        if (!$fix) {
+            return;
         }
 
-        return array_filter(
-            $this->classesWithoutSelfReferencing,
-            static function (string $forbiddenClass) use ($className): bool {
-                return is_a($className, $forbiddenClass, true);
-            }
-        );
-    }
-
-
-    /**
-     * @param class-string $className
-     *
-     * @return string[]
-     */
-    private function getClassStaticMethods(string $className): array
-    {
-        if (isset(self::$classStaticMethods[$className])) {
-            return self::$classStaticMethods[$className];
+        if (!StringHelper::startsWith($classWithoutSelfReferencing, '\\')) {
+            $classWithoutSelfReferencing = '\\' . $classWithoutSelfReferencing;
         }
 
-        $reflection = new ReflectionClass($className);
-        $classStaticMethods = array_map(
-            static function (ReflectionMethod $method): string {
-                return $method->name;
-            },
-            $reflection->getMethods(ReflectionMethod::IS_STATIC)
-        );
-
-        self::$classStaticMethods[$className] = $classStaticMethods;
-
-        return $classStaticMethods;
+        $phpcsFile->fixer->beginChangeset();
+        $phpcsFile->fixer->replaceToken($selfReferencePointer, $classWithoutSelfReferencing);
+        $phpcsFile->fixer->endChangeset();
     }
 }
