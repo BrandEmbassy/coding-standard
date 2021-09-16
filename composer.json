@@ -41,7 +41,7 @@
         "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
         "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
         "phpunit": "vendor/bin/phpunit src",
-        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src"
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src --memory-limit=-1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

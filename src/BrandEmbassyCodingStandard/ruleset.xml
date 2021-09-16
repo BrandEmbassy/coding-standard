@@ -580,6 +580,15 @@
         </properties>
     </rule>
 
+    <!-- Forbid using self::assertX in TestCase -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.ClassesWithoutSelfReferencing">
+        <properties>
+            <property name="classesWithoutSelfReferencing" type="array">
+                <element value="\PHPUnit\Framework\Assert"/>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
