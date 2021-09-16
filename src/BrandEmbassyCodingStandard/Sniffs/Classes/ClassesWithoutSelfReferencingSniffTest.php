@@ -3,6 +3,7 @@
 namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 
 use PHPUnit\Framework\Assert;
+use RuntimeException;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
 final class ClassesWithoutSelfReferencingSniffTest extends TestCase
@@ -36,5 +37,17 @@ final class ClassesWithoutSelfReferencingSniffTest extends TestCase
 
         self::assertAllFixedInFile($report);
         Assert::assertSame(3, $report->getFixedCount());
+    }
+
+
+    public function testNoOptionProvided(): void
+    {
+        $file = __DIR__ . '/__fixtures__/classesWithoutSelfReferencing.php';
+        require_once $file;
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('The option "classesWithoutSelfReferencing" was not provided.');
+
+        self::checkFile($file);
     }
 }

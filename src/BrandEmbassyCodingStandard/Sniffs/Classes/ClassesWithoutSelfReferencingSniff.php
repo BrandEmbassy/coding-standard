@@ -6,6 +6,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use ReflectionClass;
 use ReflectionMethod;
+use RuntimeException;
 use SlevomatCodingStandard\Helpers\ClassHelper;
 use SlevomatCodingStandard\Helpers\StringHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
@@ -28,7 +29,7 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
     /**
      * @var array<string, class-string>
      */
-    public $classesWithoutSelfReferencing = [];
+    public $classesWithoutSelfReferencing;
 
     /**
      * @var array<class-string, string[]>
@@ -162,6 +163,10 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
      */
     private function findClassesWithoutSelfReferencing(string $className): array
     {
+        if (!isset($this->classesWithoutSelfReferencing)) {
+            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
+        }
+
         return array_filter(
             $this->classesWithoutSelfReferencing,
             static function (string $forbiddenClass) use ($className): bool {
