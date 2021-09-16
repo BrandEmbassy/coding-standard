@@ -8,9 +8,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        composer-arg:
-          - "install"
-          - "update --prefer-lowest"
         php-version:
           - 7.1
           - 7.2
@@ -40,7 +37,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer ${{ matrix.composer-arg }} --prefer-dist
+        run: composer install --prefer-dist
 
       - name: Run phpstan
         run: composer phpstan
@@ -51,9 +48,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        composer-arg:
-          - "install"
-          - "update --prefer-lowest"
         php-version:
           - 7.1
           - 7.2
@@ -83,7 +77,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer ${{ matrix.composer-arg }} --prefer-dist
+        run: composer install --prefer-dist
 
       - name: Run code-sniffer
         run: composer phpcs
