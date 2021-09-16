@@ -3,7 +3,7 @@ name: CI
 on: [pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  phpstan:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,8 +38,30 @@ jobs:
       - name: Run phpstan
         run: composer phpstan
 
+
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - *STEP_CHECKOUT
+      - *STEP_SETUP_PHP
+      - *STEP_GET_COMPOSER_CACHE_DIRECTORY
+      - *STEP_CACHE_COMPOSER_DEPENDENCIES
+      - *STEP_INSTALL_DEPENDENCIES
+
       - name: Run code-sniffer
         run: composer phpcs
+
+
+  phpunit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - *STEP_CHECKOUT
+      - *STEP_SETUP_PHP
+      - *STEP_GET_COMPOSER_CACHE_DIRECTORY
+      - *STEP_CACHE_COMPOSER_DEPENDENCIES
+      - *STEP_INSTALL_DEPENDENCIES
 
       - name: Run tests
         run: composer phpunit
