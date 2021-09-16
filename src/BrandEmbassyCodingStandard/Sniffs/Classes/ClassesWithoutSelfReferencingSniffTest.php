@@ -5,32 +5,32 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 use PHPUnit\Framework\Assert;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
-final class ForbiddenStaticMethodCallSniffTest extends TestCase
+final class ClassesWithoutSelfReferencingSniffTest extends TestCase
 {
-    public function testFixWhenMethodIsFollowing(): void
+    public function testFixFile(): void
     {
-        $file = __DIR__ . '/__fixtures__/forbiddenStaticUsed.php';
+        $file = __DIR__ . '/__fixtures__/classesWithoutSelfReferencing.php';
         require_once $file;
 
-        $report = self::checkFile($file, ['forbiddenClasses' => [Assert::class]]);
+        $report = self::checkFile($file, ['classesWithoutSelfReferencing' => [Assert::class]]);
 
         Assert::assertSame(3, $report->getErrorCount());
         self::assertSniffError(
             $report,
             16,
-            'ForbiddenStaticMethodCall',
+            'ClassesWithoutSelfReferencing',
             'Using self::assertFalse is forbidden. Call PHPUnit\Framework\Assert::assertFalse directly.'
         );
         self::assertSniffError(
             $report,
             17,
-            'ForbiddenStaticMethodCall',
+            'ClassesWithoutSelfReferencing',
             'Using static::assertEquals is forbidden. Call PHPUnit\Framework\Assert::assertEquals directly.'
         );
         self::assertSniffError(
             $report,
             19,
-            'ForbiddenStaticMethodCall',
+            'ClassesWithoutSelfReferencing',
             'Using static::assertTrue is forbidden. Call PHPUnit\Framework\Assert::assertTrue directly.'
         );
 
