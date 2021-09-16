@@ -589,6 +589,16 @@
         </properties>
     </rule>
 
+    <!-- Forbidden variable names with replacements -->
+    <rule ref="BrandEmbassyCodingStandard.NamingConvention.ForbiddenVariableName">
+        <properties>
+            <property name="forbiddenVariableNames" type="array">
+                <element key="$e" value="$exception"/>
+                <element key="$t" value="$exception"/>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
