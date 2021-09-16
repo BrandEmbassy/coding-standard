@@ -5,6 +5,12 @@ on: [pull_request, workflow_dispatch]
 jobs:
   phpstan:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        composer-arg:
+          - "install"
+          - "update --prefer-lowest"
 
     steps:
       - name: Checkout
@@ -28,7 +34,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist
+        run: composer ${{ matrix.composer-arg }} --prefer-dist
 
       - name: Run phpstan
         run: composer phpstan
@@ -36,6 +42,12 @@ jobs:
 
   phpcs:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        composer-arg:
+          - "install"
+          - "update --prefer-lowest"
 
     steps:
       - name: Checkout
@@ -59,7 +71,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist
+        run: composer ${{ matrix.composer-arg }} --prefer-dist
 
       - name: Run code-sniffer
         run: composer phpcs
@@ -67,6 +79,12 @@ jobs:
 
   phpunit:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        composer-arg:
+          - "install"
+          - "update --prefer-lowest"
 
     steps:
       - name: Checkout
@@ -90,7 +108,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist
+        run: composer ${{ matrix.composer-arg }} --prefer-dist
 
       - name: Run tests
         run: composer phpunit
