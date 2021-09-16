@@ -7,32 +7,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - &STEP_CHECKOUT
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - &STEP_SETUP_PHP
-        name: Setup PHP
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 7.2
           extensions: mbstring, sockets
 
-      - &STEP_GET_COMPOSER_CACHE_DIRECTORY
-        name: Get composer cache directory
+      - name: Get composer cache directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - &STEP_CACHE_COMPOSER_DEPENDENCIES
-        name: Cache composer dependencies
+      - name: Cache composer dependencies
         uses: actions/cache@v2
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - &STEP_INSTALL_DEPENDENCIES
-        name: Install dependencies
+      - name: Install dependencies
         run: composer install --prefer-dist
 
       - name: Run phpstan
@@ -43,11 +38,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - *STEP_CHECKOUT
-      - *STEP_SETUP_PHP
-      - *STEP_GET_COMPOSER_CACHE_DIRECTORY
-      - *STEP_CACHE_COMPOSER_DEPENDENCIES
-      - *STEP_INSTALL_DEPENDENCIES
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.2
+          extensions: mbstring, sockets
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
 
       - name: Run code-sniffer
         run: composer phpcs
@@ -57,12 +69,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - *STEP_CHECKOUT
-      - *STEP_SETUP_PHP
-      - *STEP_GET_COMPOSER_CACHE_DIRECTORY
-      - *STEP_CACHE_COMPOSER_DEPENDENCIES
-      - *STEP_INSTALL_DEPENDENCIES
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.2
+          extensions: mbstring, sockets
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
 
       - name: Run tests
         run: composer phpunit
-
