@@ -7,27 +7,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - &STEP_CHECKOUT
+        name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup PHP
+      - &STEP_SETUP_PHP
+        name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 7.2
           extensions: mbstring, sockets
 
-      - name: Get composer cache directory
+      - &STEP_GET_COMPOSER_CACHE_DIRECTORY
+        name: Get composer cache directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Cache composer dependencies
+      - &STEP_CACHE_COMPOSER_DEPENDENCIES
+        name: Cache composer dependencies
         uses: actions/cache@v2
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - &STEP_INSTALL_DEPENDENCIES
+        name: Install dependencies
         run: composer install --prefer-dist
 
       - name: Run phpstan
