@@ -1,5 +1,6 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - phpstan-extension.neon
 
 parameters:
     level: max
@@ -13,3 +14,6 @@ parameters:
         -
             message: '#Class BrandEmbassyCodingStandard\\PhpStan\\Rules\\Mockery\\PostConditionsTraitUsedRule implements generic interface PHPStan\\Rules\\Rule but does not specify its types: TNodeType#'
             path: src/BrandEmbassyCodingStandard/PhpStan/Rules/Mockery/PostConditionsTraitUsedRule.php
+        -
+            message: '#^Method with\w+\(\) is a mutable wither as (.*)\. The method should return modified clone of \$this\.$#'
+            path: src/BrandEmbassyCodingStandard/PhpStan/Rules/Method/__fixtures__/MutableWithersClass.php
