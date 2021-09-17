@@ -196,6 +196,9 @@
                 <element value="\Doctrine\Common\Collections\Collection"/>
             </property>
         </properties>
+
+        <!-- Excluded because it is not compatible 7.4 property type hints + doctrine entities -->
+        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
     </rule>
 
     <!-- Require return type hints -->
