@@ -197,8 +197,7 @@
             </property>
         </properties>
 
-        <!-- Excluded because of update to php 7.4 -->
-        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
+        <!-- Excluded because it is not compatible 7.4 property type hints + doctrine entities -->
         <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
     </rule>
 
