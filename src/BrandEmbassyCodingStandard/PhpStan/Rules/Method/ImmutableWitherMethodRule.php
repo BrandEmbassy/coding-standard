@@ -3,7 +3,9 @@
 namespace BrandEmbassyCodingStandard\PhpStan\Rules\Method;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Return_;
 use PhpParser\NodeTraverser;
@@ -12,6 +14,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use function preg_match;
 use function sprintf;
+use function substr;
 
 /**
  * @implements Rule<ClassMethod>
@@ -71,6 +74,9 @@ class ImmutableWitherMethodRule implements Rule
             if ($this->isReturnThisNode($innerNode)) {
                 return [sprintf(self::MESSAGE, $methodName, 'it returns $this')];
             }
+            if ($this->isCallOfSetterOnThis($innerNode)) {
+                return [sprintf(self::MESSAGE, $methodName, 'it calls a setter on $this')];
+            }
         }
 
         return [];
@@ -88,5 +94,18 @@ class ImmutableWitherMethodRule implements Rule
         }
 
         return false;
+    }
+
+
+    private function isCallOfSetterOnThis(Node $node): bool
+    {
+        if (!$node instanceof MethodCall) {
+            return false;
+        }
+
+        $isCallOnThis = $node->var instanceof Variable && $node->var->name === 'this';
+        $isCallOfSetter = $node->name instanceof Identifier && substr($node->name->name, 0, 3) === 'set';
+
+        return $isCallOnThis && $isCallOfSetter;
     }
 }

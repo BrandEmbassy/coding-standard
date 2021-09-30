@@ -22,8 +22,12 @@ class ImmutableWitherMethodRuleTest extends RuleTestCase
             [__DIR__ . '/__fixtures__/MutableWithersClass.php'],
             [
                 [
+                    'Method withStringSetter() is a mutable wither as it calls a setter on $this. The method should return modified clone of $this.',
+                    25,
+                ],
+                [
                     'Method withString() is a mutable wither as it returns $this. The method should return modified clone of $this.',
-                    19,
+                    33,
                 ],
             ]
         );

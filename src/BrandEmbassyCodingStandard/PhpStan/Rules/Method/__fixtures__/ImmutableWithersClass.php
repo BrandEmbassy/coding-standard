@@ -16,10 +16,25 @@ final class ImmutableWithersClass
     }
 
 
+    public function setString(string $string): void
+    {
+        $this->string = $string;
+    }
+
+
     public function withString(string $string): self
     {
         $clone = clone $this;
         $clone->string = $string;
+
+        return $clone;
+    }
+
+
+    public function withStringSetter(string $string): self
+    {
+        $clone = clone $this;
+        $clone->setString($string);
 
         return $clone;
     }

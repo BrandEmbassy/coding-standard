@@ -16,6 +16,20 @@ final class MutableWithersClass
     }
 
 
+    public function setString(string $string): void
+    {
+        $this->string = $string;
+    }
+
+
+    public function withStringSetter(string $string): self
+    {
+        $this->setString($string);
+
+        return clone $this;
+    }
+
+
     public function withString(string $string): self
     {
         $this->string = $string;
