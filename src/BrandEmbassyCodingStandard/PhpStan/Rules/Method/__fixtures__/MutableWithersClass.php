@@ -32,8 +32,15 @@ final class MutableWithersClass
 
     public function withString(string $string): self
     {
-        $this->string = $string;
+        $clone = clone $this;
+        $clone->string = $string;
 
         return $this;
+    }
+
+
+    public function withStringAssignment(string $string): void
+    {
+        $this->string = $string;
     }
 }

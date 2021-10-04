@@ -29,6 +29,10 @@ class ImmutableWitherMethodRuleTest extends RuleTestCase
                     'Method withString() is a mutable wither as it returns $this. The method should return modified clone of $this.',
                     33,
                 ],
+                [
+                    'Method withStringAssignment() is a mutable wither as it writes to own property. The method should return modified clone of $this.',
+                    42,
+                ],
             ]
         );
     }

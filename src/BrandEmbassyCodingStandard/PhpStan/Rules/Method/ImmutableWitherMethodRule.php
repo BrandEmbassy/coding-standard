@@ -3,7 +3,9 @@
 namespace BrandEmbassyCodingStandard\PhpStan\Rules\Method;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -77,6 +79,9 @@ class ImmutableWitherMethodRule implements Rule
             if ($this->isCallOfSetterOnThis($innerNode)) {
                 return [sprintf(self::MESSAGE, $methodName, 'it calls a setter on $this')];
             }
+            if ($this->isWriteToOwnProperty($innerNode)) {
+                return [sprintf(self::MESSAGE, $methodName, 'it writes to own property')];
+            }
         }
 
         return [];
@@ -107,5 +112,19 @@ class ImmutableWitherMethodRule implements Rule
         $isCallOfSetter = $node->name instanceof Identifier && substr($node->name->name, 0, 3) === 'set';
 
         return $isCallOnThis && $isCallOfSetter;
+    }
+
+
+    private function isWriteToOwnProperty(Node $node): bool
+    {
+        if (!$node instanceof Assign) {
+            return false;
+        }
+
+        if (!$node->var instanceof PropertyFetch) {
+            return false;
+        }
+
+        return $node->var->var instanceof Variable && $node->var->var->name === 'this';
     }
 }
