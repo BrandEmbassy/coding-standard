@@ -3,3 +3,7 @@ services:
         class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule
         tags:
             - phpstan.rules.rule
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\ImmutableWitherMethodRule
+        tags:
+            - phpstan.rules.rule
