@@ -18,7 +18,7 @@ class PostConditionsTraitUsedRule implements Rule
     /**
      * @var string[]
      */
-    private static $callCountMethods = [
+    private static array $callCountMethods = [
         'zero',
         'once',
         'twice',
@@ -30,10 +30,7 @@ class PostConditionsTraitUsedRule implements Rule
         'between',
     ];
 
-    /**
-     * @var RuleLevelHelper
-     */
-    private $ruleLevelHelper;
+    private RuleLevelHelper $ruleLevelHelper;
 
 
     public function __construct(RuleLevelHelper $ruleLevelHelper)

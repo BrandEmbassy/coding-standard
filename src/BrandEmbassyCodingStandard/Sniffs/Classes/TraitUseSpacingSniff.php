@@ -28,35 +28,17 @@ final class TraitUseSpacingSniff implements Sniff
     public const CODE_INCORRECT_LINES_COUNT_BETWEEN_USES = 'IncorrectLinesCountBetweenUses';
     public const CODE_INCORRECT_LINES_COUNT_AFTER_LAST_USE = 'IncorrectLinesCountAfterLastUse';
 
-    /**
-     * @var int
-     */
-    public $linesBeforeFollowingPropertyOrConstant;
+    public int $linesBeforeFollowingPropertyOrConstant;
 
-    /**
-     * @var int
-     */
-    public $linesCountBeforeFirstUse = 1;
+    public int $linesCountBeforeFirstUse = 1;
 
-    /**
-     * @var int
-     */
-    public $linesCountBeforeFirstUseWhenFirstInClass = null;
+    public ?int $linesCountBeforeFirstUseWhenFirstInClass = null;
 
-    /**
-     * @var int
-     */
-    public $linesCountBetweenUses = 0;
+    public int $linesCountBetweenUses = 0;
 
-    /**
-     * @var int
-     */
-    public $linesCountAfterLastUse = 1;
+    public int $linesCountAfterLastUse = 1;
 
-    /**
-     * @var int
-     */
-    public $linesCountAfterLastUseWhenLastInClass = 1;
+    public int $linesCountAfterLastUseWhenLastInClass = 1;
 
 
     /**

@@ -29,12 +29,12 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
     /**
      * @var array<string, class-string>
      */
-    public $classesWithoutSelfReferencing;
+    public array $classesWithoutSelfReferencing = [];
 
     /**
      * @var array<class-string, string[]>
      */
-    private static $classStaticMethods = [];
+    private static array $classStaticMethods = [];
 
 
     /**
@@ -74,7 +74,7 @@ final class ClassesWithoutSelfReferencingSniff implements Sniff
      */
     private function findClassesWithoutSelfReferencing(string $className): array
     {
-        if (!isset($this->classesWithoutSelfReferencing)) {
+        if ($this->classesWithoutSelfReferencing === []) {
             throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
         }
 
