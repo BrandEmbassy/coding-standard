@@ -4,7 +4,7 @@ includes:
 
 parameters:
     level: max
-    excludes_analyse:
+    excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/Sniffs/Classes/__fixtures__
     ignoreErrors:

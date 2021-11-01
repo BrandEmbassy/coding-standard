@@ -25,15 +25,9 @@ class ImmutableWitherMethodRule implements Rule
 {
     private const MESSAGE = 'Method %s() is a mutable wither as %s. The method should return modified clone of $this.';
 
-    /**
-     * @var NodeTraverser
-     */
-    private $nodeTraverser;
+    private NodeTraverser $nodeTraverser;
 
-    /**
-     * @var FindingVisitor
-     */
-    private $findingVisitor;
+    private FindingVisitor $findingVisitor;
 
 
     public function __construct()
