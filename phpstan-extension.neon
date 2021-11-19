@@ -7,3 +7,7 @@ services:
         class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\ImmutableWitherMethodRule
         tags:
             - phpstan.rules.rule
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule
+        tags:
+            - phpstan.rules.rule
