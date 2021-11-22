@@ -28,7 +28,7 @@
         "squizlabs/php_codesniffer": "~3.5.3",
         "slevomat/coding-standard": "^6.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.7",
-        "phpstan/phpstan": "^0.12.65",
+        "phpstan/phpstan": "^0.12.92",
         "phpstan/phpstan-strict-rules": "^0.12",
         "phpstan/phpstan-nette": "^0.12",
         "phpstan/phpstan-mockery": "^0.12"
@@ -41,7 +41,7 @@
     "scripts": {
         "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
         "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
-        "phpunit": "vendor/bin/phpunit src",
+        "phpunit": "vendor/bin/phpunit src --filter '/\\\\(?!__fixtures__)\\w+\\\\\\w+::/'",
         "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src --memory-limit=-1"
     },
     "minimum-stability": "dev",
