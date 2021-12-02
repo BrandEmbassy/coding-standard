@@ -11,3 +11,7 @@ services:
         class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule
         tags:
             - phpstan.rules.rule
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Doctrine\ORM\EntityNotFinalRule
+        tags:
+            - phpstan.rules.rule
