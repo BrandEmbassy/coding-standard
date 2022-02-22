@@ -588,6 +588,9 @@
         </properties>
     </rule>
 
+    <!-- Force final classes by annotation -->
+    <rule ref="BrandEmbassyCodingStandard.Classes.FinalClassByAnnotation"/>
+
     <!-- Require camelCase function names -->
     <rule ref="BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName"/>
 
