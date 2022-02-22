@@ -22,7 +22,10 @@ use const T_TRAIT;
 use const T_VARIABLE;
 use const T_WHITESPACE;
 
-final class TraitUseSpacingSniff implements Sniff
+/**
+ * @final
+ */
+class TraitUseSpacingSniff implements Sniff
 {
     public const CODE_INCORRECT_LINES_COUNT_BEFORE_FIRST_USE = 'IncorrectLinesCountBeforeFirstUse';
     public const CODE_INCORRECT_LINES_COUNT_BETWEEN_USES = 'IncorrectLinesCountBetweenUses';

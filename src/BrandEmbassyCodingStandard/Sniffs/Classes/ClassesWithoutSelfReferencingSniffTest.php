@@ -6,7 +6,10 @@ use PHPUnit\Framework\Assert;
 use RuntimeException;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
-final class ClassesWithoutSelfReferencingSniffTest extends TestCase
+/**
+ * @final
+ */
+class ClassesWithoutSelfReferencingSniffTest extends TestCase
 {
     public function testFixFile(): void
     {

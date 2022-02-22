@@ -5,7 +5,10 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 use PHPUnit\Framework\Assert;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
-final class TraitUseSpacingSniffTest extends TestCase
+/**
+ * @final
+ */
+class TraitUseSpacingSniffTest extends TestCase
 {
     public function testFixWhenMethodIsFollowing(): void
     {

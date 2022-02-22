@@ -5,7 +5,10 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 use PHPUnit\Framework\Assert;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
-final class TraitUsePositionSniffTest extends TestCase
+/**
+ * @final
+ */
+class TraitUsePositionSniffTest extends TestCase
 {
     public function testNoUses(): void
     {
