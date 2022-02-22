@@ -14,9 +14,10 @@ class FinalClassByAnnotationSniffTest extends TestCase
     {
         $report = self::checkFile(__DIR__ . '/__fixtures__/finalClassByAnnotationWithFinalKeyword.php');
 
-        Assert::assertSame(2, $report->getErrorCount());
+        Assert::assertSame(3, $report->getErrorCount());
         self::assertSniffError($report, 22, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
         self::assertSniffError($report, 33, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
+        self::assertSniffError($report, 44, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
 
         self::assertAllFixedInFile($report);
     }

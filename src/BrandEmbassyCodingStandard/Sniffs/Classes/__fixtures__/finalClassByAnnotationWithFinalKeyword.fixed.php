@@ -42,3 +42,10 @@ class Baz
         return true;
     }
 }
+
+/**
+ * @final This class is final
+ */
+class DoubleFinal
+{
+}

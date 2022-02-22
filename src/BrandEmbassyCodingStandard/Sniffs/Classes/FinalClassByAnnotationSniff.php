@@ -6,6 +6,9 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 use const T_CLASS;
+use const T_DOC_COMMENT_CLOSE_TAG;
+use const T_DOC_COMMENT_OPEN_TAG;
+use const T_DOC_COMMENT_TAG;
 use const T_FINAL;
 use const T_WHITESPACE;
 
@@ -17,6 +20,9 @@ class FinalClassByAnnotationSniff implements Sniff
     public const CODE_FINAL_CLASS_BY_KEYWORD = 'FinalClassByKeyword';
 
 
+    /**
+     * @return int[]
+     */
     public function register(): array
     {
         return [T_FINAL];
@@ -24,6 +30,8 @@ class FinalClassByAnnotationSniff implements Sniff
 
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     *
      * @param int $stackPtr
      */
     public function process(File $phpcsFile, $stackPtr): void
@@ -61,12 +69,19 @@ class FinalClassByAnnotationSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $previousPtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
-        if ($previousPtr === null || $tokens[$previousPtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
+        $closeDocPtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
+        if ($closeDocPtr === null || $tokens[$closeDocPtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
             $phpcsFile->fixer->replaceToken($stackPtr, "/**\n * @final\n */\n");
+
             return;
         }
 
-        $phpcsFile->fixer->replaceToken($previousPtr, "*\n * @final\n */");
+        $openDocPtr = TokenHelper::findPrevious($phpcsFile, [T_DOC_COMMENT_OPEN_TAG], $closeDocPtr);
+        $existingDocPtr = TokenHelper::findPreviousContent($phpcsFile, [T_DOC_COMMENT_TAG], '@final', $closeDocPtr, $openDocPtr);
+        if ($existingDocPtr !== null) {
+            return;
+        }
+
+        $phpcsFile->fixer->replaceToken($closeDocPtr, "*\n * @final\n */");
     }
 }
