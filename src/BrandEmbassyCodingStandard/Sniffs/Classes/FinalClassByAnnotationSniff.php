@@ -57,16 +57,16 @@ class FinalClassByAnnotationSniff implements Sniff
     }
 
 
-    private function addFinalAnnotation(File $phpcsFile, $stackPtr): void
+    private function addFinalAnnotation(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
-        $previousNonWhitespacePtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
-        if ($tokens[$previousNonWhitespacePtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
+        $previousPtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
+        if ($previousPtr === null || $tokens[$previousPtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
             $phpcsFile->fixer->replaceToken($stackPtr, "/**\n * @final\n */\n");
             return;
         }
 
-        $phpcsFile->fixer->replaceToken($previousNonWhitespacePtr, "*\n * @final\n */");
+        $phpcsFile->fixer->replaceToken($previousPtr, "*\n * @final\n */");
     }
 }
