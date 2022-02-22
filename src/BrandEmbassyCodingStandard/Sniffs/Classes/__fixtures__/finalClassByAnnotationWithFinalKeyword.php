@@ -19,7 +19,6 @@ class Foo
     }
 }
 
-
 final class Bar extends Foo
 {
     public function doSomething(): bool
@@ -27,7 +26,6 @@ final class Bar extends Foo
         return true;
     }
 }
-
 
 /**
  * @ORM\Entity

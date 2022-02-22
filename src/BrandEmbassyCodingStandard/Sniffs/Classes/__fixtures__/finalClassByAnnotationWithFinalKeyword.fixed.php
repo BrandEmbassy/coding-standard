@@ -19,7 +19,6 @@ class Foo
     }
 }
 
-
 /**
  * @final
  */
@@ -30,7 +29,6 @@ class Bar extends Foo
         return true;
     }
 }
-
 
 /**
  * @ORM\Entity
