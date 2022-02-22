@@ -5,7 +5,10 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 use PHPUnit\Framework\Assert;
 use SlevomatCodingStandard\Sniffs\TestCase;
 
-final class FinalClassByAnnotationSniffTest extends TestCase
+/**
+ * @final
+ */
+class FinalClassByAnnotationSniffTest extends TestCase
 {
     public function testFinalClassIsFixed(): void
     {

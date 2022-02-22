@@ -35,7 +35,7 @@ class Bar extends Foo
  *
  * @final
  */
-final class Baz
+class Baz
 {
     public function doSomething(): bool
     {

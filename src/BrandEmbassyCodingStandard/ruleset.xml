@@ -588,7 +588,7 @@
         </properties>
     </rule>
 
-    <!-- Force final classes by annotation -->
+    <!-- Force final classes by annotation to allow proxies and mocks -->
     <rule ref="BrandEmbassyCodingStandard.Classes.FinalClassByAnnotation"/>
 
     <!-- Require camelCase function names -->

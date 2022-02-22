@@ -5,6 +5,9 @@ namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
+use const T_CLASS;
+use const T_FINAL;
+use const T_WHITESPACE;
 
 /**
  * @final
@@ -20,12 +23,15 @@ class FinalClassByAnnotationSniff implements Sniff
     }
 
 
-    public function process(File $phpcsFile, $stackPtr)
+    /**
+     * @param int $stackPtr
+     */
+    public function process(File $phpcsFile, $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
-        $nextEffectiveTokenPointer = TokenHelper::findNextEffective($phpcsFile, $stackPtr + 1);
-        if ($tokens[$nextEffectiveTokenPointer]['code'] !== T_CLASS) {
+        $nextEffectivePtr = TokenHelper::findNextEffective($phpcsFile, $stackPtr + 1);
+        if ($tokens[$nextEffectivePtr]['code'] !== T_CLASS) {
             return;
         }
 
@@ -39,11 +45,28 @@ class FinalClassByAnnotationSniff implements Sniff
         }
 
         $phpcsFile->fixer->beginChangeset();
+
         $phpcsFile->fixer->replaceToken($stackPtr, '');
         if ($tokens[$stackPtr + 1]['code'] === T_WHITESPACE) {
             $phpcsFile->fixer->replaceToken($stackPtr + 1, '');
         }
-        $phpcsFile->fixer->addContentBefore($stackPtr, "/**\n * @final\n */\n");
+
+        $this->addFinalAnnotation($phpcsFile, $stackPtr);
+
         $phpcsFile->fixer->endChangeset();
+    }
+
+
+    private function addFinalAnnotation(File $phpcsFile, $stackPtr): void
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        $previousNonWhitespacePtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
+        if ($tokens[$previousNonWhitespacePtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
+            $phpcsFile->fixer->replaceToken($stackPtr, "/**\n * @final\n */\n");
+            return;
+        }
+
+        $phpcsFile->fixer->replaceToken($previousNonWhitespacePtr, "*\n * @final\n */");
     }
 }
