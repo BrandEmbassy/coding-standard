@@ -42,8 +42,8 @@
         "mockery/mockery": "^1.3"
     },
     "scripts": {
-        "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
-        "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*'",
+        "phpcs": "vendor/bin/phpcs --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*' --runtime-set php_version 70100",
+        "phpcbf": "vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard src --ignore='*/__fixtures__/*' --runtime-set php_version 70100",
         "phpunit": "vendor/bin/phpunit src --filter '/\\\\(?!__fixtures__)\\w+\\\\\\w+::/'",
         "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src --memory-limit=-1"
     },
