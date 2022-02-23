@@ -22,7 +22,10 @@ use const T_SELF;
 use const T_STATIC;
 use const T_STRING;
 
-final class ClassesWithoutSelfReferencingSniff implements Sniff
+/**
+ * @final
+ */
+class ClassesWithoutSelfReferencingSniff implements Sniff
 {
     private const VIOLATION_CODE = 'ClassesWithoutSelfReferencing';
 

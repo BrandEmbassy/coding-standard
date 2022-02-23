@@ -4,6 +4,10 @@ includes:
 
 parameters:
     level: max
+
+    featureToggles:
+        finalByPhpDocTag: true
+
     excludes_analyse:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
