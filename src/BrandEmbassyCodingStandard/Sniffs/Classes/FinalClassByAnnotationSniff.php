@@ -59,13 +59,13 @@ class FinalClassByAnnotationSniff implements Sniff
             $phpcsFile->fixer->replaceToken($stackPtr + 1, '');
         }
 
-        $this->addFinalAnnotation($phpcsFile, $stackPtr);
+        $this->addFinalAnnotationIfMissing($phpcsFile, $stackPtr);
 
         $phpcsFile->fixer->endChangeset();
     }
 
 
-    private function addFinalAnnotation(File $phpcsFile, int $stackPtr): void
+    private function addFinalAnnotationIfMissing(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
