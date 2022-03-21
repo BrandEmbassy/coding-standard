@@ -379,6 +379,9 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
 
+    <!-- Requires arrow functions for one-line Closures -->
+    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction" />
+
     <!-- Requires trailing comma in multiline function calls -->
     <rule ref="SlevomatCodingStandard.Functions.TrailingCommaInCall" />
 
