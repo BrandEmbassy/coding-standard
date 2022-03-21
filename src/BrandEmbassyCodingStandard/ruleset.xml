@@ -379,6 +379,9 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
 
+    <!-- Requires arrow functions for one-line Closures -->
+    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction" />
+
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
 
