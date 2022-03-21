@@ -379,6 +379,9 @@
     <!-- Prohibits multiple traits separated by commas in one use statement -->
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
 
+    <!-- Requires trailing comma in multiline function calls -->
+    <rule ref="SlevomatCodingStandard.Functions.TrailingCommaInCall" />
+
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
 
