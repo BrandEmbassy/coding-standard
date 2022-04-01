@@ -382,6 +382,13 @@
     <!-- Requires arrow functions for one-line Closures -->
     <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction" />
 
+    <!-- Arrow function formatting -->
+    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration">
+        <properties>
+            <property name="spacesCountAfterKeyword" value="0"/>
+        </properties>
+    </rule>
+
     <!-- Requires trailing comma in multiline function calls -->
     <rule ref="SlevomatCodingStandard.Functions.TrailingCommaInCall" />
 
