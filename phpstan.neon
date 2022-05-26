@@ -6,12 +6,9 @@ includes:
     - phpstan-extension.neon
 
 parameters:
-    level: max
+    level: 8
 
-    featureToggles:
-        finalByPhpDocTag: true
-
-    excludes_analyse:
+    excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
     ignoreErrors:

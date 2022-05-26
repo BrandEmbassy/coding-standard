@@ -30,7 +30,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
     private const VIOLATION_CODE = 'ClassesWithoutSelfReferencing';
 
     /**
-     * @var array<string, class-string>
+     * @var ?array<string, class-string>
      */
     public $classesWithoutSelfReferencing;
 
