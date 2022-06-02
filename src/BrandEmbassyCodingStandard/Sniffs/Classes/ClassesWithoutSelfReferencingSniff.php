@@ -32,7 +32,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
     /**
      * @var array<string, class-string>
      */
-    public $classesWithoutSelfReferencing;
+    public $classesWithoutSelfReferencing = [];
 
     /**
      * @var array<class-string, string[]>
@@ -77,10 +77,6 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
      */
     private function findClassesWithoutSelfReferencing(string $className): array
     {
-        if (!isset($this->classesWithoutSelfReferencing)) {
-            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
-        }
-
         return array_filter(
             $this->classesWithoutSelfReferencing,
             static function (string $forbiddenClass) use ($className): bool {
