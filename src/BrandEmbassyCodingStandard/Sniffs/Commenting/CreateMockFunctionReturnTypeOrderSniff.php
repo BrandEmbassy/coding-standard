@@ -40,12 +40,6 @@ class CreateMockFunctionReturnTypeOrderSniff implements Sniff
             return;
         }
 
-        $functionName = $tokens[$functionNamePtr]['content'];
-
-        if (preg_match('~^create.*Mock$~', $functionName) !== 1) {
-            return;
-        }
-
         $phpDocCommentCloseTagPtr = TokenHelper::findFirstNonWhitespaceOnPreviousLine($phpcsFile, $stackPtr);
 
         if ($phpDocCommentCloseTagPtr === null) {

@@ -6,7 +6,7 @@ use Mockery\MockInterface;
 
 class CreateMockFunctions
 {
-    private function createWithNoPhpDocMock()
+    private function withNoPhpDoc()
     {
     }
 
@@ -14,7 +14,7 @@ class CreateMockFunctions
     /**
      * @param string $param
      */
-    private function createWithNoReturnTypeMock(string $param)
+    private function withNoReturnType(string $param)
     {
     }
 
@@ -22,7 +22,7 @@ class CreateMockFunctions
     /**
      * @return MockedClass&MockInterface
      */
-    private function createCorrectlyOrderedMock()
+    private function correctlyOrdered()
     {
     }
 
@@ -32,7 +32,7 @@ class CreateMockFunctions
      *
      * @return MockedClass&MockInterface
      */
-    private function createCorrectlyOrderedWithParamMock(string $param)
+    private function correctlyOrderedWithParam(string $param)
     {
     }
 
@@ -40,7 +40,7 @@ class CreateMockFunctions
     /**
      * @return MockInterface&MockedClass
      */
-    private function createIncorrectlyOrderedMock()
+    private function incorrectlyOrdered()
     {
     }
 
@@ -50,7 +50,7 @@ class CreateMockFunctions
      *
      * @return MockInterface&MockedClass
      */
-    private function createIncorrectlyOrderedWithParamMock(string $param)
+    private function incorrectlyOrderedWithParam(string $param)
     {
     }
 }
