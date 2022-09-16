@@ -77,7 +77,7 @@ class CreateMockFunctionReturnTypeOrderSniff implements Sniff
         $fix = $phpcsFile->addFixableError(
             'Found incorrectly ordered "createMock" function annotation return types.',
             $returnTypePtr,
-            self::CODE_CREATE_MOCK_FUNCTION_RETURN_TYPE_ORDER
+            self::CODE_CREATE_MOCK_FUNCTION_RETURN_TYPE_ORDER,
         );
 
         if (!$fix) {

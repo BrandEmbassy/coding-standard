@@ -5,6 +5,10 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - phpstan-extension.neon
 
+conditionalTags:
+    PhpParser\NodeVisitor\NodeConnectingVisitor:
+        phpstan.parser.richParserNodeVisitor: true
+
 parameters:
     level: 8
 

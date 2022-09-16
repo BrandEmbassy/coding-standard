@@ -73,7 +73,18 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
                     'Method BrandEmbassyCodingStandard\PhpStan\Rules\Method\__fixtures__\PhpUnitTest::testFunctionPrivate() seems like a test method, but it is not public.',
                     22,
                 ],
-            ]
+            ],
         );
+    }
+
+
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [
+            __DIR__ . '/../../../../../phpstan-phpunit-bleeding-edge-override.neon',
+        ];
     }
 }

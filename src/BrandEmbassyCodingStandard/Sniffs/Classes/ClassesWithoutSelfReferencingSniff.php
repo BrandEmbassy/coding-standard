@@ -32,12 +32,12 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
     /**
      * @var ?array<string, class-string>
      */
-    public $classesWithoutSelfReferencing;
+    public ?array $classesWithoutSelfReferencing = null;
 
     /**
      * @var array<class-string, string[]>
      */
-    private static $classStaticMethods = [];
+    private static array $classStaticMethods = [];
 
 
     /**
@@ -83,9 +83,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
 
         return array_filter(
             $this->classesWithoutSelfReferencing,
-            static function (string $forbiddenClass) use ($className): bool {
-                return is_a($className, $forbiddenClass, true);
-            }
+            static fn(string $forbiddenClass): bool => is_a($className, $forbiddenClass, true),
         );
     }
 
@@ -100,7 +98,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
         $selfReferencingStaticMethodCallPointers = $this->findSelfReferencingStaticMethodCallPointers(
             $phpcsFile,
             $doubleColonPointer,
-            $staticMethodsToCheck
+            $staticMethodsToCheck,
         );
 
         if ($selfReferencingStaticMethodCallPointers !== null) {
@@ -122,10 +120,8 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
 
         $reflection = new ReflectionClass($className);
         $classStaticMethods = array_map(
-            static function (ReflectionMethod $method): string {
-                return $method->name;
-            },
-            $reflection->getMethods(ReflectionMethod::IS_STATIC)
+            static fn(ReflectionMethod $method): string => $method->name,
+            $reflection->getMethods(ReflectionMethod::IS_STATIC),
         );
 
         self::$classStaticMethods[$className] = $classStaticMethods;
@@ -186,7 +182,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
             'Using %1$s::%2$s is forbidden. Call %3$s::%2$s directly.',
             $selfReference,
             $methodName,
-            $classWithoutSelfReferencing
+            $classWithoutSelfReferencing,
         );
         $fix = $phpcsFile->addFixableError($errorMessage, $selfReferencePointer, self::VIOLATION_CODE);
 
