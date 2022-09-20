@@ -33,7 +33,7 @@ class ImmutableWitherMethodRuleTest extends RuleTestCase
                     'Method withStringAssignment() is a mutable wither as it writes to own property. The method should return modified clone of $this.',
                     42,
                 ],
-            ]
+            ],
         );
     }
 
@@ -42,7 +42,7 @@ class ImmutableWitherMethodRuleTest extends RuleTestCase
     {
         $this->analyse(
             [__DIR__ . '/__fixtures__/ImmutableWithersClass.php'],
-            []
+            [],
         );
     }
 }

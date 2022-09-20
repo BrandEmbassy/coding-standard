@@ -31,35 +31,17 @@ class TraitUseSpacingSniff implements Sniff
     public const CODE_INCORRECT_LINES_COUNT_BETWEEN_USES = 'IncorrectLinesCountBetweenUses';
     public const CODE_INCORRECT_LINES_COUNT_AFTER_LAST_USE = 'IncorrectLinesCountAfterLastUse';
 
-    /**
-     * @var int
-     */
-    public $linesBeforeFollowingPropertyOrConstant;
+    public int $linesBeforeFollowingPropertyOrConstant;
 
-    /**
-     * @var int
-     */
-    public $linesCountBeforeFirstUse = 1;
+    public int $linesCountBeforeFirstUse = 1;
 
-    /**
-     * @var int
-     */
-    public $linesCountBeforeFirstUseWhenFirstInClass = null;
+    public ?int $linesCountBeforeFirstUseWhenFirstInClass = null;
 
-    /**
-     * @var int
-     */
-    public $linesCountBetweenUses = 0;
+    public int $linesCountBetweenUses = 0;
 
-    /**
-     * @var int
-     */
-    public $linesCountAfterLastUse = 1;
+    public int $linesCountAfterLastUse = 1;
 
-    /**
-     * @var int
-     */
-    public $linesCountAfterLastUseWhenLastInClass = 1;
+    public int $linesCountAfterLastUseWhenLastInClass = 1;
 
 
     /**
@@ -108,7 +90,7 @@ class TraitUseSpacingSniff implements Sniff
             $whitespaceBeforeFirstUse .= TokenHelper::getContent(
                 $phpcsFile,
                 $pointerBeforeFirstUse + 1,
-                $firstUsePointer - 1
+                $firstUsePointer - 1,
             );
         }
 
@@ -117,7 +99,7 @@ class TraitUseSpacingSniff implements Sniff
             && $this->linesCountBeforeFirstUseWhenFirstInClass !== null
         ) {
             $requiredLinesCountBeforeFirstUse = SniffSettingsHelper::normalizeInteger(
-                $this->linesCountBeforeFirstUseWhenFirstInClass
+                $this->linesCountBeforeFirstUseWhenFirstInClass,
             );
         }
         $actualLinesCountBeforeFirstUse = substr_count($whitespaceBeforeFirstUse, $phpcsFile->eolChar) - 1;
@@ -130,10 +112,10 @@ class TraitUseSpacingSniff implements Sniff
             sprintf(
                 'Expected %d lines before first use statement, found %d.',
                 $requiredLinesCountBeforeFirstUse,
-                $actualLinesCountBeforeFirstUse
+                $actualLinesCountBeforeFirstUse,
             ),
             $firstUsePointer,
-            self::CODE_INCORRECT_LINES_COUNT_BEFORE_FIRST_USE
+            self::CODE_INCORRECT_LINES_COUNT_BEFORE_FIRST_USE,
         );
 
         if (!$fix) {
@@ -145,7 +127,7 @@ class TraitUseSpacingSniff implements Sniff
             T_WHITESPACE,
             $phpcsFile->eolChar,
             $firstUsePointer,
-            $pointerBeforeFirstUse
+            $pointerBeforeFirstUse,
         );
 
         $phpcsFile->fixer->beginChangeset();
@@ -171,7 +153,7 @@ class TraitUseSpacingSniff implements Sniff
         $lastUseEndPointer = TokenHelper::findNextLocal(
             $phpcsFile,
             [T_SEMICOLON, T_OPEN_CURLY_BRACKET],
-            $lastUsePointer + 1
+            $lastUsePointer + 1,
         );
         if ($tokens[$lastUseEndPointer]['code'] === T_OPEN_CURLY_BRACKET) {
             /** @var int $lastUseEndPointer */
@@ -187,7 +169,7 @@ class TraitUseSpacingSniff implements Sniff
                 T_WHITESPACE,
                 $phpcsFile->eolChar,
                 $whitespaceEnd - 1,
-                $lastUseEndPointer
+                $lastUseEndPointer,
             );
             $whitespaceEnd = $lastEolPointer ?? $lastUseEndPointer;
         }
@@ -196,7 +178,7 @@ class TraitUseSpacingSniff implements Sniff
         $requiredLinesCountAfterLastUse = $this->getRequiredLinesCountAfterLastUse(
             $phpcsFile,
             $tokens,
-            $lastUseEndPointer
+            $lastUseEndPointer,
         );
 
         $actualLinesCountAfterLastUse = substr_count($whitespaceAfterLastUse, $phpcsFile->eolChar) - 1;
@@ -209,10 +191,10 @@ class TraitUseSpacingSniff implements Sniff
             sprintf(
                 'Expected %d lines after last use statement, found %d.',
                 $requiredLinesCountAfterLastUse,
-                $actualLinesCountAfterLastUse
+                $actualLinesCountAfterLastUse,
             ),
             $lastUsePointer,
-            self::CODE_INCORRECT_LINES_COUNT_AFTER_LAST_USE
+            self::CODE_INCORRECT_LINES_COUNT_AFTER_LAST_USE,
         );
 
         if (!$fix) {
@@ -284,7 +266,7 @@ class TraitUseSpacingSniff implements Sniff
             $previousUseEndPointer = TokenHelper::findNextLocal(
                 $phpcsFile,
                 [T_SEMICOLON, T_OPEN_CURLY_BRACKET],
-                $previousUsePointer + 1
+                $previousUsePointer + 1,
             );
             if ($tokens[$previousUseEndPointer]['code'] === T_OPEN_CURLY_BRACKET) {
                 /** @var int $previousUseEndPointer */
@@ -302,7 +284,7 @@ class TraitUseSpacingSniff implements Sniff
                 sprintf(
                     'Expected %d lines between same types of use statement, found %d.',
                     $requiredLinesCountBetweenUses,
-                    $actualLinesCountAfterPreviousUse
+                    $actualLinesCountAfterPreviousUse,
                 ),
                 $usePointer,
                 self::CODE_INCORRECT_LINES_COUNT_BETWEEN_USES,
@@ -328,7 +310,7 @@ class TraitUseSpacingSniff implements Sniff
                 T_WHITESPACE,
                 $phpcsFile->eolChar,
                 $usePointer,
-                $previousUseEndPointer
+                $previousUseEndPointer,
             );
 
             $phpcsFile->fixer->beginChangeset();

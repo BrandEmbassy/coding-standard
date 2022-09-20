@@ -14,7 +14,7 @@ class TraitUseSpacingSniffTest extends TestCase
     {
         $report = self::checkFile(
             __DIR__ . '/__fixtures__/traitUseSpacingWhenMethodIsFollowing.php',
-            $this->getSniffProperties()
+            $this->getSniffProperties(),
         );
 
         Assert::assertSame(1, $report->getErrorCount());
@@ -29,7 +29,7 @@ class TraitUseSpacingSniffTest extends TestCase
     {
         $report = self::checkFile(
             __DIR__ . '/__fixtures__/traitUseSpacingWhenConstantIsFollowing.php',
-            $this->getSniffProperties()
+            $this->getSniffProperties(),
         );
 
         Assert::assertSame(1, $report->getErrorCount());
@@ -44,7 +44,7 @@ class TraitUseSpacingSniffTest extends TestCase
     {
         $report = self::checkFile(
             __DIR__ . '/__fixtures__/traitUseSpacingWhenConstantIsFollowing.php',
-            $this->getSniffProperties()
+            $this->getSniffProperties(),
         );
 
         Assert::assertSame(1, $report->getErrorCount());

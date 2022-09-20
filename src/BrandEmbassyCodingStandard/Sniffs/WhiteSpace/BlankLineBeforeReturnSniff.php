@@ -51,7 +51,7 @@ class BlankLineBeforeReturnSniff implements Sniff
             $fix = $phpcsFile->addFixableError(
                 'Missing blank line before return statement',
                 $pointer,
-                self::CODE_NO_BLANK_LINE_BEFORE_RETURN
+                self::CODE_NO_BLANK_LINE_BEFORE_RETURN,
             );
 
             if ($fix) {

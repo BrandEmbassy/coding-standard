@@ -5,13 +5,14 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - phpstan-extension.neon
 
+conditionalTags:
+    PhpParser\NodeVisitor\NodeConnectingVisitor:
+        phpstan.parser.richParserNodeVisitor: true
+
 parameters:
-    level: max
+    level: 8
 
-    featureToggles:
-        finalByPhpDocTag: true
-
-    excludes_analyse:
+    excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
     ignoreErrors:

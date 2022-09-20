@@ -68,7 +68,7 @@ class TraitUsePositionSniff implements Sniff
             $fix = $phpcsFile->addFixableError(
                 'Trait is not first in class',
                 $tokens[$firstUsePointer]['line'],
-                self::CODE_TRAIT_USE_IS_NOT_FIRST_IN_CLASS
+                self::CODE_TRAIT_USE_IS_NOT_FIRST_IN_CLASS,
             );
 
             if ($fix) {

@@ -18,7 +18,7 @@ class PostConditionsTraitUsedRule implements Rule
     /**
      * @var string[]
      */
-    private static $callCountMethods = [
+    private static array $callCountMethods = [
         'zero',
         'once',
         'twice',
@@ -30,10 +30,7 @@ class PostConditionsTraitUsedRule implements Rule
         'between',
     ];
 
-    /**
-     * @var RuleLevelHelper
-     */
-    private $ruleLevelHelper;
+    private RuleLevelHelper $ruleLevelHelper;
 
 
     public function __construct(RuleLevelHelper $ruleLevelHelper)
@@ -69,9 +66,7 @@ class PostConditionsTraitUsedRule implements Rule
             $scope,
             $node->var,
             sprintf('Call to method %s() on an unknown class %%s.', $name),
-            static function (Type $type) use ($name): bool {
-                return $type->canCallMethods()->yes() && $type->hasMethod($name)->yes();
-            }
+            static fn(Type $type): bool => $type->canCallMethods()->yes() && $type->hasMethod($name)->yes(),
         );
 
         $type = $typeResult->getType();
