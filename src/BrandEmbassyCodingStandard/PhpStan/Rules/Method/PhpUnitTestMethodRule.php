@@ -22,10 +22,7 @@ class PhpUnitTestMethodRule implements Rule
 {
     private const TEST_CLASS_SUFFIX = 'Test';
 
-    /**
-     * @var ReflectionProvider
-     */
-    private $reflectionProvider;
+    private ReflectionProvider $reflectionProvider;
 
 
     public function __construct(ReflectionProvider $reflectionProvider)

@@ -14,15 +14,9 @@ class CamelCapsFunctionNameSniff implements Sniff
 {
     private const NAME = 'BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName';
 
-    /**
-     * @var BaseCamelCapsFunctionNameSniff
-     */
-    private $decoratedSniff;
+    private BaseCamelCapsFunctionNameSniff $decoratedSniff;
 
-    /**
-     * @var bool
-     */
-    public $strict;
+    public bool $strict;
 
 
     public function __construct()
