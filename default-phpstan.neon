@@ -4,6 +4,10 @@ includes:
     - ../../../vendor/phpstan/phpstan-mockery/extension.neon
     - ../../../vendor/phpstan/phpstan-phpunit/extension.neon
     - ../../../vendor/brandembassy/coding-standard/phpstan-extension.neon
+    # TODO: Rewrite all phpstan rules in such a way that the node connecting visitor is no longer required
+    # TODO: Currently, \BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule retrieves
+    # TODO: attribute 'parent', which is provided by the node connecting visitor
+    - ../../../vendor/brandembassy/coding-standard/phpstan-node-connecting-visitor.neon
 
 parameters:
     level: max
