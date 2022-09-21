@@ -76,4 +76,13 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
             ],
         );
     }
+
+
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [];
+    }
 }

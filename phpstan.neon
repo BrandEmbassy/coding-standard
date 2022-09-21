@@ -4,14 +4,15 @@ includes:
     - vendor/phpstan/phpstan-mockery/extension.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - phpstan-extension.neon
+    # TODO: Rewrite all phpstan rules in such a way that the node connecting visitor is no longer required
+    # TODO: Currently, \BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule retrieves
+    # TODO: attribute 'parent', which is provided by the node connecting visitor
+    - ./phpstan-node-connecting-visitor.neon
 
 parameters:
     level: max
 
-    featureToggles:
-        finalByPhpDocTag: true
-
-    excludes_analyse:
+    excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
     ignoreErrors:
