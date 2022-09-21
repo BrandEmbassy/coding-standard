@@ -77,8 +77,10 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
      */
     private function findClassesWithoutSelfReferencing(string $className): array
     {
-        if (!isset($this->classesWithoutSelfReferencing)) {
-            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided.');
+        if ($this->classesWithoutSelfReferencing === []) {
+            throw new RuntimeException(
+                'The option "classesWithoutSelfReferencing" was not provided or is empty.',
+            );
         }
 
         return array_filter(

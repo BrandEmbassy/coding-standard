@@ -49,7 +49,7 @@ class ClassesWithoutSelfReferencingSniffTest extends TestCase
         require_once $file;
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The option "classesWithoutSelfReferencing" was not provided.');
+        $this->expectExceptionMessage('The option "classesWithoutSelfReferencing" was not provided or is empty.');
 
         self::checkFile($file);
     }
