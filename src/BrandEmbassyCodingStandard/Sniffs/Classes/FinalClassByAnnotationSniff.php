@@ -46,7 +46,7 @@ class FinalClassByAnnotationSniff implements Sniff
         $fix = $phpcsFile->addFixableError(
             'Found final class with "final" keyword, use @final annotation instead.',
             $stackPtr,
-            self::CODE_FINAL_CLASS_BY_KEYWORD
+            self::CODE_FINAL_CLASS_BY_KEYWORD,
         );
         if (!$fix) {
             return;

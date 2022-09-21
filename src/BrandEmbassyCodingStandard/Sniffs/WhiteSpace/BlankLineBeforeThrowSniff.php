@@ -51,7 +51,7 @@ class BlankLineBeforeThrowSniff implements Sniff
             $fix = $phpcsFile->addFixableError(
                 'Missing blank line before throw statement',
                 $pointer,
-                self::CODE_NO_BLANK_LINE_BEFORE_THROW
+                self::CODE_NO_BLANK_LINE_BEFORE_THROW,
             );
 
             if ($fix) {
