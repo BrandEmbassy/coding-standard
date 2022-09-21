@@ -14,10 +14,7 @@ class FunctionCommentSniff implements Sniff
 {
     private const NAME = 'BrandEmbassyCodingStandard.Commenting.FunctionComment';
 
-    /**
-     * @var BaseFunctionCommentSniff
-     */
-    private $decoratedSniff;
+    private BaseFunctionCommentSniff $decoratedSniff;
 
 
     public function __construct()

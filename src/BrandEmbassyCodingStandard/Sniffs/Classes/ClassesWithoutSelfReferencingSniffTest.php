@@ -23,19 +23,19 @@ class ClassesWithoutSelfReferencingSniffTest extends TestCase
             $report,
             16,
             'ClassesWithoutSelfReferencing',
-            'Using self::assertFalse is forbidden. Call PHPUnit\Framework\Assert::assertFalse directly.'
+            'Using self::assertFalse is forbidden. Call PHPUnit\Framework\Assert::assertFalse directly.',
         );
         self::assertSniffError(
             $report,
             17,
             'ClassesWithoutSelfReferencing',
-            'Using static::assertEquals is forbidden. Call PHPUnit\Framework\Assert::assertEquals directly.'
+            'Using static::assertEquals is forbidden. Call PHPUnit\Framework\Assert::assertEquals directly.',
         );
         self::assertSniffError(
             $report,
             19,
             'ClassesWithoutSelfReferencing',
-            'Using static::assertTrue is forbidden. Call PHPUnit\Framework\Assert::assertTrue directly.'
+            'Using static::assertTrue is forbidden. Call PHPUnit\Framework\Assert::assertTrue directly.',
         );
 
         self::assertAllFixedInFile($report);
@@ -49,7 +49,7 @@ class ClassesWithoutSelfReferencingSniffTest extends TestCase
         require_once $file;
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The option "classesWithoutSelfReferencing" was not provided.');
+        $this->expectExceptionMessage('The option "classesWithoutSelfReferencing" was not provided or is empty.');
 
         self::checkFile($file);
     }

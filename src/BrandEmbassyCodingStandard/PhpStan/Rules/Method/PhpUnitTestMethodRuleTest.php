@@ -73,7 +73,7 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
                     'Method BrandEmbassyCodingStandard\PhpStan\Rules\Method\__fixtures__\PhpUnitTest::testFunctionPrivate() seems like a test method, but it is not public.',
                     22,
                 ],
-            ]
+            ],
         );
     }
 }
