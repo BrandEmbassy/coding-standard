@@ -32,7 +32,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
     /**
      * @var array<string, class-string>
      */
-    public array $classesWithoutSelfReferencing;
+    public array $classesWithoutSelfReferencing = [];
 
     /**
      * @var array<class-string, string[]>
