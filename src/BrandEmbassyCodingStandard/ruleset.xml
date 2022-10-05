@@ -171,6 +171,7 @@
     <!-- Require strict types declaration and its format -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
+            <property name="declareOnFirstLine" value="1"/>
             <property name="newlinesCountBetweenOpenTagAndDeclare" value="0"/>
             <property name="newlinesCountAfterDeclare" value="2"/>
             <property name="spacesCountAroundEqualsSign" value="1"/>
@@ -234,9 +235,6 @@
 
     <!-- Requires use of null coalesce operator when possible -->
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
-
-    <!-- Forbid dead code -->
-    <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
 
     <!-- Forbid unused use statements -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
@@ -390,7 +388,7 @@
     </rule>
 
     <!-- Requires trailing comma in multiline function calls -->
-    <rule ref="SlevomatCodingStandard.Functions.TrailingCommaInCall" />
+    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall" />
 
     <!-- Disallows implicit array creation -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>

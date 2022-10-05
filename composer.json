@@ -9,6 +9,7 @@
         }
     ],
     "autoload": {
+        "files": [ "constants.php" ],
         "psr-4": {
             "BrandEmbassyCodingStandard\\": "src/BrandEmbassyCodingStandard"
         },
@@ -35,8 +36,8 @@
         "phpstan/phpstan-nette": "^1.0",
         "phpstan/phpstan-phpunit": "^1.1",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "slevomat/coding-standard": "^6.0",
-        "squizlabs/php_codesniffer": "~3.5.3"
+        "slevomat/coding-standard": "^8.5",
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
