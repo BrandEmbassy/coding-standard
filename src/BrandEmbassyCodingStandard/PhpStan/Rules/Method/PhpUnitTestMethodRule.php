@@ -3,13 +3,11 @@
 namespace BrandEmbassyCodingStandard\PhpStan\Rules\Method;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
 use PHPUnit\Framework\TestCase;
-use function assert;
 use function preg_match;
 use function sprintf;
 use function strlen;
@@ -21,14 +19,6 @@ use function substr;
 class PhpUnitTestMethodRule implements Rule
 {
     private const TEST_CLASS_SUFFIX = 'Test';
-
-    private ReflectionProvider $reflectionProvider;
-
-
-    public function __construct(ReflectionProvider $reflectionProvider)
-    {
-        $this->reflectionProvider = $reflectionProvider;
-    }
 
 
     public function getNodeType(): string
@@ -50,15 +40,13 @@ class PhpUnitTestMethodRule implements Rule
             return [];
         }
 
-        $classNode = $node->getAttribute('parent');
-        assert($classNode instanceof Class_);
-
-        $className = (string)$classNode->namespacedName;
-        if (!$this->reflectionProvider->hasClass($className)) {
-            return [sprintf('Vampire class error: cannot get reflection of class %s.', $className)];
+        if (!$scope->isInClass()) {
+            return [];
         }
 
-        $classReflection = $this->reflectionProvider->getClass($className);
+        /** @var ClassReflection $classReflection */
+        $classReflection = $scope->getClassReflection();
+        $className = $classReflection->getName();
 
         $violations = [];
         if (!$classReflection->isSubclassOf(TestCase::class)) {
