@@ -12,7 +12,7 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        return new PhpUnitTestMethodRule($this->createReflectionProvider());
+        return new PhpUnitTestMethodRule();
     }
 
 
@@ -75,14 +75,5 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
                 ],
             ],
         );
-    }
-
-
-    /**
-     * @return string[]
-     */
-    public static function getAdditionalConfigFiles(): array
-    {
-        return [];
     }
 }

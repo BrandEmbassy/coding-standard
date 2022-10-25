@@ -8,8 +8,7 @@ services:
         tags:
             - phpstan.rules.rule
 
-# TODO: Rule is disabled until it is rewritten without requiring node connecting visitor to speed up builds in ci
-#    -
-#        class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule
-#        tags:
-#            - phpstan.rules.rule
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Method\PhpUnitTestMethodRule
+        tags:
+            - phpstan.rules.rule
