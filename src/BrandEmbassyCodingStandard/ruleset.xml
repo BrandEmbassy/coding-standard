@@ -475,6 +475,8 @@
         <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
         <!-- Checked by SlevomatCodingStandard.TypeHints sniffs -->
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+        <!-- In conflict with annotationsGroups in SlevomatCodingStandard.Commenting.DocCommentSpacing -->
+        <exclude name="Squiz.Commenting.VariableComment.VarOrder"/>
     </rule>
 
     <!-- Force rules for function argument spacing -->
