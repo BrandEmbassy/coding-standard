@@ -28,6 +28,8 @@ class PostConditionsTraitUsedRule implements Rule
         'never',
         'atMost',
         'between',
+        'expects',
+        'shouldHaveReceived',
     ];
 
     private RuleLevelHelper $ruleLevelHelper;
