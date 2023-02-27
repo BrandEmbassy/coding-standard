@@ -49,11 +49,7 @@ class TraitUseSpacingSniff implements Sniff
      */
     public function register(): array
     {
-        return [
-            T_CLASS,
-            T_ANON_CLASS,
-            T_TRAIT,
-        ];
+        return [T_CLASS, T_ANON_CLASS, T_TRAIT];
     }
 
 

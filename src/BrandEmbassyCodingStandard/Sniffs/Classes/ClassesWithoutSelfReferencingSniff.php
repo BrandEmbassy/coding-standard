@@ -78,9 +78,7 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
     private function findClassesWithoutSelfReferencing(string $className): array
     {
         if ($this->classesWithoutSelfReferencing === []) {
-            throw new RuntimeException(
-                'The option "classesWithoutSelfReferencing" was not provided or is empty.',
-            );
+            throw new RuntimeException('The option "classesWithoutSelfReferencing" was not provided or is empty.');
         }
 
         return array_filter(
@@ -162,7 +160,10 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
             return null;
         }
 
-        return ['selfReferencePointer' => $previousPointer, 'methodNamePointer' => $nextPointer];
+        return [
+            'selfReferencePointer' => $previousPointer,
+            'methodNamePointer' => $nextPointer,
+        ];
     }
 
 

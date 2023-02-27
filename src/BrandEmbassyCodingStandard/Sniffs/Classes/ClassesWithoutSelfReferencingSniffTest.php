@@ -16,7 +16,9 @@ class ClassesWithoutSelfReferencingSniffTest extends TestCase
         $file = __DIR__ . '/__fixtures__/classesWithoutSelfReferencing.php';
         require_once $file;
 
-        $report = self::checkFile($file, ['classesWithoutSelfReferencing' => [Assert::class]]);
+        $report = self::checkFile($file, [
+            'classesWithoutSelfReferencing' => [Assert::class],
+        ]);
 
         Assert::assertSame(3, $report->getErrorCount());
         self::assertSniffError(
