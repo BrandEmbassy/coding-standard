@@ -10,12 +10,6 @@ use PHPStan\Testing\RuleTestCase;
  */
 class ImmutableWitherMethodRuleTest extends RuleTestCase
 {
-    protected function getRule(): Rule
-    {
-        return new ImmutableWitherMethodRule();
-    }
-
-
     public function testAnalyseMutableWithers(): void
     {
         $this->analyse(
@@ -40,9 +34,12 @@ class ImmutableWitherMethodRuleTest extends RuleTestCase
 
     public function testAnalyseImmutableWithers(): void
     {
-        $this->analyse(
-            [__DIR__ . '/__fixtures__/ImmutableWithersClass.php'],
-            [],
-        );
+        $this->analyse([__DIR__ . '/__fixtures__/ImmutableWithersClass.php'], []);
+    }
+
+
+    protected function getRule(): Rule
+    {
+        return new ImmutableWitherMethodRule();
     }
 }

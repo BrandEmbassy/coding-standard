@@ -66,7 +66,9 @@ class PostConditionsTraitUsedRule implements Rule
             $scope,
             $node->var,
             sprintf('Call to method %s() on an unknown class %%s.', $name),
-            static fn(Type $type): bool => $type->canCallMethods()->yes() && $type->hasMethod($name)->yes(),
+            static fn(Type $type): bool => $type->canCallMethods()
+                ->yes() && $type->hasMethod($name)
+                ->yes(),
         );
 
         $type = $typeResult->getType();

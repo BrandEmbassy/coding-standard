@@ -77,7 +77,13 @@ class FinalClassByAnnotationSniff implements Sniff
         }
 
         $openDocPtr = TokenHelper::findPrevious($phpcsFile, [T_DOC_COMMENT_OPEN_TAG], $closeDocPtr);
-        $existingDocPtr = TokenHelper::findPreviousContent($phpcsFile, [T_DOC_COMMENT_TAG], '@final', $closeDocPtr, $openDocPtr);
+        $existingDocPtr = TokenHelper::findPreviousContent(
+            $phpcsFile,
+            [T_DOC_COMMENT_TAG],
+            '@final',
+            $closeDocPtr,
+            $openDocPtr,
+        );
         if ($existingDocPtr !== null) {
             return;
         }

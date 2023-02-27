@@ -56,13 +56,24 @@ class CreateMockFunctionReturnTypeOrderSniff implements Sniff
             return;
         }
 
-        $returnTagPtr = TokenHelper::findNextContent($phpcsFile, ['PHPCS_T_DOC_COMMENT_TAG'], '@return', $phpDocCommentOpenTagPtr, $phpDocCommentCloseTagPtr);
+        $returnTagPtr = TokenHelper::findNextContent(
+            $phpcsFile,
+            ['PHPCS_T_DOC_COMMENT_TAG'],
+            '@return',
+            $phpDocCommentOpenTagPtr,
+            $phpDocCommentCloseTagPtr,
+        );
 
         if ($returnTagPtr === null) {
             return;
         }
 
-        $returnTypePtr = TokenHelper::findNextExcluding($phpcsFile, ['PHPCS_T_DOC_COMMENT_WHITESPACE'], $returnTagPtr + 1, $phpDocCommentCloseTagPtr);
+        $returnTypePtr = TokenHelper::findNextExcluding(
+            $phpcsFile,
+            ['PHPCS_T_DOC_COMMENT_WHITESPACE'],
+            $returnTagPtr + 1,
+            $phpDocCommentCloseTagPtr,
+        );
 
         if ($returnTypePtr === null) {
             return;

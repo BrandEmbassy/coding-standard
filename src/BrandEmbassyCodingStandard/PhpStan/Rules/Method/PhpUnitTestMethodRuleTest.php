@@ -10,12 +10,6 @@ use PHPStan\Testing\RuleTestCase;
  */
 class PhpUnitTestMethodRuleTest extends RuleTestCase
 {
-    protected function getRule(): Rule
-    {
-        return new PhpUnitTestMethodRule();
-    }
-
-
     public function testAnalyseTestClasses(): void
     {
         $this->analyse(
@@ -75,5 +69,11 @@ class PhpUnitTestMethodRuleTest extends RuleTestCase
                 ],
             ],
         );
+    }
+
+
+    protected function getRule(): Rule
+    {
+        return new PhpUnitTestMethodRule();
     }
 }
