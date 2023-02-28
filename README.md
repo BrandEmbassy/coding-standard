@@ -1,27 +1,17 @@
 # Brand Embassy Coding Standard
-- The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) ruleset to check that
+- The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) and [cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) rules to check that
 repositories are following the unified coding standard for Brand Embassy projects.
 - The [PHPStan](https://github.com/phpstan/phpstan) default configuration file.
 - PhpStorm code style and inspections (with [Php Inspections (EA Extended)](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) plugin) configuration files.
 
 Standards
 ---------
-For full reference of enforcements, go through `src/BrandEmbassyCodingStandard/ruleset.xml` where each sniff is briefly described.
+For full reference of enforcements, go through `default-ecs.php` where each sniff / fixer deviating from default set lists is briefly described.
 
 @TODO list of important sniffs
 
-### Skippable sniffs
-For example to skip Function comment sniff:
-```
-/**
- * @phpcsSuppress BrandEmbassyCodingStandard.Commenting.FunctionComment
- */
-```
-
-- BrandEmbassyCodingStandard.Commenting.FunctionComment
-- BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName
-- BrandEmbassyCodingStandard.WhiteSpace.MethodSpacing
-- Some sniffs from [SlevomatCodingStandards](https://github.com/slevomat/coding-standard)
+### Skippable sniffs / fixers
+Skipping of sniffs / fixers in general or for particular files should be configured in the `ecs.php` of your project. This file should leverage the `default-ecs.php` as the default configuration, but it expected that you will make adjustments to fit your project needs.
 
 Installation
 ------------
@@ -31,18 +21,24 @@ You can install the Brand Embassy Coding Standard as a composer dependency to yo
 $ composer require --dev brandembassy/coding-standard
 ```
 
-PHP_CodeSniffer
+ECS
 ---------------
-You can run PHP_CodeSniffer with this command:
+You can run ecs with this command (without performing automatic fixes):
 
 ```bash
-$ ./vendor/bin/phpcs --standard=BrandEmbassyCodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/ecs check --ansi
 ```
 
-You might also do automatic fixes using `phpcbf`:
+Or with automatic fixes:
 
 ```bash
-$ ./vendor/bin/phpcbf --standard=BrandEmbassyCodingStandard /path/to/some/file/to/sniff.php
+$ ./vendor/bin/ecs check --ansi --fix
+```
+
+You can use the `--clear-cache` option to clear the cache before applying the fixers and sniffers:
+
+```bash
+$ ./vendor/bin/ecs check --ansi --fix --clear-cache
 ```
 
 PHPStan
