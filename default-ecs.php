@@ -1078,6 +1078,13 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         // TODO: SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
         // TODO: which can actually break code by adding return type hints which are missing in child classes
         ReturnTypeHintSniff::class,
+        // Does not work right with switch statements
+        ScopeIndentSniff::class . '.IncorrectExact',
+        // Does not work correctly with complex doctrine annotations
+        DocCommentAlignmentSniff::class . '.SpaceAfterStar',
+        // Handled by StrictComparisonFixer
+        DisallowEqualOperatorsSniff::class . '.DisallowedEqualOperator',
+        DisallowEqualOperatorsSniff::class . '.DisallowedNotEqualOperator',
     ];
 
     // endregion === brand embassy coding standard ===
