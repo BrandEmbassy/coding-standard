@@ -5,6 +5,7 @@ use BrandEmbassyCodingStandard\Sniffs\Classes\FinalClassByAnnotationSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUsePositionSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUseSpacingSniff;
 use BrandEmbassyCodingStandard\Sniffs\Commenting\FunctionCommentSniff;
+use BrandEmbassyCodingStandard\Sniffs\NamingConvention\CamelCapsFunctionNameSniff;
 use BrandEmbassyCodingStandard\Sniffs\WhiteSpace\BlankLineBeforeReturnSniff;
 use BrandEmbassyCodingStandard\Sniffs\WhiteSpace\BlankLineBeforeThrowSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Arrays\ArrayIndentSniff;
@@ -806,6 +807,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
             '@throws',
         ],
     ]);
+    // Require camelCase function names
+    $ecsConfig->rule(CamelCapsFunctionNameSniff::class);
     // Forbid spacing after and before array brackets
     $ecsConfig->rule(ArrayBracketSpacingSniff::class);
     // Force array declaration structure
