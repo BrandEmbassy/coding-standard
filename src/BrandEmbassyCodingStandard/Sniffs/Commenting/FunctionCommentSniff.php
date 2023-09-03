@@ -39,7 +39,7 @@ class FunctionCommentSniff implements Sniff
      */
     public function process(File $phpcsFile, $pointer): void
     {
-        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME) === true) {
+        if (SuppressHelper::isSniffSuppressed($phpcsFile, $pointer, self::NAME)) {
             return;
         }
 

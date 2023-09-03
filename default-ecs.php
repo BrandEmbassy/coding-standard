@@ -256,7 +256,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
 
     // region SetList::SYMPLIFY
     $ecsConfig->import(
-        $projectRootPath . '/vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/config/config.php',
+        $projectRootPath . '/vendor/symplify/easy-coding-standard/config/set/symplify.php',
     );
     // explicit like other configs :) no magic!!!
     $ecsConfig->rules([

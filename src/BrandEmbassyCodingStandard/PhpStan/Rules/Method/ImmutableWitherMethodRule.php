@@ -33,7 +33,7 @@ class ImmutableWitherMethodRule implements Rule
     public function __construct()
     {
         $this->nodeTraverser = new NodeTraverser();
-        $this->findingVisitor = new FindingVisitor(fn(Node $node): bool => true);
+        $this->findingVisitor = new FindingVisitor(static fn(Node $node): bool => true);
 
         $this->nodeTraverser->addVisitor($this->findingVisitor);
     }
@@ -68,9 +68,11 @@ class ImmutableWitherMethodRule implements Rule
             if ($this->isReturnThisNode($innerNode)) {
                 return [sprintf(self::MESSAGE, $methodName, 'it returns $this')];
             }
+
             if ($this->isCallOfSetterOnThis($innerNode)) {
                 return [sprintf(self::MESSAGE, $methodName, 'it calls a setter on $this')];
             }
+
             if ($this->isWriteToOwnProperty($innerNode)) {
                 return [sprintf(self::MESSAGE, $methodName, 'it writes to own property')];
             }
@@ -86,11 +88,7 @@ class ImmutableWitherMethodRule implements Rule
             return false;
         }
 
-        if ($node->expr instanceof Variable && $node->expr->name === 'this') {
-            return true;
-        }
-
-        return false;
+        return $node->expr instanceof Variable && $node->expr->name === 'this';
     }
 
 
