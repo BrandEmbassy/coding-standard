@@ -53,10 +53,12 @@ class PhpUnitTestMethodRule implements Rule
             $violationReason = sprintf('the class is not a %s', TestCase::class);
             $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason);
         }
+
         if (substr($className, -strlen(self::TEST_CLASS_SUFFIX)) !== self::TEST_CLASS_SUFFIX) {
             $violationReason = sprintf('the class is not suffixed %s', self::TEST_CLASS_SUFFIX);
             $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason);
         }
+
         if (!$node->isPublic()) {
             $violations[] = $this->getTestMethodViolation($className, $methodName, 'it is not public');
         }

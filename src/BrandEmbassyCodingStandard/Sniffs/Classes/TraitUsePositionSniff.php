@@ -6,7 +6,6 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\ClassHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
-use function count;
 use function end;
 use function reset;
 use const T_ANON_CLASS;
@@ -39,7 +38,7 @@ class TraitUsePositionSniff implements Sniff
     {
         $traitPointers = ClassHelper::getTraitUsePointers($phpcsFile, $classPointer);
 
-        if (count($traitPointers) === 0) {
+        if ($traitPointers === []) {
             return;
         }
 
@@ -99,7 +98,7 @@ class TraitUsePositionSniff implements Sniff
 
         $traitsContent = TokenHelper::getContent($phpcsFile, $startPointer, $lastPointer);
 
-        for ($i = $startPointer; $i <= $lastPointer; $i++) {
+        for ($i = $startPointer; $i <= $lastPointer; ++$i) {
             $phpcsFile->fixer->replaceToken($i, '');
         }
 
