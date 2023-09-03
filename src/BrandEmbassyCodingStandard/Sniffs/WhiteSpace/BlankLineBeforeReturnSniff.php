@@ -4,7 +4,6 @@ namespace BrandEmbassyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use function count;
 use const T_RETURN;
 
 class BlankLineBeforeReturnSniff implements Sniff
@@ -40,14 +39,15 @@ class BlankLineBeforeReturnSniff implements Sniff
             ) {
                 $prevLineTokens[] = $tokens[$current]['type'];
             }
-            $current--;
+
+            --$current;
         }
 
         if (isset($prevLineTokens[0]) && ($prevLineTokens[0] === 'T_OPEN_CURLY_BRACKET' || $prevLineTokens[0] === 'T_COLON')) {
             return;
         }
 
-        if (count($prevLineTokens) > 0) {
+        if ($prevLineTokens !== []) {
             $fix = $phpcsFile->addFixableError(
                 'Missing blank line before return statement',
                 $pointer,
