@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
-use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\Plus\RemoveDeadZeroAndOneOperationRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
@@ -46,7 +45,6 @@ return static function (RectorConfig $rectorConfig): array {
         ChangeOrIfContinueToMultiContinueRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         CatchExceptionNameMatchingTypeRector::class,
-        UnSpreadOperatorRector::class,
         // @see \PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
         // Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.
         TernaryToElvisRector::class,
