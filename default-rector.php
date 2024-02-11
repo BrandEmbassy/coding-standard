@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\Config\RectorConfig;
+use Rector\Configuration\RectorConfigBuilder;
 use Rector\DeadCode\Rector\Plus\RemoveDeadZeroAndOneOperationRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
@@ -17,17 +18,7 @@ use Rector\Set\ValueObject\SetList;
 /**
  * @return mixed[] default skip list
  */
-return static function (RectorConfig $rectorConfig): array {
-    $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_74,
-        SetList::CODE_QUALITY,
-        SetList::DEAD_CODE,
-        SetList::CODING_STYLE,
-        SetList::TYPE_DECLARATION,
-        SetList::PRIVATIZATION,
-        SetList::EARLY_RETURN,
-    ]);
-
+return static function (RectorConfigBuilder $rectorConfigBuilder): array {
     if (!defined('RECTOR_IS_RUNNING')) {
         define('RECTOR_IS_RUNNING', 1);
     }
@@ -35,8 +26,18 @@ return static function (RectorConfig $rectorConfig): array {
     $maxProcesses = getenv('RECTOR_MAX_PROCESSES');
     $maxProcesses = $maxProcesses === false ? 16 : (int) $maxProcesses;
 
-    $rectorConfig->parallel(120, $maxProcesses);
-    $rectorConfig->importNames();
+    $rectorConfigBuilder
+        ->withSets([
+            LevelSetList::UP_TO_PHP_74,
+            SetList::CODE_QUALITY,
+            SetList::DEAD_CODE,
+            SetList::CODING_STYLE,
+            SetList::TYPE_DECLARATION,
+            SetList::PRIVATIZATION,
+            SetList::EARLY_RETURN,
+        ])
+        ->withParallel(120, $maxProcesses)
+        ->withImportNames();
 
     return [
         FinalizeClassesWithoutChildrenRector::class,
