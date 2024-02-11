@@ -33,7 +33,7 @@ class ImmutableWitherMethodRule implements Rule
     public function __construct()
     {
         $this->nodeTraverser = new NodeTraverser();
-        $this->findingVisitor = new FindingVisitor(static fn(Node $node): bool => true);
+        $this->findingVisitor = new FindingVisitor(static fn(): bool => true);
 
         $this->nodeTraverser->addVisitor($this->findingVisitor);
     }

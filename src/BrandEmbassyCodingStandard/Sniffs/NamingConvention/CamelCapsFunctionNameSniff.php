@@ -27,7 +27,7 @@ class CamelCapsFunctionNameSniff implements Sniff
 
 
     /**
-     * @return int[]
+     * @return array<int|string>
      */
     public function register(): array
     {
