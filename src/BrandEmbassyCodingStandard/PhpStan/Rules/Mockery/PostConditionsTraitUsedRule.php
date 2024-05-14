@@ -6,13 +6,18 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use function in_array;
 use function sprintf;
 
+/**
+ * @implements Rule<MethodCall>
+ */
 class PostConditionsTraitUsedRule implements Rule
 {
     /**
@@ -28,6 +33,8 @@ class PostConditionsTraitUsedRule implements Rule
         'never',
         'atMost',
         'between',
+        'expects',
+        'shouldHaveReceived',
     ];
 
     private RuleLevelHelper $ruleLevelHelper;
@@ -48,10 +55,12 @@ class PostConditionsTraitUsedRule implements Rule
     /**
      * @param MethodCall $node
      *
-     * @return string[]
+     * @return list<IdentifierRuleError>
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        $errors = [];
+
         if (!$node->name instanceof Identifier) {
             return [];
         }
@@ -85,9 +94,11 @@ class PostConditionsTraitUsedRule implements Rule
 
         $traitName = 'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration';
         if (!$classReflection->hasTraitUse($traitName)) {
-            return [sprintf('Calling %s without %s trait.', $name, $traitName)];
+            $errors[] = RuleErrorBuilder::message(sprintf('Calling %s without %s trait.', $name, $traitName))
+                ->identifier('postConditions.noMockeryTrait')
+                ->build();
         }
 
-        return [];
+        return $errors;
     }
 }
