@@ -6,7 +6,9 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPUnit\Framework\TestCase;
 use function preg_match;
 use function sprintf;
@@ -30,7 +32,7 @@ class PhpUnitTestMethodRule implements Rule
     /**
      * @param ClassMethod $node
      *
-     * @return string[]
+     * @return list<IdentifierRuleError>
      */
     public function processNode(Node $node, Scope $scope): array
     {
@@ -51,24 +53,26 @@ class PhpUnitTestMethodRule implements Rule
         $violations = [];
         if (!$classReflection->isSubclassOf(TestCase::class)) {
             $violationReason = sprintf('the class is not a %s', TestCase::class);
-            $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason);
+            $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason, 'phpUnitTestMethod.notTestCase');
         }
 
         if (substr($className, -strlen(self::TEST_CLASS_SUFFIX)) !== self::TEST_CLASS_SUFFIX) {
             $violationReason = sprintf('the class is not suffixed %s', self::TEST_CLASS_SUFFIX);
-            $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason);
+            $violations[] = $this->getTestMethodViolation($className, $methodName, $violationReason, 'phpUnitTestMethod.missingSuffix');
         }
 
         if (!$node->isPublic()) {
-            $violations[] = $this->getTestMethodViolation($className, $methodName, 'it is not public');
+            $violations[] = $this->getTestMethodViolation($className, $methodName, 'it is not public', 'phpUnitTestMethod.notPublic');
         }
 
         return $violations;
     }
 
 
-    protected function getTestMethodViolation(string $className, string $methodName, string $reason): string
+    protected function getTestMethodViolation(string $className, string $methodName, string $reason, string $identifier): IdentifierRuleError
     {
-        return sprintf('Method %s::%s() seems like a test method, but %s.', $className, $methodName, $reason);
+        return RuleErrorBuilder::message(sprintf('Method %s::%s() seems like a test method, but %s.', $className, $methodName, $reason))
+            ->identifier($identifier)
+            ->build();
     }
 }
