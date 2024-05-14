@@ -4,17 +4,14 @@ includes:
     - vendor/phpstan/phpstan-mockery/extension.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - phpstan-extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     level: max
+    paths:
+        - src
 
     excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
-    ignoreErrors:
-        -
-            message: '#Parameter \#1 \$node \(PhpParser\\Node\\Expr\\MethodCall\) of method BrandEmbassyCodingStandard\\PhpStan\\Rules\\Mockery\\PostConditionsTraitUsedRule::processNode\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule\<PhpParser\\Node\>::processNode\(\)#'
-            path: src/BrandEmbassyCodingStandard/PhpStan/Rules/Mockery/PostConditionsTraitUsedRule.php
-        -
-            message: '#Class BrandEmbassyCodingStandard\\PhpStan\\Rules\\Mockery\\PostConditionsTraitUsedRule implements generic interface PHPStan\\Rules\\Rule but does not specify its types: TNodeType#'
-            path: src/BrandEmbassyCodingStandard/PhpStan/Rules/Mockery/PostConditionsTraitUsedRule.php
+
