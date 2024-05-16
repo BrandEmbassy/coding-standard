@@ -43,16 +43,18 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
-        "phpunit/phpunit": "^7.5 || ^8.5",
+        "phpunit/phpunit": "^10.5",
         "roave/security-advisories": "dev-latest"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
-        "phpunit": "vendor/bin/phpunit src --filter '/\\\\(?!__fixtures__)\\w+\\\\\\w+::/'",
-        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon src --memory-limit=-1",
-        "rector": "vendor/bin/rector process",
-        "rector-dry-run": "vendor/bin/rector process --dry-run"
+        "phpstan": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1",
+        "phpstan-generate-baseline": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1 --generate-baseline",
+        "phpunit": "./vendor/bin/phpunit --no-coverage",
+        "phpunit-cc": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
+        "check-rector": "vendor/bin/rector process --dry-run --ansi",
+        "fix-rector": "vendor/bin/rector process --ansi"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

@@ -13,7 +13,9 @@ use PhpParser\Node\Stmt\Return_;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\FindingVisitor;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use function preg_match;
 use function sprintf;
 use function substr;
@@ -48,7 +50,7 @@ class ImmutableWitherMethodRule implements Rule
     /**
      * @param ClassMethod $node
      *
-     * @return string[]
+     * @return list<IdentifierRuleError>
      */
     public function processNode(Node $node, Scope $scope): array
     {
@@ -66,15 +68,27 @@ class ImmutableWitherMethodRule implements Rule
 
         foreach ($this->findingVisitor->getFoundNodes() as $innerNode) {
             if ($this->isReturnThisNode($innerNode)) {
-                return [sprintf(self::MESSAGE, $methodName, 'it returns $this')];
+                return [
+                    RuleErrorBuilder::message(sprintf(self::MESSAGE, $methodName, 'it returns $this'))
+                        ->identifier('immutableWither.return')
+                        ->build(),
+                ];
             }
 
             if ($this->isCallOfSetterOnThis($innerNode)) {
-                return [sprintf(self::MESSAGE, $methodName, 'it calls a setter on $this')];
+                return [
+                    RuleErrorBuilder::message(sprintf(self::MESSAGE, $methodName, 'it calls a setter on $this'))
+                        ->identifier('immutableWither.setterOnThis')
+                        ->build(),
+                ];
             }
 
             if ($this->isWriteToOwnProperty($innerNode)) {
-                return [sprintf(self::MESSAGE, $methodName, 'it writes to own property')];
+                return [
+                    RuleErrorBuilder::message(sprintf(self::MESSAGE, $methodName, 'it writes to own property'))
+                        ->identifier('immutableWither.ownProperty')
+                        ->build(),
+                ];
             }
         }
 
