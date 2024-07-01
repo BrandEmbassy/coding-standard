@@ -6,7 +6,6 @@ use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\Configuration\RectorConfigBuilder;
 use Rector\DeadCode\Rector\Plus\RemoveDeadZeroAndOneOperationRector;
-use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Php53\Rector\Ternary\TernaryToElvisRector;
@@ -38,8 +37,6 @@ return static function (RectorConfigBuilder $rectorConfigBuilder): array {
         ->withImportNames();
 
     return [
-        // Following rules break down the && and || for early returns / continue, which is not always desired
-        ChangeAndIfToEarlyReturnRector::class,
         ChangeOrIfContinueToMultiContinueRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         CatchExceptionNameMatchingTypeRector::class,
