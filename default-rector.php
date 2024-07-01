@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
-use Rector\Config\RectorConfig;
 use Rector\Configuration\RectorConfigBuilder;
 use Rector\DeadCode\Rector\Plus\RemoveDeadZeroAndOneOperationRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Php53\Rector\Ternary\TernaryToElvisRector;
-use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
@@ -40,7 +38,6 @@ return static function (RectorConfigBuilder $rectorConfigBuilder): array {
         ->withImportNames();
 
     return [
-        FinalizeClassesWithoutChildrenRector::class,
         // Following rules break down the && and || for early returns / continue, which is not always desired
         ChangeAndIfToEarlyReturnRector::class,
         ChangeOrIfContinueToMultiContinueRector::class,
