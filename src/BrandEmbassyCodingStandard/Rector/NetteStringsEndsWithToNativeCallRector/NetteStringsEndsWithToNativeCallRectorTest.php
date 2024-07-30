@@ -13,7 +13,7 @@ use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 class NetteStringsEndsWithToNativeCallRectorTest extends AbstractRectorTestCase
 {
     #[DataProvider('provideData')]
-    #[RunInSeparateProcess]
+    #[RunInSeparateProcess] // see README (Rector section) for why this is necessary
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);

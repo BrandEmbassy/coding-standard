@@ -15,7 +15,7 @@ use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 class NetteStringsContainsToNativeCallRectorTest extends AbstractRectorTestCase implements MinPhpVersionInterface
 {
     #[DataProvider('provideData')]
-    #[RunInSeparateProcess] // see README for why this is necessary
+    #[RunInSeparateProcess] // see README (Rector section) for why this is necessary
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
