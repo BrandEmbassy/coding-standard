@@ -1,0 +1,8 @@
+<?php declare(strict_types = 1);
+
+use BrandEmbassyCodingStandard\Rector\NetteStringsEndsWithToNativeCallRector\NetteStringsEndsWithToNativeCallRector;
+use Rector\Config\RectorConfig;
+
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->rule(NetteStringsEndsWithToNativeCallRector::class);
+};
