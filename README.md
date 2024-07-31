@@ -22,7 +22,7 @@ $ composer require --dev brandembassy/coding-standard
 ```
 
 ECS
----------------
+---
 You can run ecs with this command (without performing automatic fixes):
 
 ```bash
@@ -49,10 +49,42 @@ PHPStan
 
 To use default configuration include default-phpstan.neon in your project's PHPStan config:
 
-``` yaml
+```yaml
 includes:
     - vendor/brandembassy/coding-standard/integration-phpstan.neon
 ```
+
+Rector
+------
+To use default configuration require default-rector.php in your project's Rector config:
+
+```php
+$rectorConfigBuilder = RectorConfig::configure();
+$defaultRectorConfigurationSetup = require __DIR__ . '/vendor/brandembassy/coding-standard/default-rector.php';
+
+$defaultSkipList = $defaultRectorConfigurationSetup($rectorConfigBuilder);
+
+// You can skip unwanted rules here
+$skipList = array_merge(
+    $defaultSkipList,
+    [
+        '*/__fixtures__/*',
+        NewlineAfterStatementRector::class, // might conflict with ECS
+    ],
+);
+
+// You can override/append to the default configuration here
+$rectorConfigBuilder
+    ->withPHPStanConfigs([__DIR__ . '/phpstan.neon'])
+    ->withCache('./var/temp/rector', FileCacheStorage::class)
+    ->withSkip($skipList);
+
+return $rectorConfigBuilder;
+```
+
+⚠️ Tests for Rector rules need to run in a separate process, because Rector and PHPStan use different versions of php-parser.
+See explanation here https://github.com/staabm/zf-select-strip/pull/8.
+Another way would be to run them in a separate testsuite, but then we run into problems with code-coverage.
 
 PhpStorm
 --------

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use BrandEmbassyCodingStandard\Rector\NetteStringsContainsToNativeCallRector\NetteStringsContainsToNativeCallRector;
+use BrandEmbassyCodingStandard\Rector\NetteStringsEndsWithToNativeCallRector\NetteStringsEndsWithToNativeCallRector;
+use BrandEmbassyCodingStandard\Rector\NetteStringsStartsWithToNativeCallRector\NetteStringsStartsWithToNativeCallRector;
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\Configuration\RectorConfigBuilder;
@@ -32,6 +35,11 @@ return static function (RectorConfigBuilder $rectorConfigBuilder): array {
             SetList::TYPE_DECLARATION,
             SetList::PRIVATIZATION,
             SetList::EARLY_RETURN,
+        ])
+        ->withRules([
+            NetteStringsStartsWithToNativeCallRector::class,
+            NetteStringsEndsWithToNativeCallRector::class,
+            NetteStringsContainsToNativeCallRector::class,
         ])
         ->withParallel(120, $maxProcesses)
         ->withImportNames();
