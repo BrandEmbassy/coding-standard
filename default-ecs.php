@@ -5,6 +5,7 @@ use BrandEmbassyCodingStandard\Sniffs\Classes\FinalClassByAnnotationSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUsePositionSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUseSpacingSniff;
 use BrandEmbassyCodingStandard\Sniffs\Commenting\FunctionCommentSniff;
+use BrandEmbassyCodingStandard\Sniffs\ForbiddenElseStatementSniff;
 use BrandEmbassyCodingStandard\Sniffs\NamingConvention\CamelCapsFunctionNameSniff;
 use BrandEmbassyCodingStandard\Sniffs\WhiteSpace\BlankLineBeforeReturnSniff;
 use BrandEmbassyCodingStandard\Sniffs\WhiteSpace\BlankLineBeforeThrowSniff;
@@ -947,6 +948,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
             'allow_mixed' => true,
         ],
     );
+
+    $ecsConfig->rule(ForbiddenElseStatementSniff::class);
 
     return [
         // Checked by BrandEmbassyCodingStandard.NamingConvention.CamelCapsFunctionName

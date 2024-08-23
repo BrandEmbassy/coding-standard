@@ -14,4 +14,5 @@ parameters:
     excludePaths:
         - src/BrandEmbassyCodingStandard/Sniffs/TypeHints/TypeHintDeclarationSniff.php
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
+        - src/BrandEmbassyCodingStandard/*/__fixtures/*
 
