@@ -4,6 +4,7 @@ includes:
     - ../../../vendor/phpstan/phpstan-mockery/extension.neon
     - ../../../vendor/phpstan/phpstan-phpunit/extension.neon
     - ../../../vendor/brandembassy/coding-standard/phpstan-extension.neon
+    - ../../../vendor/tomasvotruba/cognitive-complexity/config/extension.neon
 
 parameters:
     level: max
