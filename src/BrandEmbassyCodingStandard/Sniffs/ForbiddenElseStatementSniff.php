@@ -39,7 +39,7 @@ class ForbiddenElseStatementSniff implements Sniff
 
         $statement = strtolower($tokens[$stackPtr]['content']);
 
-        $error = 'Use of ' . $statement . ' is forbidden.';
+        $error = 'Use of ' . $statement . ' is forbidden. See: https://github.com/BrandEmbassy/developers-manifest/issues/365.';
 
         $phpcsFile->addError($error, $stackPtr, self::CODE_FORBIDDEN_ELSE_STATEMENT_SNIFF);
     }
