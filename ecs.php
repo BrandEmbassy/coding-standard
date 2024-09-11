@@ -39,6 +39,7 @@ return static function (ECSConfig $ecsConfig) use ($defaultEcsConfigurationSetup
             __DIR__ . '/src/BrandEmbassyCodingStandard/Sniffs/WhiteSpace/BlankLineBeforeThrowSniff.php',
         ],
         __DIR__ . '/*/__fixtures__/*',
+        __DIR__ . '/*/__fixtures/*',
     ];
 
     $ecsConfig->skip(array_merge($defaultSkipList, $skipList));
