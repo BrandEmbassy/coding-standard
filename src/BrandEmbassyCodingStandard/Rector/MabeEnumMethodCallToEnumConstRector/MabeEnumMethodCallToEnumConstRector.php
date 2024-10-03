@@ -29,6 +29,14 @@ use function strtoupper;
 
 /**
  * @final
+ *
+ * Not all methods are implemented because they have no equivalent in the native PHP enum.
+ * SomeEnum::getValues() is not implemented because it is not possible to get all enum values in PHP.
+ * array_column(SomeEnum::cases(), 'value') can be used instead.
+ *
+ * If we use only constants from enum (eg: $var = $bool? SomeEnum::USER: SomeEnum::SUPERUSER), they become objects in case of native enums, and it is necessary to add the call omeEnum::USER->value: SomeEnum::SUPERUSER->value or $var->value.
+ * If the Enum is created from a variable, and this variable is a value of the const from enum, it is necessary to manually modify the created enum.
+ * Eg: $var = SomeEnum::USER; $enum = SomeEnum::get($var); -> $enum = SomeEnum::USER;
  */
 class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinPhpVersionInterface, ConfigurableRectorInterface
 {
