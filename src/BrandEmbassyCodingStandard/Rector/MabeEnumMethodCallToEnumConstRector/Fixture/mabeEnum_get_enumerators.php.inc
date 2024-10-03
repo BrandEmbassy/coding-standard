@@ -3,7 +3,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class CreateEnum {
+final class Enumerators {
     public function run() {
         SomeEnum::getEnumerators();
     }
@@ -15,7 +15,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class CreateEnum {
+final class Enumerators {
     public function run() {
         \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::cases();
     }

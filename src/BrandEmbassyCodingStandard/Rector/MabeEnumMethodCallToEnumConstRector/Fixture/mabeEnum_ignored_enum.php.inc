@@ -3,7 +3,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\IgnoredEnum;
 
-final class CreateEnum {
+final class IgnoredEnum {
     public function run() {
         $user = IgnoredEnum::get(IgnoredEnum::USER);
 
@@ -21,7 +21,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\IgnoredEnum;
 
-final class CreateEnum {
+final class IgnoredEnum {
     public function run() {
         $user = IgnoredEnum::get(IgnoredEnum::USER);
 

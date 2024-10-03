@@ -7,7 +7,7 @@ final class CreateEnum {
     public function run() {
         $superUserConst = SomeEnum::SUPERUSER;
 
-        BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum\SomeEnum::get(SomeEnum::USER);
+        \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::get(SomeEnum::USER);
         SomeEnum::get(SomeEnum::USER);
         SomeEnum::get(SomeEnum::SUPERUSER);
         SomeEnum::SUPERUSER();
