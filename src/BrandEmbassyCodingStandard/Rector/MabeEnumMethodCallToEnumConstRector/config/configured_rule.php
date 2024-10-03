@@ -5,6 +5,6 @@ use Rector\Config\RectorConfig;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->ruleWithConfiguration(MabeEnumMethodCallToEnumConstRector::class, [
-        'ignored_classes_regex' => '/.*IgnoredEnum/',
+        MabeEnumMethodCallToEnumConstRector::IGNORED_CLASSES_REGEX => '/.*IgnoredEnum/',
     ]);
 };

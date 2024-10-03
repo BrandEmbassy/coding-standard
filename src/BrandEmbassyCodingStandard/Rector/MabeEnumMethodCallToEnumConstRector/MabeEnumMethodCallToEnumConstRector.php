@@ -69,6 +69,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
                 '$enum->is(SomeEnum::VALUE)',
                 '$enum === SomeEnum::VALUE',
             ),
+            // If the enum is from another package, it can be ignored, ig. vendor/BrandEmbassy/...
             new ConfiguredCodeSample(
                 'IgnoredEnum::getValue()',
                 'IgnoredEnum::getValue()',
