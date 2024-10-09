@@ -3,20 +3,9 @@
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
-use PhpParser\Node\Arg;
-use PhpParser\Node\ArrayItem as ArrayItemNode;
-use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
-use PhpParser\Node\Expr\BinaryOp\Identical;
-use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Expr\Variable;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Scalar\String_;
-use PHPStan\Type\ObjectType;
-use PHPStan\Type\TypeWithClassName;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
 use Rector\ValueObject\PhpVersionFeature;
@@ -24,13 +13,8 @@ use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use function array_map;
 use function assert;
 use function class_exists;
-use function is_numeric;
-use function is_string;
-use function preg_match;
-use function strtoupper;
 
 /**
  * @final
@@ -45,14 +29,22 @@ use function strtoupper;
  */
 class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinPhpVersionInterface, ConfigurableRectorInterface
 {
-    public const IGNORED_CLASSES_REGEX = 'ignored_classes_regex';
+    public const ARE_CLASSES_FROM_VENDOR_IGNORED = 'areClassesFromVendorIgnored';
 
     private const MABE_ENUM_CLASS_NAME = 'MabeEnum\\Enum';
 
     /**
-     * @var array<string, mixed>
+     * @var array<string, bool>
      */
     private array $configuration = [];
+
+    private MabeEnumFactory $mabeEnumFactory;
+
+
+    public function __construct(MabeEnumFactory $mabeEnumFactory)
+    {
+        $this->mabeEnumFactory = $mabeEnumFactory;
+    }
 
 
     public function getRuleDefinition(): RuleDefinition
@@ -79,7 +71,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
                 'IgnoredEnum::getValue()',
                 'IgnoredEnum::getValue()',
                 [
-                    self::IGNORED_CLASSES_REGEX => '/.*IgnoredEnum/',
+                    self::ARE_CLASSES_FROM_VENDOR_IGNORED => false,
                 ],
             ),
         ]);
@@ -106,26 +98,10 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
             return null;
         }
 
-        if ($node instanceof Array_) {
-            return $this->refactorArray($node);
-        }
+        assert($node instanceof MethodCall || $node instanceof StaticCall || $node instanceof Array_);
+        $areClassesFromVendorIgnored = $this->configuration[self::ARE_CLASSES_FROM_VENDOR_IGNORED] ?? true;
 
-        assert($node instanceof MethodCall || $node instanceof StaticCall);
-
-        if ($node->name instanceof Expr) {
-            return null;
-        }
-
-        $enumCaseName = $this->getName($node->name);
-        if ($enumCaseName === null) {
-            return null;
-        }
-
-        if ($node instanceof StaticCall) {
-            return $this->refactorStaticCall($node, $enumCaseName);
-        }
-
-        return $this->refactorMethodCall($node, $enumCaseName);
+        return $this->mabeEnumFactory->createFromNode($node, $areClassesFromVendorIgnored);
     }
 
 
@@ -140,203 +116,6 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
      */
     public function configure(array $configuration): void
     {
-        if ($configuration === []) {
-            $configuration = [self::IGNORED_CLASSES_REGEX => null];
-        }
-
-        $this->configuration = $configuration;
-    }
-
-
-    private function refactorArray(Array_ $array): ?Expr
-    {
-        if ($array->items === []) {
-            return null;
-        }
-
-        /** @var ArrayItem[] $arrayItems */
-        $arrayItems = $array->items;
-
-        /** @var ArrayItemNode[] $refactoredArrayItems */
-        $refactoredArrayItems = array_map(fn(ArrayItem $arrayItem): ArrayItem => $this->refactorArrayItemKeys($arrayItem), $arrayItems);
-
-        $array->items = $refactoredArrayItems;
-
-        return $array;
-    }
-
-
-    private function refactorArrayItemKeys(ArrayItem $arrayItem): ArrayItem
-    {
-        $key = $arrayItem->key;
-
-        if ($key === null) {
-            return $arrayItem;
-        }
-
-        if ($key instanceof ClassConstFetch && $this->isMabeEnum($key->class)) {
-            $key = $this->nodeFactory->createPropertyFetch($key, 'value');
-            $arrayItem->key = $key;
-        }
-
-        return $arrayItem;
-    }
-
-
-    private function refactorStaticCall(StaticCall $staticCall, string $staticCallName): ?Expr
-    {
-        $className = $this->getName($staticCall->class);
-        if ($className === null) {
-            return null;
-        }
-
-        if ($this->isClassIgnored($className)) {
-            return null;
-        }
-
-        if (strtoupper($staticCallName) === $staticCallName) {
-            return $this->nodeFactory->createClassConstFetch($className, $staticCallName);
-        }
-
-        if ($staticCallName === 'get') {
-            return $this->refactorGetStaticCall($staticCall);
-        }
-
-        if ($staticCallName === 'getEnumerators') {
-            return $this->nodeFactory->createStaticCall($className, 'cases');
-        }
-
-        return null;
-    }
-
-
-    private function refactorMethodCall(MethodCall $methodCall, string $methodName): ?Expr
-    {
-        if (!$this->isMabeEnum($methodCall->var)) {
-            return null;
-        }
-
-        $className = $this->getClassName($methodCall->var);
-
-        if ($className === null) {
-            return null;
-        }
-
-        if ($this->isClassIgnored($className)) {
-            return null;
-        }
-
-        if ($methodName === 'is') {
-            return $this->refactorIsMethodCall($methodCall);
-        }
-
-        if ($methodName === 'getValue') {
-            return $this->nodeFactory->createPropertyFetch($methodCall->var, 'value');
-        }
-
-        if ($methodName === 'getName') {
-            return $this->nodeFactory->createPropertyFetch($methodCall->var, 'name');
-        }
-
-        return null;
-    }
-
-
-    private function refactorGetStaticCall(StaticCall $staticCall): ?Expr
-    {
-        $value = $staticCall->getArgs()[0]->value;
-
-        if ($value instanceof ClassConstFetch) {
-            $name = $value->name;
-
-            if (!$name instanceof Identifier) {
-                return null;
-            }
-
-            $className = $this->getName($value->class);
-
-            if ($className === null) {
-                return null;
-            }
-
-            return $this->nodeFactory->createClassConstFetch(
-                $className,
-                $name->name,
-            );
-        }
-
-        if ($value instanceof String_ || $value instanceof Variable) {
-            $className = $this->getName($staticCall->class);
-
-            if ($className === null) {
-                return null;
-            }
-
-            return $this->nodeFactory->createStaticCall($className, 'from', [$value]);
-        }
-
-        return null;
-    }
-
-
-    private function refactorIsMethodCall(MethodCall $methodCall): ?Identical
-    {
-        $expr = $methodCall->var;
-
-        if ($expr instanceof StaticCall) {
-            $expr = $expr->getArgs()[0]->value;
-        }
-
-        $arg = $methodCall->getArgs()[0] ?? null;
-        if (!$arg instanceof Arg) {
-            return null;
-        }
-
-        $right = $arg->value;
-        if ($right instanceof StaticCall) {
-            $right = $right->getArgs()[0]->value;
-        }
-
-        if ($arg->value instanceof ClassConstFetch) {
-            $right = $arg->value;
-        }
-
-        return new Identical($expr, $right);
-    }
-
-
-    private function isMabeEnum(Node $node): bool
-    {
-        return $this->isObjectType($node, new ObjectType(self::MABE_ENUM_CLASS_NAME));
-    }
-
-
-    private function getIgnoredClassesRegex(): ?string
-    {
-        $ignoredClassesRegex = $this->configuration[self::IGNORED_CLASSES_REGEX];
-        assert(is_string($ignoredClassesRegex) || $ignoredClassesRegex === null);
-
-        return $ignoredClassesRegex;
-    }
-
-
-    private function isClassIgnored(string $className): bool
-    {
-        $ignoredClassesRegex = $this->getIgnoredClassesRegex();
-        $match = $ignoredClassesRegex !== null ? preg_match($ignoredClassesRegex, $className) : false;
-
-        return is_numeric($match) && $match > 0;
-    }
-
-
-    private function getClassName(Node $node): ?string
-    {
-        $type = $this->getType($node);
-
-        if (!$type instanceof TypeWithClassName) {
-            return null;
-        }
-
-        return $type->getClassName();
+        $this->configuration = [self::ARE_CLASSES_FROM_VENDOR_IGNORED => false];
     }
 }
