@@ -104,9 +104,10 @@ class MabeEnumFactory
     private function refactorArrayItemKeys(ArrayItem $arrayItem): ArrayItem
     {
         $key = $arrayItem->key;
+        $value = $arrayItem->value;
 
-        if ($key === null) {
-            return $arrayItem;
+        if ($key === null && $value instanceof ClassConstFetch && $this->isMabeEnum($value->class)) {
+            $arrayItem->value = $this->createPropertyValueFetch($value);
         }
 
         if ($key instanceof ClassConstFetch && $this->isMabeEnum($key->class)) {

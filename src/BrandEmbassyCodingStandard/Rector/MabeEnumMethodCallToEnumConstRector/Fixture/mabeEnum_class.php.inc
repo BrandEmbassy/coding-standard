@@ -55,8 +55,8 @@ class UserType extends Enum
     public static function getEnumValues(): array
     {
         return [
-            self::USER,
-            self::SUPERUSER,
+            self::USER->value,
+            self::SUPERUSER->value,
         ];
     }
 
