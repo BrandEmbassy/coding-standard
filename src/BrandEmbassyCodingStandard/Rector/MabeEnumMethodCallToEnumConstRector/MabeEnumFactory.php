@@ -8,7 +8,9 @@ use PhpParser\Node\ArrayItem as ArrayItemNode;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
+use PhpParser\Node\Expr\BinaryOp;
 use PhpParser\Node\Expr\BinaryOp\Identical;
+use PhpParser\Node\Expr\BinaryOp\NotIdentical;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -149,6 +151,10 @@ class MabeEnumFactory
             return $this->nodeFactory->createStaticCall($className, 'cases');
         }
 
+        if ($staticCallName === 'has') {
+            return $this->refactorHasStaticCall($staticCall, $className);
+        }
+
         return null;
     }
 
@@ -182,6 +188,14 @@ class MabeEnumFactory
         }
 
         return null;
+    }
+
+
+    private function refactorHasStaticCall(StaticCall $staticCall, string $className): BinaryOp
+    {
+        $left = $this->nodeFactory->createStaticCall($className, 'tryFrom', $staticCall->getArgs());
+
+        return new NotIdentical($left, $this->nodeFactory->createNull());
     }
 
 
