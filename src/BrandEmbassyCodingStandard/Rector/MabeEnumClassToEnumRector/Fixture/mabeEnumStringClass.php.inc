@@ -30,6 +30,7 @@ use MabeEnum\Enum;
 
 enum UserType : string
 {
+    use \BrandEmbassy\Utils\Enums\EnumTrait;
     case USER = 'user';
     case SUPERUSER = 'superuser';
     /**

@@ -18,6 +18,7 @@ use MabeEnum\Enum;
 
 enum UserType : int
 {
+    use \BrandEmbassy\Utils\Enums\EnumTrait;
     case DEVIL = 666;
 }
 ?>

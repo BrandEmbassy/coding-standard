@@ -3,7 +3,9 @@
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumClassToEnumRector;
 
 use PhpParser\Node;
+use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\TraitUse;
 use PHPStan\Type\ObjectType;
 use Rector\Php81\NodeFactory\EnumFactory;
 use Rector\Rector\AbstractRector;
@@ -11,6 +13,7 @@ use Rector\ValueObject\PhpVersionFeature;
 use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use function array_merge;
 use function assert;
 use function class_exists;
 
@@ -20,6 +23,8 @@ use function class_exists;
 class MabeEnumClassToEnumRector extends AbstractRector implements MinPhpVersionInterface
 {
     public const MABE_ENUM_CLASS_NAME = 'MabeEnum\\Enum';
+
+    private const ENUM_TRAIT = 'BrandEmbassy\\Utils\\Enums\\EnumTrait';
 
     /**
      * @readonly
@@ -71,18 +76,22 @@ CODE_SAMPLE
 
     public function refactor(Node $node)
     {
-        assert($node instanceof Class_);
-
         // Skip if MabeEnum is not part of the project
         if (!class_exists(self::MABE_ENUM_CLASS_NAME)) {
             return null;
         }
 
+        assert($node instanceof Class_);
+
         if (!$this->isObjectType($node, new ObjectType('MabeEnum\Enum'))) {
             return null;
         }
 
-        return $this->enumFactory->createFromClass($node);
+        $enum = $this->enumFactory->createFromClass($node);
+        $traitUse = new TraitUse([new FullyQualified(self::ENUM_TRAIT)]);
+        $enum->stmts = array_merge([$traitUse], $enum->stmts);
+
+        return $enum;
     }
 
 
