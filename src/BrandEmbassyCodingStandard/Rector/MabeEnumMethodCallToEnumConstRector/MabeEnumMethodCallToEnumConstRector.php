@@ -4,7 +4,10 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem as ArrayItemNode;
 use PhpParser\Node\Expr;
+use PhpParser\Node\Expr\Array_;
+use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\BinaryOp\Identical;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
@@ -13,6 +16,7 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Scalar\String_;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\TypeWithClassName;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
 use Rector\ValueObject\PhpVersionFeature;
@@ -20,6 +24,7 @@ use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use function array_map;
 use function assert;
 use function class_exists;
 use function is_numeric;
@@ -89,18 +94,23 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
         return [
             MethodCall::class,
             StaticCall::class,
+            Array_::class,
         ];
     }
 
 
     public function refactor(Node $node)
     {
-        assert($node instanceof MethodCall || $node instanceof StaticCall);
-
         // Skip if MabeEnum is not part of the project
         if (!class_exists(self::MABE_ENUM_CLASS_NAME)) {
             return null;
         }
+
+        if ($node instanceof Array_) {
+            return $this->refactorArray($node);
+        }
+
+        assert($node instanceof MethodCall || $node instanceof StaticCall);
 
         if ($node->name instanceof Expr) {
             return null;
@@ -138,6 +148,41 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
     }
 
 
+    private function refactorArray(Array_ $array): ?Expr
+    {
+        if ($array->items === []) {
+            return null;
+        }
+
+        /** @var ArrayItem[] $arrayItems */
+        $arrayItems = $array->items;
+
+        /** @var ArrayItemNode[] $refactoredArrayItems */
+        $refactoredArrayItems = array_map(fn(ArrayItem $arrayItem): ArrayItem => $this->refactorArrayItemKeys($arrayItem), $arrayItems);
+
+        $array->items = $refactoredArrayItems;
+
+        return $array;
+    }
+
+
+    private function refactorArrayItemKeys(ArrayItem $arrayItem): ArrayItem
+    {
+        $key = $arrayItem->key;
+
+        if ($key === null) {
+            return $arrayItem;
+        }
+
+        if ($key instanceof ClassConstFetch && $this->isMabeEnum($key->class)) {
+            $key = $this->nodeFactory->createPropertyFetch($key, 'value');
+            $arrayItem->key = $key;
+        }
+
+        return $arrayItem;
+    }
+
+
     private function refactorStaticCall(StaticCall $staticCall, string $staticCallName): ?Expr
     {
         $className = $this->getName($staticCall->class);
@@ -172,6 +217,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
         }
 
         $className = $this->getClassName($methodCall->var);
+
         if ($className === null) {
             return null;
         }
@@ -287,7 +333,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
     {
         $type = $this->getType($node);
 
-        if (!$type instanceof ObjectType) {
+        if (!$type instanceof TypeWithClassName) {
             return null;
         }
 
