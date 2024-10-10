@@ -3,7 +3,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class Enumerators {
+final class Arrays {
     public function run() {
         /** @var string[] $array */
         $array = [
@@ -19,7 +19,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class Enumerators {
+final class Arrays {
     public function run() {
         /** @var string[] $array */
         $array = [

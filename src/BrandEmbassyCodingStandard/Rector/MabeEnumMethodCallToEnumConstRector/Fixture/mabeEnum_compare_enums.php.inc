@@ -3,7 +3,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class CreateEnum {
+final class EnumComparison {
     public function run() {
         $user = SomeEnum::get(SomeEnum::USER);
         $superuser = SomeEnum::get(SomeEnum::SUPERUSER);
@@ -23,7 +23,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
 
-final class CreateEnum {
+final class EnumComparison {
     public function run() {
         $user = \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::USER;
         $superuser = \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::SUPERUSER;
