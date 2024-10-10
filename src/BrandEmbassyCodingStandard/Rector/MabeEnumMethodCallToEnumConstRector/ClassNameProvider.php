@@ -3,6 +3,7 @@
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
+use PhpParser\Node\Name;
 use PHPStan\Type\TypeWithClassName;
 use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\NodeTypeResolver;
@@ -22,7 +23,7 @@ class ClassNameProvider
     /**
      * @return class-string|null
      */
-    public function getClassNameFromVar(Node $node): ?string
+    public function getClassNameFromNode(Node $node): ?string
     {
         $type = $this->nodeTypeResolver->getType($node);
 
@@ -40,11 +41,15 @@ class ClassNameProvider
     /**
      * @return class-string|null
      */
-    public function getClassNameFromClass(Node $node): ?string
+    public function getClassNameFromClass(Name $node): ?string
     {
-        /** @var class-string|null $name */
-        $name = $this->nodeNameResolver->getName($node);
+        if ($node->isFullyQualified()) {
+            /** @var class-string|null $name */
+            $name = $this->nodeNameResolver->getName($node);
 
-        return $name;
+            return $name;
+        }
+
+        return $this->getClassNameFromNode($node);
     }
 }

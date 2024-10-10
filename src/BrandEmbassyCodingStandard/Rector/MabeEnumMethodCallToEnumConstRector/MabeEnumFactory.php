@@ -17,6 +17,7 @@ use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
+use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\String_;
 use PHPStan\Type\ObjectType;
 use Rector\NodeNameResolver\NodeNameResolver;
@@ -24,6 +25,7 @@ use Rector\NodeTypeResolver\NodeTypeResolver;
 use Rector\PhpParser\Node\NodeFactory;
 use ReflectionClass;
 use function array_map;
+use function assert;
 use function str_contains;
 use function strtoupper;
 
@@ -123,7 +125,12 @@ class MabeEnumFactory
 
     private function refactorStaticCall(StaticCall $staticCall, string $staticCallName): ?Expr
     {
-        $className = $this->classNameProvider->getClassNameFromClass($staticCall->class);
+        $class = $staticCall->class;
+        if (!$class instanceof Name) {
+            return null;
+        }
+
+        $className = $this->classNameProvider->getClassNameFromClass($class);
 
         if ($className === null) {
             return null;
@@ -146,7 +153,7 @@ class MabeEnumFactory
         }
 
         if ($staticCallName === 'has') {
-            return $this->refactorHasStaticCall($staticCall, $className);
+            return $this->refactorHasStaticCall($staticCall);
         }
 
         return null;
@@ -159,7 +166,7 @@ class MabeEnumFactory
             return null;
         }
 
-        $className = $this->classNameProvider->getClassNameFromVar($methodCall->var);
+        $className = $this->classNameProvider->getClassNameFromNode($methodCall->var);
 
         if ($className === null) {
             return null;
@@ -185,9 +192,12 @@ class MabeEnumFactory
     }
 
 
-    private function refactorHasStaticCall(StaticCall $staticCall, string $className): BinaryOp
+    private function refactorHasStaticCall(StaticCall $staticCall): BinaryOp
     {
-        $left = $this->nodeFactory->createStaticCall($className, 'tryFrom', $staticCall->getArgs());
+        $class = $staticCall->class;
+        assert($class instanceof Name);
+
+        $left = $this->nodeFactory->createStaticCall($class->toString(), 'tryFrom', $staticCall->getArgs());
 
         return new NotIdentical($left, $this->nodeFactory->createNull());
     }
