@@ -116,6 +116,6 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
      */
     public function configure(array $configuration): void
     {
-        $this->configuration = [self::ARE_CLASSES_FROM_VENDOR_IGNORED => false];
+        $this->configuration = [self::ARE_CLASSES_FROM_VENDOR_IGNORED => true];
     }
 }
