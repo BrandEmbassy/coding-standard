@@ -95,7 +95,7 @@ class MabeEnumFactory
         /** @var ArrayItemNode[] $refactoredArrayItems */
         $refactoredArrayItems = array_map(fn(
             ArrayItem $arrayItem
-        ): ArrayItem => $this->refactorArrayItemKeys($arrayItem), $arrayItems);
+        ): ArrayItem => $this->refactorArrayItem($arrayItem), $arrayItems);
 
         $array->items = $refactoredArrayItems;
 
@@ -103,18 +103,12 @@ class MabeEnumFactory
     }
 
 
-    private function refactorArrayItemKeys(ArrayItem $arrayItem): ArrayItem
+    private function refactorArrayItem(ArrayItem $arrayItem): ArrayItem
     {
-        $key = $arrayItem->key;
         $value = $arrayItem->value;
 
-        if ($key === null && $value instanceof ClassConstFetch && $this->isMabeEnum($value->class)) {
+        if ($value instanceof ClassConstFetch && $this->isMabeEnum($value->class)) {
             $arrayItem->value = $this->createPropertyValueFetch($value);
-        }
-
-        if ($key instanceof ClassConstFetch && $this->isMabeEnum($key->class)) {
-            $key = $this->createPropertyValueFetch($key);
-            $arrayItem->key = $key;
         }
 
         return $arrayItem;

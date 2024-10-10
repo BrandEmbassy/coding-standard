@@ -29,11 +29,11 @@ class UserType extends Enum
     /**
      * @return string[]
      */
-    public static function getIndexedArray(): array
+    public static function getSupportedUserTypes(): array
     {
         return [
-            self::USER => 'user',
-            self::SUPERUSER => 'superuser',
+            self::USER,
+            self::SUPERUSER,
         ];
     }
 }
@@ -70,11 +70,11 @@ class UserType extends Enum
     /**
      * @return string[]
      */
-    public static function getIndexedArray(): array
+    public static function getSupportedUserTypes(): array
     {
         return [
-            self::USER->value => 'user',
-            self::SUPERUSER->value => 'superuser',
+            self::USER->value,
+            self::SUPERUSER->value,
         ];
     }
 }

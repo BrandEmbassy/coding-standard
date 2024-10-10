@@ -10,12 +10,6 @@ final class Enumerators {
             SomeEnum::USER,
             SomeEnum::SUPERUSER,
         ];
-
-        /** @var string[] $indexedArray */
-        $indexedArray = [
-            SomeEnum::USER => 'user',
-            SomeEnum::SUPERUSER => 'superuser',
-        ];
     }
 }
 ?>
@@ -31,12 +25,6 @@ final class Enumerators {
         $array = [
             SomeEnum::USER->value,
             SomeEnum::SUPERUSER->value,
-        ];
-
-        /** @var string[] $indexedArray */
-        $indexedArray = [
-            SomeEnum::USER->value => 'user',
-            SomeEnum::SUPERUSER->value => 'superuser',
         ];
     }
 }
