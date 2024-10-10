@@ -85,6 +85,10 @@ class MabeEnumFactory
 
     private function refactorStaticCall(StaticCall $staticCall, string $staticCallName): ?Expr
     {
+        if (!$this->isMabeEnum($staticCall->class)) {
+            return null;
+        }
+
         $class = $staticCall->class;
         if (!$class instanceof Name) {
             return null;
