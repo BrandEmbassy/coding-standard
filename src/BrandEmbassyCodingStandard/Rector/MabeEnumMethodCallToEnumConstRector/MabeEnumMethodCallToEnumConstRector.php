@@ -3,7 +3,6 @@
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
@@ -86,7 +85,6 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
         return [
             MethodCall::class,
             StaticCall::class,
-            Array_::class,
         ];
     }
 
@@ -98,7 +96,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
             return null;
         }
 
-        assert($node instanceof MethodCall || $node instanceof StaticCall || $node instanceof Array_);
+        assert($node instanceof MethodCall || $node instanceof StaticCall);
         $areClassesFromVendorIgnored = $this->configuration[self::ARE_CLASSES_FROM_VENDOR_IGNORED] ?? true;
 
         return $this->mabeEnumFactory->createFromNode($node, $areClassesFromVendorIgnored);

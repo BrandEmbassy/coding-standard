@@ -55,8 +55,8 @@ class UserType extends Enum
     public static function getEnumValues(): array
     {
         return [
-            self::USER->value,
-            self::SUPERUSER->value,
+            self::USER,
+            self::SUPERUSER,
         ];
     }
 
@@ -73,8 +73,8 @@ class UserType extends Enum
     public static function getSupportedUserTypes(): array
     {
         return [
-            self::USER->value,
-            self::SUPERUSER->value,
+            self::USER,
+            self::SUPERUSER,
         ];
     }
 }

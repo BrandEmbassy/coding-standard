@@ -4,10 +4,7 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
 use PhpParser\Node\Arg;
-use PhpParser\Node\ArrayItem as ArrayItemNode;
 use PhpParser\Node\Expr;
-use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\BinaryOp;
 use PhpParser\Node\Expr\BinaryOp\Identical;
 use PhpParser\Node\Expr\BinaryOp\NotIdentical;
@@ -24,7 +21,6 @@ use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\NodeTypeResolver;
 use Rector\PhpParser\Node\NodeFactory;
 use ReflectionClass;
-use function array_map;
 use function assert;
 use function str_contains;
 use function strtoupper;
@@ -60,13 +56,9 @@ class MabeEnumFactory
     }
 
 
-    public function createFromNode(StaticCall|MethodCall|Array_ $node, bool $ignoreClassesFromVendor = true): ?Expr
+    public function createFromNode(StaticCall|MethodCall $node, bool $ignoreClassesFromVendor = true): ?Expr
     {
         $this->ignoredClassFromVendor = $ignoreClassesFromVendor;
-
-        if ($node instanceof Array_) {
-            return $this->refactorArray($node);
-        }
 
         if ($node->name instanceof Expr) {
             return null;
@@ -82,38 +74,6 @@ class MabeEnumFactory
         }
 
         return $this->refactorMethodCall($node, $enumCaseName);
-    }
-
-
-    private function refactorArray(Array_ $array): ?Expr
-    {
-        if ($array->items === []) {
-            return null;
-        }
-
-        /** @var ArrayItem[] $arrayItems */
-        $arrayItems = $array->items;
-
-        /** @var ArrayItemNode[] $refactoredArrayItems */
-        $refactoredArrayItems = array_map(fn(
-            ArrayItem $arrayItem
-        ): ArrayItem => $this->refactorArrayItem($arrayItem), $arrayItems);
-
-        $array->items = $refactoredArrayItems;
-
-        return $array;
-    }
-
-
-    private function refactorArrayItem(ArrayItem $arrayItem): ArrayItem
-    {
-        $value = $arrayItem->value;
-
-        if ($value instanceof ClassConstFetch && $this->isMabeEnum($value->class)) {
-            $arrayItem->value = $this->createPropertyValueFetch($value);
-        }
-
-        return $arrayItem;
     }
 
 
