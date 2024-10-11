@@ -116,6 +116,10 @@ class MabeEnumFactory
             return $this->nodeFactory->createStaticCall($className, 'cases');
         }
 
+        if ($staticCallName === 'byValue') {
+            return $this->nodeFactory->createStaticCall($className, 'from', $staticCall->getArgs());
+        }
+
         if ($staticCallName === 'has') {
             return $this->refactorHasStaticCall($staticCall);
         }
