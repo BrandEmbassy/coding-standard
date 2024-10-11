@@ -85,7 +85,7 @@ class MabeEnumFactory
 
     private function refactorStaticCall(StaticCall $staticCall, string $staticCallName): ?Expr
     {
-        if (!$this->isMabeEnum($staticCall->class)) {
+        if (!$this->isEnum($staticCall->class)) {
             return null;
         }
 
@@ -126,7 +126,7 @@ class MabeEnumFactory
 
     private function refactorMethodCall(MethodCall $methodCall, string $methodName): ?Expr
     {
-        if (!$this->isMabeEnum($methodCall->var)) {
+        if (!$this->isEnum($methodCall->var)) {
             return null;
         }
 
@@ -239,12 +239,19 @@ class MabeEnumFactory
     }
 
 
-    private function isMabeEnum(Node $node): bool
+    private function isEnum(Node $node): bool
     {
-        return $this->nodeTypeResolver->isObjectType(
+        $mabeEnum = $this->nodeTypeResolver->isObjectType(
             $node,
             new ObjectType(self::MABE_ENUM_CLASS_NAME),
         );
+
+        $nativeEnum = $this->nodeTypeResolver->isObjectType(
+            $node,
+            new ObjectType('\UnitEnum'),
+        );
+
+        return $mabeEnum || $nativeEnum;
     }
 
 
