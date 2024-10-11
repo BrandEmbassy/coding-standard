@@ -2,6 +2,7 @@
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Fixture;
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
+use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeObject;
 
 final class CreateEnum {
     public function run() {
@@ -13,6 +14,9 @@ final class CreateEnum {
         SomeEnum::SUPERUSER();
         SomeEnum::get('superuser');
         SomeEnum::get($superUserConst);
+
+        $object = new SomeObject();
+        SomeEnum::get($object->getValue());
     }
 }
 ?>
@@ -21,6 +25,7 @@ final class CreateEnum {
 namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Fixture;
 
 use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum;
+use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeObject;
 
 final class CreateEnum {
     public function run() {
@@ -32,6 +37,9 @@ final class CreateEnum {
         \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::SUPERUSER;
         \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::from('superuser');
         \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::from($superUserConst);
+
+        $object = new SomeObject();
+        \BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\Source\SomeEnum::from($object->getValue());
     }
 }
 ?>

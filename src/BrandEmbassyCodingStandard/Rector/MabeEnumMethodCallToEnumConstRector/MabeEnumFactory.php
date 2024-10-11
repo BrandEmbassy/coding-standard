@@ -12,10 +12,8 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
-use PhpParser\Node\Scalar\String_;
 use PHPStan\Type\ObjectType;
 use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\NodeTypeResolver;
@@ -194,17 +192,13 @@ class MabeEnumFactory
             );
         }
 
-        if ($value instanceof String_ || $value instanceof Variable) {
-            $className = $this->nodeNameResolver->getName($staticCall->class);
+        $className = $this->nodeNameResolver->getName($staticCall->class);
 
-            if ($className === null) {
-                return null;
-            }
-
-            return $this->nodeFactory->createStaticCall($className, 'from', [$value]);
+        if ($className === null) {
+            return null;
         }
 
-        return null;
+        return $this->nodeFactory->createStaticCall($className, 'from', [$value]);
     }
 
 
