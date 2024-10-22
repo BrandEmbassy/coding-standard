@@ -38,7 +38,7 @@ class MabeEnumFactory
 
     private ClassNameProvider $classNameProvider;
 
-    private bool $ignoredClassFromVendor = true;
+    private bool $ignoreClassesFromVendor = true;
 
 
     public function __construct(
@@ -56,7 +56,7 @@ class MabeEnumFactory
 
     public function createFromNode(StaticCall|MethodCall $node, bool $ignoreClassesFromVendor = true): ?Expr
     {
-        $this->ignoredClassFromVendor = $ignoreClassesFromVendor;
+        $this->ignoreClassesFromVendor = $ignoreClassesFromVendor;
 
         if ($node->name instanceof Expr) {
             return null;
@@ -233,7 +233,7 @@ class MabeEnumFactory
      */
     private function isClassIgnored(string $className): bool
     {
-        return $this->ignoredClassFromVendor && $this->isClassFromVendor($className);
+        return $this->ignoreClassesFromVendor && $this->isClassFromVendor($className);
     }
 
 
