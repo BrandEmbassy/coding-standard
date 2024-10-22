@@ -30,7 +30,7 @@ use MabeEnum\Enum;
 
 enum BackedStringEnum : string
 {
-    use \BrandEmbassy\Utils\Enums\EnumTrait;
+    use \BrandEmbassy\Utils\Enums\BackedEnumTrait;
     case USER = 'user';
     case SUPERUSER = 'superuser';
     /**

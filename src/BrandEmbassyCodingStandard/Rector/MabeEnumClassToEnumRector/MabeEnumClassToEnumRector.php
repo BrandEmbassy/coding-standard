@@ -24,7 +24,7 @@ class MabeEnumClassToEnumRector extends AbstractRector implements MinPhpVersionI
 {
     public const MABE_ENUM_CLASS_NAME = 'MabeEnum\\Enum';
 
-    private const ENUM_TRAIT = 'BrandEmbassy\\Utils\\Enums\\EnumTrait';
+    private const ENUM_TRAIT = 'BrandEmbassy\\Utils\\Enums\\BackedEnumTrait';
 
     /**
      * @readonly

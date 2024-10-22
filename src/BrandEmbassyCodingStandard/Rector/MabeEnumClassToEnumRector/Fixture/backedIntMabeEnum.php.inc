@@ -18,7 +18,7 @@ use MabeEnum\Enum;
 
 enum BackedIntEnum : int
 {
-    use \BrandEmbassy\Utils\Enums\EnumTrait;
+    use \BrandEmbassy\Utils\Enums\BackedEnumTrait;
     case DEVIL = 666;
 }
 ?>
