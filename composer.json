@@ -45,7 +45,9 @@
     "require-dev": {
         "mockery/mockery": "^1.5",
         "phpunit/phpunit": "^10.5",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "nette/utils": "^v4.0.5",
+        "marc-mabe/php-enum": "^v3.2.0"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
