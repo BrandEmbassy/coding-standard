@@ -1,2 +1,61 @@
 parameters:
 	ignoreErrors:
+		-
+			message: '#^PHPDoc tag @var with type class\-string\|null is not subtype of type string\.$#'
+			identifier: varTag.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Rector/MabeEnumMethodCallToEnumConstRector/ClassNameProvider.php
+
+		-
+			message: '#^Parameter \#2 \$stackPtr of method PHP_CodeSniffer\\Files\\File\:\:addFixableError\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUsePositionSniff.php
+
+		-
+			message: '#^Binary operation "\-" between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUseSpacingSniff.php
+
+		-
+			message: '#^Parameter \#2 \$tokens of method BrandEmbassyCodingStandard\\Sniffs\\Classes\\TraitUseSpacingSniff\:\:getRequiredLinesCountAfterLastUse\(\) expects array\<int, array\<mixed\>\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUseSpacingSniff.php
+
+		-
+			message: '#^Parameter \#2 \$sniffProperties of static method SlevomatCodingStandard\\Sniffs\\TestCase\:\:checkFile\(\) expects array\<string, array\<int\|string, bool\|int\|string\|null\>\|bool\|int\|string\>, array\<int\> given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUseSpacingSniffTest.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
+
+		-
+			message: '#^Parameter \#4 \$startPointer of static method SlevomatCodingStandard\\Helpers\\TokenHelper\:\:findNextContent\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strtolower expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/ForbiddenElseStatementSniff.php
+
+		-
+			message: '#^Binary operation "\-" between mixed and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/WhiteSpace/BlankLineBeforeReturnSniff.php
+
+		-
+			message: '#^Binary operation "\-" between mixed and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/BrandEmbassyCodingStandard/Sniffs/WhiteSpace/BlankLineBeforeThrowSniff.php

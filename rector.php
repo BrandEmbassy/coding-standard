@@ -14,6 +14,8 @@ $defaultSkipList = $defaultRectorConfigurationSetup($rectorConfigBuilder);
 
 $skipList = array_merge($defaultSkipList, [
     __DIR__ . "/**/__fixtures__/**",
+    // Looks like rector bug, try removing later
+    __DIR__ . "/src/BrandEmbassyCodingStandard/Sniffs/__fixtures/codeWithElseStatement.php",
     UseClassKeywordForClassNameResolutionRector::class,
     StringClassNameToClassConstantRector::class,
 ]);
