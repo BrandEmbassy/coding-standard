@@ -10,7 +10,6 @@ use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Rules\RuleLevelHelper;
-use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use function in_array;
 use function sprintf;
@@ -82,7 +81,7 @@ class PostConditionsTraitUsedRule implements Rule
 
         $type = $typeResult->getType();
 
-        if (!$type instanceof ObjectType || $type->getClassName() !== 'Mockery\\Expectation') {
+        if (in_array('Mockery\\Expectation', $type->getObjectClassNames(), true)) {
             return [];
         }
 

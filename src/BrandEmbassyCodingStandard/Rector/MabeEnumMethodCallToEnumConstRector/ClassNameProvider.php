@@ -4,7 +4,6 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use PhpParser\Node;
 use PhpParser\Node\Name;
-use PHPStan\Type\TypeWithClassName;
 use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\NodeTypeResolver;
 
@@ -27,12 +26,13 @@ class ClassNameProvider
     {
         $type = $this->nodeTypeResolver->getType($node);
 
-        if (!$type instanceof TypeWithClassName) {
+        $typeClassNames = $type->getObjectClassNames();
+        if ($typeClassNames === []) {
             return null;
         }
 
         /** @var class-string $className */
-        $className = $type->getClassName();
+        $className = $typeClassNames[0];
 
         return $className;
     }
