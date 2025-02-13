@@ -55,7 +55,7 @@
         "phpstan": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1",
         "phpstan-generate-baseline": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1 --generate-baseline",
         "phpunit": "./vendor/bin/phpunit --no-coverage",
-        "phpunit-cc": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
+        "phpunit-cc": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --configuration phpunit.xml --coverage-clover=coverage.xml --log-junit=test-report.xml",
         "check-rector": "vendor/bin/rector process --dry-run --ansi",
         "fix-rector": "vendor/bin/rector process --ansi"
     },
