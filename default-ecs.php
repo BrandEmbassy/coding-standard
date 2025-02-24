@@ -641,7 +641,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->rule(InlineCommentSniff::class);
     // Require strict types declaration and its format
     $ecsConfig->ruleWithConfiguration(DeclareStrictTypesSniff::class, [
-        'declareOnFirstLine' => 1,
+        'declareOnFirstLine' => true,
         'linesCountBeforeDeclare' => 0,
         'linesCountAfterDeclare' => 1,
         'spacesCountAroundEqualsSign' => 1,
