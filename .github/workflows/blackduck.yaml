@@ -13,7 +13,7 @@ jobs:
   blackduck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Run Synopsys Detect
         uses: synopsys-sig/detect-action@v0.3.0
