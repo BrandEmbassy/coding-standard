@@ -62,6 +62,18 @@ class DisallowConstantsInTestsRuleTest extends RuleTestCase
     }
 
 
+    public function testRuleSkipsStaticKeyword(): void
+    {
+        $this->analyse([__DIR__ . '/__fixtures__/SkipStaticKeyword.php'], []);
+    }
+
+
+    public function testRuleSkipsSameClassReference(): void
+    {
+        $this->analyse([__DIR__ . '/__fixtures__/SkipSameClassReference.php'], []);
+    }
+
+
     public function testRuleReportsConstant(): void
     {
         $this->analyse([__DIR__ . '/__fixtures__/ReportConstant.php'], [

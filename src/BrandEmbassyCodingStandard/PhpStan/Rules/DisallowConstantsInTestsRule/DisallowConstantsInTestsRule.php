@@ -78,6 +78,10 @@ class DisallowConstantsInTestsRule implements Rule
             return [];
         }
 
+        if ($className === 'static') {
+            return [];
+        }
+
         $constantName = (string)$node->name;
 
         if ($constantName === 'class') {
@@ -85,6 +89,11 @@ class DisallowConstantsInTestsRule implements Rule
         }
 
         $constantClassReflection = $this->reflectionProvider->getClass($className);
+
+        // Skip same class reference, e.g. WebhookJob::BAR in WebhookJob class
+        if ($constantClassReflection->getName() === $nodeClassReflection->getName()) {
+            return [];
+        }
 
         if (in_array($constantClassReflection->getName(), $this->allowedConstants, true)) {
             return [];

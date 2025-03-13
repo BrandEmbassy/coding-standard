@@ -121,6 +121,10 @@ CODE_SAMPLE
             return null;
         }
 
+        if ($className === 'static') {
+            return null;
+        }
+
         $constantName = $this->getName($node->name);
 
         if ($constantName === 'class') {
@@ -132,6 +136,11 @@ CODE_SAMPLE
         }
 
         $constantClassReflection = $this->reflectionProvider->getClass($className);
+
+        // Skip same class reference, e.g. WebhookJob::BAR in WebhookJob class
+        if ($constantClassReflection->getName() === $nodeClassReflection->getName()) {
+            return null;
+        }
 
         if (in_array($constantClassReflection->getName(), $this->allowedConstants, true)) {
             return null;
