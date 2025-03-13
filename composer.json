@@ -44,19 +44,31 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "marc-mabe/php-enum": "^v3.2.0",
         "mockery/mockery": "^1.5",
+        "nette/utils": "^v4.0.5",
+        "phpunit/phpcov": "^9.0",
         "phpunit/phpunit": "^10.5",
         "roave/security-advisories": "dev-latest",
-        "nette/utils": "^v4.0.5",
-        "marc-mabe/php-enum": "^v3.2.0"
+        "sweetchuck/junit-merger-cli": "^1.0"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
         "phpstan": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1",
         "phpstan-generate-baseline": "php -dxdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1 --generate-baseline",
-        "phpunit": "./vendor/bin/phpunit --no-coverage",
-        "phpunit-cc": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
+        "phpunit": [
+            "vendor/bin/phpunit --testsuite rector --no-coverage",
+            "vendor/bin/phpunit --testsuite phpstan --no-coverage",
+            "vendor/bin/phpunit --testsuite sniffs --no-coverage"
+        ],
+        "phpunit-cc": [
+            "php -dxdebug.mode=coverage vendor/bin/phpunit --testsuite rector --coverage-php=coverage/coverage-rector.cov --log-junit=test-report-rector.xml",
+            "php -dxdebug.mode=coverage vendor/bin/phpunit --testsuite phpstan --coverage-php=coverage/coverage-phpstan.cov --log-junit=test-report-phpstan.xml",
+            "php -dxdebug.mode=coverage vendor/bin/phpunit --testsuite sniffs --coverage-php=coverage/coverage-sniffs.cov --log-junit=test-report-sniffs.xml",
+            "vendor/bin/junit-merger merge:files --output-file=test-report.xml test-report-rector.xml test-report-phpstan.xml test-report-sniffs.xml",
+            "vendor/bin/phpcov merge --clover coverage.xml coverage"
+        ],
         "check-rector": "vendor/bin/rector process --dry-run --ansi",
         "fix-rector": "vendor/bin/rector process --ansi"
     },
