@@ -6,5 +6,15 @@ includes:
     - ../../../vendor/brandembassy/coding-standard/phpstan-extension.neon
     - ../../../vendor/tomasvotruba/cognitive-complexity/config/extension.neon
 
+services:
+    # Handy services from Rector package
+    - Rector\NodeNameResolver\NodeNameResolver
+    - Rector\Skipper\Matcher\FileInfoMatcher
+    - Rector\CodingStyle\Naming\ClassNaming
+    - Rector\NodeAnalyzer\CallAnalyzer
+    - Rector\Skipper\FileSystem\FnMatchPathNormalizer
+    - Rector\Skipper\Fnmatcher
+    - Rector\Skipper\RealpathMatcher
+
 parameters:
     level: max
