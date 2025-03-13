@@ -6,6 +6,16 @@ includes:
     - phpstan-extension.neon
     - phpstan-baseline.neon
 
+services:
+    # Handy services from Rector package
+    - Rector\NodeNameResolver\NodeNameResolver
+    - Rector\Skipper\Matcher\FileInfoMatcher
+    - Rector\CodingStyle\Naming\ClassNaming
+    - Rector\NodeAnalyzer\CallAnalyzer
+    - Rector\Skipper\FileSystem\FnMatchPathNormalizer
+    - Rector\Skipper\Fnmatcher
+    - Rector\Skipper\RealpathMatcher
+
 parameters:
     level: max
     paths:
@@ -23,6 +33,11 @@ parameters:
             - src/BrandEmbassyCodingStandard/Rector/MabeEnumClassToEnumRector/MabeEnumClassToEnumRectorTest.php
             - src/BrandEmbassyCodingStandard/Rector/NetteStringsContainsToNativeCallRector/NetteStringsContainsToNativeCallRectorTest.php
             - src/BrandEmbassyCodingStandard/Rector/MabeEnumMethodCallToEnumConstRector/MabeEnumMethodCallToEnumConstRectorTest.php
+        - # Because fixtures are in excludePaths, the constant won't be discovered by PHPStan
+            message: '#^Class BrandEmbassyCodingStandard\\PhpStan\\Rules\\DisallowConstantsInTestsRule\\__fixtures__\\AllowedConstant not found\.$#'
+            identifier: class.notFound
+            count: 1
+            path: src/BrandEmbassyCodingStandard/PhpStan/Rules/DisallowConstantsInTestsRule/DisallowConstantsInTestsRuleTest.php
 
     excludePaths:
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
