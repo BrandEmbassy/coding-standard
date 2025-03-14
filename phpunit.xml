@@ -11,9 +11,16 @@
          failOnRisky="true"
          failOnWarning="true">
     <testsuites>
-        <testsuite name="default">
-            <directory>src</directory>
+        <!-- PHPStan and Rector both include their own version of PHP parser so they need to be run separately, else include conflicts arise  -->
+        <testsuite name="phpstan">
+            <directory>src/BrandEmbassyCodingStandard/PhpStan</directory>
             <exclude>src/BrandEmbassyCodingStandard/PhpStan/Rules/Method/__fixtures__/NonPhpUnitTest.php</exclude>
+        </testsuite>
+        <testsuite name="rector">
+            <directory>src/BrandEmbassyCodingStandard/Rector</directory>
+        </testsuite>
+        <testsuite name="sniffs">
+            <directory>src/BrandEmbassyCodingStandard/Sniffs</directory>
         </testsuite>
     </testsuites>
     <coverage>

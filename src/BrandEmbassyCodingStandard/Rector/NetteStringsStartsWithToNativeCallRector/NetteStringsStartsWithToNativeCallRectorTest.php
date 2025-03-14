@@ -4,7 +4,6 @@ namespace BrandEmbassyCodingStandard\Rector\NetteStringsStartsWithToNativeCallRe
 
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 
 /**
@@ -13,7 +12,6 @@ use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 class NetteStringsStartsWithToNativeCallRectorTest extends AbstractRectorTestCase
 {
     #[DataProvider('provideData')]
-    #[RunInSeparateProcess] // see README (Rector section) for why this is necessary
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);

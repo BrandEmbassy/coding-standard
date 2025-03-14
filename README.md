@@ -82,10 +82,6 @@ $rectorConfigBuilder
 return $rectorConfigBuilder;
 ```
 
-⚠️ Tests for Rector rules need to run in a separate process, because Rector and PHPStan use different versions of php-parser.
-See explanation here https://github.com/staabm/zf-select-strip/pull/8.
-Another way would be to run them in a separate testsuite, but then we run into problems with code-coverage.
-
 PhpStorm
 --------
 This project contains inspections and code style configurations for PhpStorm.

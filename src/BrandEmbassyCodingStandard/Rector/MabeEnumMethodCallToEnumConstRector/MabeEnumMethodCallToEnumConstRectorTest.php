@@ -4,7 +4,6 @@ namespace BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector;
 
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use Rector\ValueObject\PhpVersionFeature;
 use Rector\VersionBonding\Contract\MinPhpVersionInterface;
@@ -15,7 +14,6 @@ use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 class MabeEnumMethodCallToEnumConstRectorTest extends AbstractRectorTestCase implements MinPhpVersionInterface
 {
     #[DataProvider('provideData')]
-    #[RunInSeparateProcess] // see README (Rector section) for why this is necessary
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
