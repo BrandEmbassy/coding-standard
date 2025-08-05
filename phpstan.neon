@@ -41,5 +41,4 @@ parameters:
 
     excludePaths:
         - src/BrandEmbassyCodingStandard/*/__fixtures__/*
-        - src/BrandEmbassyCodingStandard/*/__fixtures/*
 
