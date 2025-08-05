@@ -11,7 +11,7 @@ class ForbiddenElseStatementSniffTest extends TestCase
 {
     public function testErrorIsAdded(): void
     {
-        $file = __DIR__ . '/__fixtures/codeWithElseStatement.php';
+        $file = __DIR__ . '/__fixtures__/codeWithElseStatement.php';
         require_once $file;
 
         $report = self::checkFile($file);

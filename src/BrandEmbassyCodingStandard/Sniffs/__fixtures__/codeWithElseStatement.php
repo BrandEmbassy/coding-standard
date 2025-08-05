@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BrandEmbassyCodingStandard\Sniffs\__fixtures;
+namespace BrandEmbassyCodingStandard\Sniffs\__fixtures__;
 
 use Mockery\MockInterface;
 
