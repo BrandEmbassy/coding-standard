@@ -15,7 +15,6 @@ return static function (ECSConfig $ecsConfig) use ($defaultEcsConfigurationSetup
         __DIR__ . '/src',
         __DIR__ . '/default-ecs.php',
         __DIR__ . '/ecs.php',
-        __DIR__ . '/constants.php',
     ]);
 
     $skipList = [

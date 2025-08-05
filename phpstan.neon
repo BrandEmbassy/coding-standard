@@ -21,6 +21,9 @@ parameters:
     paths:
         - src
 
+    bootstrapFiles:
+        - vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
+
     ignoreErrors:
         # TODO: Cleanup needed
         - identifier: offsetAccess.nonOffsetAccessible

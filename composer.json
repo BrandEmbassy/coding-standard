@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "files": [ "constants.php" ],
         "psr-4": {
             "BrandEmbassyCodingStandard\\": "src/BrandEmbassyCodingStandard"
         },
@@ -20,8 +19,7 @@
             "SlevomatCodingStandard\\": "vendor/slevomat/coding-standard/tests"
         },
         "files": [
-            "vendor/squizlabs/php_codesniffer/autoload.php",
-            "vendor/squizlabs/php_codesniffer/src/Util/Tokens.php"
+            "vendor/squizlabs/php_codesniffer/autoload.php"
         ]
     },
     "conflict": {
