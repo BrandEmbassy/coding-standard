@@ -29,6 +29,7 @@
         "php": ">=8.1",
         "composer-runtime-api": "^2.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.7 || ^1.0",
+        "pb30/phpstan-composer-analysis": "^1.0",
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-mockery": "^2.0",
         "phpstan/phpstan-nette": "^2.0",
