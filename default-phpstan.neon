@@ -5,6 +5,7 @@ includes:
     - ../../../vendor/phpstan/phpstan-phpunit/extension.neon
     - ../../../vendor/brandembassy/coding-standard/phpstan-extension.neon
     - ../../../vendor/tomasvotruba/cognitive-complexity/config/extension.neon
+    - ../../../vendor/pb30/phpstan-composer-analysis/extension.neon
 
 services:
     # Handy services from Rector package
