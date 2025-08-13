@@ -166,3 +166,20 @@ jobs:
           path: ./temp/rector
           # Adding github.run_id to force cache update https://github.com/actions/cache/blob/main/tips-and-workarounds.md#update-a-cache
           key: ${{ runner.os }}-rector-${{ hashFiles('**/composer.lock') }}-${{ github.ref }}-${{ github.run_id }}
+
+  # GitHub treats skipped checks as successful (meaning untested code can be merged into master if the check is skipped)
+  check:
+    name: All checks passing
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - phpstan
+      - rector
+      - phpunit
+      - ecs
+
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
