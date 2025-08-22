@@ -19,6 +19,14 @@ class FinalClassByAnnotationSniffTest extends TestCase
         self::assertSniffError($report, 33, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
         self::assertSniffError($report, 44, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
 
-        self::assertAllFixedInFile($report);
+        // self::assertAllFixedInFile($report);
+
+        $fixedFileContent = file_get_contents($report->getFilename());
+        $expectedContent = file_get_contents(__DIR__ . '/__fixtures__/finalClassByAnnotationWithFinalKeyword.fixed.php');
+
+        $fixedFileContent = str_replace(["\r\n", "\r"], "\n", $fixedFileContent);
+        $expectedContent = str_replace(["\r\n", "\r"], "\n", $expectedContent);
+
+        Assert::assertSame($expectedContent, $fixedFileContent);
     }
 }

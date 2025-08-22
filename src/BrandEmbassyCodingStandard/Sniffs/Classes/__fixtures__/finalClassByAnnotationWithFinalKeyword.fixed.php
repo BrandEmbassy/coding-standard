@@ -19,10 +19,7 @@ class Foo
     }
 }
 
-/**
- * @final
- */
-class Bar extends Foo
+final class Bar extends Foo
 {
     public function doSomething(): bool
     {
@@ -32,10 +29,8 @@ class Bar extends Foo
 
 /**
  * @ORM\Entity
- *
- * @final
  */
-class Baz
+final class Baz
 {
     public function doSomething(): bool
     {
@@ -46,6 +41,6 @@ class Baz
 /**
  * @final This class is final
  */
-class DoubleFinal
+final class DoubleFinal
 {
 }

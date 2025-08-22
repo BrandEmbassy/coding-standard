@@ -21,7 +21,6 @@
         </testsuite>
         <testsuite name="sniffs">
             <directory>src/BrandEmbassyCodingStandard/Sniffs</directory>
-            <exclude>src/BrandEmbassyCodingStandard/Sniffs/Classes/FinalClassByAnnotationSniffTest.php</exclude>
         </testsuite>
     </testsuites>
     <coverage>
