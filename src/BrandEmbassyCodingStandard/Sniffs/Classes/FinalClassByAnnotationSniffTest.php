@@ -21,12 +21,18 @@ class FinalClassByAnnotationSniffTest extends TestCase
 
         // self::assertAllFixedInFile($report);
 
-        $fixedFileContent = file_get_contents($report->getFilename());
-        $expectedContent = file_get_contents(__DIR__ . '/__fixtures__/finalClassByAnnotationWithFinalKeyword.fixed.php');
+        if (class_exists(\PHPUnit\Framework\Assert::class)) {
+            $fixedFileContent = file_get_contents($report->getFilename());
+            $expectedContent = file_get_contents(__DIR__ . '/__fixtures__/finalClassByAnnotationWithFinalKeyword.fixed.php');
 
-        $fixedFileContent = str_replace(["\r\n", "\r"], "\n", $fixedFileContent);
-        $expectedContent = str_replace(["\r\n", "\r"], "\n", $expectedContent);
+            if ($fixedFileContent === false || $expectedContent === false) {
+                throw new \RuntimeException('Unable to read file for assertion.');
+            }
 
-        Assert::assertSame($expectedContent, $fixedFileContent);
+            $fixedFileContent = str_replace(["\r\n", "\r"], "\n", $fixedFileContent);
+            $expectedContent = str_replace(["\r\n", "\r"], "\n", $expectedContent);
+
+            \PHPUnit\Framework\Assert::assertSame($expectedContent, $fixedFileContent);
+        }
     }
 }
