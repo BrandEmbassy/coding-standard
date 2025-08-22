@@ -2,9 +2,12 @@
 
 namespace BrandEmbassyCodingStandard\Sniffs\Classes;
 
-use RuntimeException;
 use PHPUnit\Framework\Assert;
+use RuntimeException;
 use SlevomatCodingStandard\Sniffs\TestCase;
+use function class_exists;
+use function file_get_contents;
+use function str_replace;
 
 /**
  * @final
