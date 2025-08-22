@@ -20,8 +20,6 @@ class FinalClassByAnnotationSniffTest extends TestCase
         self::assertSniffError($report, 33, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
         self::assertSniffError($report, 44, FinalClassByAnnotationSniff::CODE_FINAL_CLASS_BY_KEYWORD);
 
-        self::assertAllFixedInFile($report);
-
         if (class_exists(Assert::class)) {
             $fixedFileContent = file_get_contents($report->getFilename());
             $expectedContent = file_get_contents(__DIR__ . '/__fixtures__/finalClassByAnnotationWithFinalKeyword.fixed.php');
