@@ -68,10 +68,11 @@ class FinalClassByAnnotationSniff implements Sniff
     private function addFinalAnnotationIfMissing(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
+        $eol = $phpcsFile->eolChar;
 
         $closeDocPtr = TokenHelper::findPreviousExcluding($phpcsFile, [T_WHITESPACE], $stackPtr - 1);
         if ($closeDocPtr === null || $tokens[$closeDocPtr]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
-            $phpcsFile->fixer->replaceToken($stackPtr, "/**\n * @final\n */\n");
+            $phpcsFile->fixer->replaceToken($stackPtr, '/**' . $eol . ' * @final' . $eol . ' */' . $eol);
 
             return;
         }
@@ -88,6 +89,6 @@ class FinalClassByAnnotationSniff implements Sniff
             return;
         }
 
-        $phpcsFile->fixer->replaceToken($closeDocPtr, "*\n * @final\n */");
+        $phpcsFile->fixer->replaceToken($closeDocPtr, '*' . $eol . ' * @final' . $eol . ' */');
     }
 }

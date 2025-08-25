@@ -12,6 +12,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPUnit with coverage
+        env:
+          XDEBUG_MODE: coverage
+        run: composer phpunit-cc
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
