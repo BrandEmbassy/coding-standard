@@ -95,6 +95,7 @@ class PostConditionsTraitUsedRule implements Rule
         if (!$classReflection->hasTraitUse($traitName)) {
             $errors[] = RuleErrorBuilder::message(sprintf('Calling %s without %s trait.', $name, $traitName))
                 ->identifier('postConditions.noMockeryTrait')
+                ->nonIgnorable()
                 ->build();
         }
 

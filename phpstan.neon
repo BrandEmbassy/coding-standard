@@ -30,12 +30,7 @@ parameters:
         - identifier: return.unusedType
           paths:
             - src/BrandEmbassyCodingStandard/Rector/MabeEnumClassToEnumRector/MabeEnumClassToEnumRector.php
-            - src/BrandEmbassyCodingStandard/Rector/NetteStringsStartsWithToNativeCallRector/NetteStringsStartsWithToNativeCallRector.php
-            - src/BrandEmbassyCodingStandard/Rector/NetteStringsEndsWithToNativeCallRector/NetteStringsEndsWithToNativeCallRector.php
             - src/BrandEmbassyCodingStandard/Rector/MabeEnumMethodCallToEnumConstRector/MabeEnumMethodCallToEnumConstRector.php
-            - src/BrandEmbassyCodingStandard/Rector/MabeEnumClassToEnumRector/MabeEnumClassToEnumRectorTest.php
-            - src/BrandEmbassyCodingStandard/Rector/NetteStringsContainsToNativeCallRector/NetteStringsContainsToNativeCallRectorTest.php
-            - src/BrandEmbassyCodingStandard/Rector/MabeEnumMethodCallToEnumConstRector/MabeEnumMethodCallToEnumConstRectorTest.php
         - # Because fixtures are in excludePaths, the constant won't be discovered by PHPStan
             message: '#^Class BrandEmbassyCodingStandard\\PhpStan\\Rules\\DisallowConstantsInTestsRule\\__fixtures__\\AllowedConstant not found\.$#'
             identifier: class.notFound
