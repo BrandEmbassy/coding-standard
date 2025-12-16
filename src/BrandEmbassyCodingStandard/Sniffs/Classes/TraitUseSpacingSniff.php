@@ -8,7 +8,9 @@ use SlevomatCodingStandard\Helpers\ClassHelper;
 use SlevomatCodingStandard\Helpers\PropertyHelper;
 use SlevomatCodingStandard\Helpers\SniffSettingsHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
+use function assert;
 use function count;
+use function is_int;
 use function reset;
 use function sprintf;
 use function substr_count;
@@ -221,6 +223,7 @@ class TraitUseSpacingSniff implements Sniff
     private function getRequiredLinesCountAfterLastUse(File $phpcsFile, array $tokens, int $lastUseEndPointer): int
     {
         $pointerAfterLastUse = TokenHelper::findNextEffective($phpcsFile, $lastUseEndPointer + 1);
+        assert(is_int($pointerAfterLastUse));
         $isAtTheEndOfClass = $tokens[$pointerAfterLastUse]['code'] === T_CLOSE_CURLY_BRACKET;
 
         if ($isAtTheEndOfClass) {
