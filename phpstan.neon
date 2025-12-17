@@ -16,6 +16,11 @@ services:
     - Rector\Skipper\Fnmatcher
     - Rector\Skipper\RealpathMatcher
 
+    -
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\TestsExtendMockeryTestCaseRule
+        tags:
+            - phpstan.rules.rule
+
 parameters:
     level: max
     paths:
