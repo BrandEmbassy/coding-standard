@@ -55,7 +55,7 @@ class TestsExtendMockeryTestCaseRuleTest extends RuleTestCase
             [
                 [
                     'PHPUnit test BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\__fixtures__\TestExtendsClassWhichExtendsPhpUnitTestCase must extend Mockery\Adapter\Phpunit\MockeryTestCase (directly or indirectly).',
-                    7,
+                    5,
                 ],
             ],
         );

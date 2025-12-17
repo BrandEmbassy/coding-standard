@@ -2,7 +2,6 @@
 
 namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\__fixtures__;
 
-
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 
 class TestExtendsRectorRuleTestCase extends AbstractRectorTestCase

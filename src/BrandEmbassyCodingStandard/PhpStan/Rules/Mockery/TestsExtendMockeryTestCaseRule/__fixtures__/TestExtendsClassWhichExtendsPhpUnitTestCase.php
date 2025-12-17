@@ -2,8 +2,6 @@
 
 namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\__fixtures__;
 
-use PHPUnit\Framework\TestCase;
-
 class TestExtendsClassWhichExtendsPhpUnitTestCase extends TestExtendsPhpUnitTestCase
 {
 }
