@@ -87,4 +87,27 @@ class TestsExtendMockeryTestCaseRuleTest extends RuleTestCase
             [],
         );
     }
+
+
+    public function testAbstractTestExtendsPhpUnitTestCase(): void
+    {
+        $this->analyse(
+            [__DIR__ . '/__fixtures__/AbstractTestExtendsPhpUnitTestCase.php'],
+            [
+                [
+                    'PHPUnit test BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\__fixtures__\AbstractTestExtendsPhpUnitTestCase must extend Mockery\Adapter\Phpunit\MockeryTestCase (directly or indirectly).',
+                    7,
+                ],
+            ],
+        );
+    }
+
+
+    public function testAbstractTestExtendsMockeryTestCase(): void
+    {
+        $this->analyse(
+            [__DIR__ . '/__fixtures__/AbstractTestExtendsMockeryTestCase.php'],
+            [],
+        );
+    }
 }

@@ -40,7 +40,7 @@ class TestsExtendMockeryTestCaseRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if ($node->name === null || $node->isAbstract()) {
+        if ($node->name === null) {
             return [];
         }
 
