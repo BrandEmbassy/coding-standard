@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery;
+namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
