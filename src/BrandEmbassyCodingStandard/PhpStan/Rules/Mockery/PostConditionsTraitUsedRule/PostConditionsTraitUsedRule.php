@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery;
+namespace BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
@@ -11,6 +11,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\Type;
+use PHPUnit\Framework\TestCase;
 use function in_array;
 use function sprintf;
 
@@ -88,6 +89,10 @@ class PostConditionsTraitUsedRule implements Rule
         $classReflection = $scope->getClassReflection();
 
         if ($classReflection === null) {
+            return [];
+        }
+
+        if (!$classReflection->isSubclassOf(TestCase::class)) {
             return [];
         }
 
