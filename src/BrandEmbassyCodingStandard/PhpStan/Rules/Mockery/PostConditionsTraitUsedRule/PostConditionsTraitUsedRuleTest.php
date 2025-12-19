@@ -89,4 +89,13 @@ class PostConditionsTraitUsedRuleTest extends RuleTestCase
             [],
         );
     }
+
+
+    public function testNonTestClassWithoutMockeryTrait(): void
+    {
+        $this->analyse(
+            [__DIR__ . '/__fixtures__/NonTestClassWithoutMockeryTrait.php'],
+            [],
+        );
+    }
 }
