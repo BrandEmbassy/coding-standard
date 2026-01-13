@@ -1,6 +1,6 @@
 services:
     -
-        class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule
+        class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\PostConditionsTraitUsedRule\PostConditionsTraitUsedRule
         tags:
             - phpstan.rules.rule
     -
