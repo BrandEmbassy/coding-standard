@@ -26,7 +26,7 @@
         "dg/bypass-finals": "*"
     },
     "require": {
-        "php": ">=8.1",
+        "php": "~8.2 || ~8.4",
         "composer-runtime-api": "^2.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.7 || ^1.0",
         "pb30/phpstan-composer-analysis": "^1.0",
