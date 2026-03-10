@@ -22,9 +22,6 @@
             "vendor/squizlabs/php_codesniffer/autoload.php"
         ]
     },
-    "conflict": {
-        "dg/bypass-finals": "*"
-    },
     "require": {
         "php": ">=8.1",
         "composer-runtime-api": "^2.2",
