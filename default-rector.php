@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use BrandEmbassyCodingStandard\Rector\DoctrineEntitiesCannotBeFinalRector\DoctrineEntitiesCannotBeFinalRector;
 use BrandEmbassyCodingStandard\Rector\NetteStringsContainsToNativeCallRector\NetteStringsContainsToNativeCallRector;
 use BrandEmbassyCodingStandard\Rector\NetteStringsEndsWithToNativeCallRector\NetteStringsEndsWithToNativeCallRector;
 use BrandEmbassyCodingStandard\Rector\NetteStringsStartsWithToNativeCallRector\NetteStringsStartsWithToNativeCallRector;
@@ -40,6 +41,7 @@ return static function (RectorConfigBuilder $rectorConfigBuilder): array {
             NetteStringsStartsWithToNativeCallRector::class,
             NetteStringsEndsWithToNativeCallRector::class,
             NetteStringsContainsToNativeCallRector::class,
+            DoctrineEntitiesCannotBeFinalRector::class,
         ])
         ->withParallel(120, $maxProcesses)
         ->withImportNames();
