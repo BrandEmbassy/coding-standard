@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use BrandEmbassyCodingStandard\Sniffs\Arrays\NestedArrayMultiline\NestedArrayMultilineSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\ClassesWithoutSelfReferencingSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\FinalClassByAnnotationSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUsePositionSniff;
@@ -812,6 +813,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->rule(CamelCapsFunctionNameSniff::class);
     // Forbid spacing after and before array brackets
     $ecsConfig->rule(ArrayBracketSpacingSniff::class);
+    // Force arrays containing nested arrays to be multiline
+    $ecsConfig->rule(NestedArrayMultilineSniff::class);
     // Force array declaration structure
     $ecsConfig->rule(ArrayDeclarationSniff::class);
     // Forbid class being in a file with different name
