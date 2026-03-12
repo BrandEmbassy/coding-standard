@@ -4,7 +4,5 @@ use BrandEmbassyCodingStandard\Rector\MabeEnumMethodCallToEnumConstRector\MabeEn
 use Rector\Config\RectorConfig;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->ruleWithConfiguration(MabeEnumMethodCallToEnumConstRector::class, [
-        MabeEnumMethodCallToEnumConstRector::ARE_CLASSES_FROM_VENDOR_IGNORED => true,
-    ]);
+    $rectorConfig->ruleWithConfiguration(MabeEnumMethodCallToEnumConstRector::class, [MabeEnumMethodCallToEnumConstRector::ARE_CLASSES_FROM_VENDOR_IGNORED => true]);
 };

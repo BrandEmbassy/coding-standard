@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use BrandEmbassyCodingStandard\Sniffs\Arrays\SingleElementArrayInline\SingleElementArrayInlineSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\ClassesWithoutSelfReferencingSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\FinalClassByAnnotationSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUsePositionSniff;
@@ -239,9 +240,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // ]);
 
     // region SetList::CLEAN_CODE
-    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, [
-        'syntax' => 'short',
-    ]);
+    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, ['syntax' => 'short']);
     $ecsConfig->rules(
         [
             ParamReturnAndVarTagMalformsFixer::class,
@@ -309,9 +308,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
             'elements' => [TrailingCommaInMultilineFixer::ELEMENTS_ARRAYS],
         ],
     );
-    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, [
-        'syntax' => 'short',
-    ]);
+    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, ['syntax' => 'short']);
     // endregion SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/array.php
 
     // region SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/comments.php
@@ -341,9 +338,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
             'elements' => ['const', 'property'],
         ],
     );
-    $ecsConfig->ruleWithConfiguration(ClassDefinitionFixer::class, [
-        'single_line' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(ClassDefinitionFixer::class, ['single_line' => true]);
     $ecsConfig->ruleWithConfiguration(
         YodaStyleFixer::class,
         [
@@ -425,12 +420,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
             ],
         ],
     );
-    $ecsConfig->ruleWithConfiguration(ConcatSpaceFixer::class, [
-        'spacing' => 'one',
-    ]);
-    $ecsConfig->ruleWithConfiguration(SuperfluousWhitespaceSniff::class, [
-        'ignoreBlankLines' => false,
-    ]);
+    $ecsConfig->ruleWithConfiguration(ConcatSpaceFixer::class, ['spacing' => 'one']);
+    $ecsConfig->ruleWithConfiguration(SuperfluousWhitespaceSniff::class, ['ignoreBlankLines' => false]);
     $ecsConfig->ruleWithConfiguration(
         BinaryOperatorSpacesFixer::class,
         [
@@ -455,9 +446,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->ruleWithConfiguration(OrderedImportsFixer::class, [
         'imports_order' => ['class', 'function', 'const'],
     ]);
-    $ecsConfig->ruleWithConfiguration(DeclareEqualNormalizeFixer::class, [
-        'space' => 'none',
-    ]);
+    $ecsConfig->ruleWithConfiguration(DeclareEqualNormalizeFixer::class, ['space' => 'none']);
     $ecsConfig->ruleWithConfiguration(
         BracesFixer::class,
         [
@@ -519,22 +508,16 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         VisibilityRequiredFixer::class,
         WhitespaceAfterCommaInArrayFixer::class,
     ]);
-    $ecsConfig->ruleWithConfiguration(MethodArgumentSpaceFixer::class, [
-        'on_multiline' => 'ensure_fully_multiline',
-    ]);
+    $ecsConfig->ruleWithConfiguration(MethodArgumentSpaceFixer::class, ['on_multiline' => 'ensure_fully_multiline']);
     $ecsConfig->ruleWithConfiguration(SingleClassElementPerStatementFixer::class, [
         'elements' => ['property'],
     ]);
-    $ecsConfig->ruleWithConfiguration(ConcatSpaceFixer::class, [
-        'spacing' => 'one',
-    ]);
+    $ecsConfig->ruleWithConfiguration(ConcatSpaceFixer::class, ['spacing' => 'one']);
     $ecsConfig->skip([SingleImportPerStatementFixer::class]);
     // endregion SetList::PSR_12 - vendor/symplify/easy-coding-standard/config/set/psr12.php
 
     // region SetList::DOCTRINE_ANNOTATIONS - vendor/symplify/easy-coding-standard/config/set/doctrine-annotations.php
-    $ecsConfig->ruleWithConfiguration(DoctrineAnnotationIndentationFixer::class, [
-        'indent_mixed_lines' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(DoctrineAnnotationIndentationFixer::class, ['indent_mixed_lines' => true]);
     $ecsConfig->ruleWithConfiguration(
         DoctrineAnnotationSpacesFixer::class,
         [
@@ -547,9 +530,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
 
     // region === brand embassy coding standard ===
     $ecsConfig->rule(LineLengthFixer::class);
-    $ecsConfig->ruleWithConfiguration(PhpdocLineSpanFixer::class, [
-        'const' => 'single',
-    ]);
+    $ecsConfig->ruleWithConfiguration(PhpdocLineSpanFixer::class, ['const' => 'single']);
     // Forbid duplicate classes
     $ecsConfig->rule(DuplicateClassNameSniff::class);
     // Forbid `array(...)`
@@ -628,9 +609,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         'allowMultiline' => true,
     ]);
     // Forbid useless inline string concatenation
-    $ecsConfig->ruleWithConfiguration(ArbitraryParenthesesSpacingSniff::class, [
-        'ignoreNewlines' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(ArbitraryParenthesesSpacingSniff::class, ['ignoreNewlines' => true]);
     // Forbid tabs for indentation
     $ecsConfig->rule(DisallowTabIndentSniff::class);
     // Require space after language constructs
@@ -685,9 +664,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // Requires use of null coalesce operator when possible
     $ecsConfig->rule(RequireNullCoalesceOperatorSniff::class);
     // Forbid unused use statements
-    $ecsConfig->ruleWithConfiguration(UnusedUsesSniff::class, [
-        'searchAnnotations' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(UnusedUsesSniff::class, ['searchAnnotations' => true]);
     // Forbid useless uses of the same namespace
     $ecsConfig->rule(UseFromSameNamespaceSniff::class);
     // Forbid useless unreachable catch blocks
@@ -773,9 +750,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // Prohibits multiple traits separated by commas in one use statement
     $ecsConfig->rule(TraitUseDeclarationSniff::class);
     // Looks for unused variables
-    $ecsConfig->ruleWithConfiguration(UnusedVariableSniff::class, [
-        'ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(UnusedVariableSniff::class, ['ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach' => true]);
     // Looks for useless parameter default value
     $ecsConfig->rule(UnusedInheritedVariablePassedToClosureSniff::class);
     // Looks for use alias that is same as unqualified name
@@ -785,9 +760,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // Requires arrow functions for one-line Closures
     $ecsConfig->rule(RequireArrowFunctionSniff::class);
     // Arrow function formatting
-    $ecsConfig->ruleWithConfiguration(ArrowFunctionDeclarationSniff::class, [
-        'spacesCountAfterKeyword' => 0,
-    ]);
+    $ecsConfig->ruleWithConfiguration(ArrowFunctionDeclarationSniff::class, ['spacesCountAfterKeyword' => 0]);
     // Requires trailing comma in multiline function calls
     $ecsConfig->rule(RequireTrailingCommaInCallSniff::class);
     // Disallows implicit array creation
@@ -812,6 +785,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->rule(CamelCapsFunctionNameSniff::class);
     // Forbid spacing after and before array brackets
     $ecsConfig->rule(ArrayBracketSpacingSniff::class);
+    // Force single-element arrays to be inline
+    $ecsConfig->rule(SingleElementArrayInlineSniff::class);
     // Force array declaration structure
     $ecsConfig->rule(ArrayDeclarationSniff::class);
     // Forbid class being in a file with different name
@@ -831,9 +806,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // Force rules for variable comments
     $ecsConfig->rule(VariableCommentSniff::class);
     // Force rules for function argument spacing
-    $ecsConfig->ruleWithConfiguration(FunctionDeclarationArgumentSpacingSniff::class, [
-        'equalsSpacing' => 1,
-    ]);
+    $ecsConfig->ruleWithConfiguration(FunctionDeclarationArgumentSpacingSniff::class, ['equalsSpacing' => 1]);
     // Forbid global functions
     $ecsConfig->rule(GlobalFunctionSniff::class);
     // Force function keyword to be lowercase
@@ -875,15 +848,11 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         'spacingBeforeFirst' => 0,
     ]);
     // Forbid spaces around `->` operator
-    $ecsConfig->ruleWithConfiguration(ObjectOperatorSpacingSniff::class, [
-        'ignoreNewlines' => true,
-    ]);
+    $ecsConfig->ruleWithConfiguration(ObjectOperatorSpacingSniff::class, ['ignoreNewlines' => true]);
     // Forbid spaces before semicolon `;`
     $ecsConfig->rule(SemicolonSpacingSniff::class);
     // Forbid superfluous whitespaces
-    $ecsConfig->ruleWithConfiguration(SuperfluousWhitespaceSniff::class, [
-        'ignoreBlankLines' => false,
-    ]);
+    $ecsConfig->ruleWithConfiguration(SuperfluousWhitespaceSniff::class, ['ignoreBlankLines' => false]);
     // Force trait use as first statement in class
     $ecsConfig->rule(TraitUsePositionSniff::class);
     // Require empty newlines after uses
@@ -928,9 +897,7 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         'closure_fn_spacing' => 'none',
     ]);
 
-    $ecsConfig->ruleWithConfiguration(CastSpacesFixer::class, [
-        'space' => 'none',
-    ]);
+    $ecsConfig->ruleWithConfiguration(CastSpacesFixer::class, ['space' => 'none']);
 
     // Override configuration from SetList::SYMPLIFY, we don't want to remove the @throws and @group annotations
     $ecsConfig->ruleWithConfiguration(
