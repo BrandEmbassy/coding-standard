@@ -19,8 +19,14 @@ return static function (ECSConfig $ecsConfig) use ($defaultEcsConfigurationSetup
 
     $skipList = [
         InlineCommentSniff::class => [__DIR__ . '/default-ecs.php'],
-        CommentedOutCodeSniff::class => [__DIR__ . '/ecs.php', __DIR__ . '/default-ecs.php'],
-        ArrayDeclarationSniff::class => [__DIR__ . '/ecs.php', __DIR__ . '/default-ecs.php'],
+        CommentedOutCodeSniff::class => [
+            __DIR__ . '/ecs.php',
+            __DIR__ . '/default-ecs.php',
+        ],
+        ArrayDeclarationSniff::class => [
+            __DIR__ . '/ecs.php',
+            __DIR__ . '/default-ecs.php',
+        ],
         UnusedFunctionParameterSniff::class . '.FoundInImplementedInterface' => [
             __DIR__ . '/src/BrandEmbassyCodingStandard/PhpStan/Rules/Method/ImmutableWitherMethodRule.php',
         ],

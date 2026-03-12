@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use BrandEmbassyCodingStandard\Sniffs\Arrays\MultiElementArrayMultiline\MultiElementArrayMultilineSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\ClassesWithoutSelfReferencingSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\FinalClassByAnnotationSniff;
 use BrandEmbassyCodingStandard\Sniffs\Classes\TraitUsePositionSniff;
@@ -279,7 +280,14 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->ruleWithConfiguration(
         GeneralPhpdocAnnotationRemoveFixer::class,
         [
-            'annotations' => ['throws', 'author', 'package', 'group', 'covers', 'category'],
+            'annotations' => [
+                'throws',
+                'author',
+                'package',
+                'group',
+                'covers',
+                'category',
+            ],
         ],
     );
     // endregion SetList::SYMPLIFY
@@ -300,7 +308,12 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->ruleWithConfiguration(
         NoTrailingCommaInSinglelineFixer::class,
         [
-            'elements' => ['arguments', 'array_destructuring', 'array', 'group_import'],
+            'elements' => [
+                'arguments',
+                'array_destructuring',
+                'array',
+                'group_import',
+            ],
         ],
     );
     $ecsConfig->ruleWithConfiguration(
@@ -338,7 +351,10 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->ruleWithConfiguration(
         SingleClassElementPerStatementFixer::class,
         [
-            'elements' => ['const', 'property'],
+            'elements' => [
+                'const',
+                'property',
+            ],
         ],
     );
     $ecsConfig->ruleWithConfiguration(ClassDefinitionFixer::class, [
@@ -388,7 +404,10 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     // endregion SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/phpunit.php
 
     // region SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/namespaces.php
-    $ecsConfig->rules([PhpUnitTestAnnotationFixer::class, PhpUnitSetUpTearDownVisibilityFixer::class]);
+    $ecsConfig->rules([
+        PhpUnitTestAnnotationFixer::class,
+        PhpUnitSetUpTearDownVisibilityFixer::class,
+    ]);
     // endregion SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/namespaces.php
 
     // region SetList::COMMON - vendor/symplify/easy-coding-standard/config/set/common/spaces.php
@@ -453,7 +472,11 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
 
     // region SetList::PSR_12 - vendor/symplify/easy-coding-standard/config/set/psr12.php
     $ecsConfig->ruleWithConfiguration(OrderedImportsFixer::class, [
-        'imports_order' => ['class', 'function', 'const'],
+        'imports_order' => [
+            'class',
+            'function',
+            'const',
+        ],
     ]);
     $ecsConfig->ruleWithConfiguration(DeclareEqualNormalizeFixer::class, [
         'space' => 'none',
@@ -480,7 +503,11 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
         ],
     );
     $ecsConfig->ruleWithConfiguration(VisibilityRequiredFixer::class, [
-        'elements' => ['const', 'method', 'property'],
+        'elements' => [
+            'const',
+            'method',
+            'property',
+        ],
     ]);
     $ecsConfig->rules([
         BinaryOperatorSpacesFixer::class,
@@ -812,6 +839,8 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->rule(CamelCapsFunctionNameSniff::class);
     // Forbid spacing after and before array brackets
     $ecsConfig->rule(ArrayBracketSpacingSniff::class);
+    // Force multi-element arrays to be multiline
+    $ecsConfig->rule(MultiElementArrayMultilineSniff::class);
     // Force array declaration structure
     $ecsConfig->rule(ArrayDeclarationSniff::class);
     // Forbid class being in a file with different name
@@ -936,7 +965,12 @@ return static function (ECSConfig $ecsConfig, string $projectRootPath): array {
     $ecsConfig->ruleWithConfiguration(
         GeneralPhpdocAnnotationRemoveFixer::class,
         [
-            'annotations' => ['author', 'package', 'covers', 'category'],
+            'annotations' => [
+                'author',
+                'package',
+                'covers',
+                'category',
+            ],
         ],
     );
 
