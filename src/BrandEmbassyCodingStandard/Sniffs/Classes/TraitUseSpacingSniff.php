@@ -53,7 +53,11 @@ class TraitUseSpacingSniff implements Sniff
      */
     public function register(): array
     {
-        return [T_CLASS, T_ANON_CLASS, T_TRAIT];
+        return [
+            T_CLASS,
+            T_ANON_CLASS,
+            T_TRAIT,
+        ];
     }
 
 
@@ -154,7 +158,10 @@ class TraitUseSpacingSniff implements Sniff
         /** @var int $lastUseEndPointer */
         $lastUseEndPointer = TokenHelper::findNextLocal(
             $phpcsFile,
-            [T_SEMICOLON, T_OPEN_CURLY_BRACKET],
+            [
+                T_SEMICOLON,
+                T_OPEN_CURLY_BRACKET,
+            ],
             $lastUsePointer + 1,
         );
         if ($tokens[$lastUseEndPointer]['code'] === T_OPEN_CURLY_BRACKET) {
@@ -230,7 +237,10 @@ class TraitUseSpacingSniff implements Sniff
             return SniffSettingsHelper::normalizeInteger($this->linesCountAfterLastUseWhenLastInClass);
         }
 
-        $followingPointers = TokenHelper::findNextAll($phpcsFile, [T_VARIABLE, T_CONST], $lastUseEndPointer);
+        $followingPointers = TokenHelper::findNextAll($phpcsFile, [
+            T_VARIABLE,
+            T_CONST,
+        ], $lastUseEndPointer);
 
         if ($followingPointers === []) {
             return SniffSettingsHelper::normalizeInteger($this->linesCountAfterLastUse);
@@ -271,7 +281,10 @@ class TraitUseSpacingSniff implements Sniff
             /** @var int $previousUseEndPointer */
             $previousUseEndPointer = TokenHelper::findNextLocal(
                 $phpcsFile,
-                [T_SEMICOLON, T_OPEN_CURLY_BRACKET],
+                [
+                    T_SEMICOLON,
+                    T_OPEN_CURLY_BRACKET,
+                ],
                 $previousUsePointer + 1,
             );
             if ($tokens[$previousUseEndPointer]['code'] === T_OPEN_CURLY_BRACKET) {

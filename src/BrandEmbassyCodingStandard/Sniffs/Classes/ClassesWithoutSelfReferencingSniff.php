@@ -145,7 +145,10 @@ class ClassesWithoutSelfReferencingSniff implements Sniff
         $previousPointer = TokenHelper::findPreviousEffective($phpcsFile, $doubleColonPointer - 1);
         assert($previousPointer !== null);
 
-        if (!in_array($tokens[$previousPointer]['code'], [T_STATIC, T_SELF], true)) {
+        if (!in_array($tokens[$previousPointer]['code'], [
+            T_STATIC,
+            T_SELF,
+        ], true)) {
             return null;
         }
 

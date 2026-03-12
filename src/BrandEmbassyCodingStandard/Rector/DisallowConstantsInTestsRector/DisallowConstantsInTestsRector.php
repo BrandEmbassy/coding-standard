@@ -72,7 +72,11 @@ final class Foo
 CODE_SAMPLE
                     ,
                     [
-                        self::ALLOWED_PATTERNS => ['vendor/*', 'tests/*', '*Fixture.php'],
+                        self::ALLOWED_PATTERNS => [
+                            'vendor/*',
+                            'tests/*',
+                            '*Fixture.php',
+                        ],
                         self::ALLOWED_CONSTANTS => ['Project\Http\HttpMethod'],
                     ],
                 ),

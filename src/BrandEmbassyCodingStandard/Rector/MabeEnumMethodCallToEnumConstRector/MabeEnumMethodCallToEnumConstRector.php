@@ -69,9 +69,7 @@ class MabeEnumMethodCallToEnumConstRector extends AbstractRector implements MinP
             new ConfiguredCodeSample(
                 'IgnoredEnum::getValue()',
                 'IgnoredEnum::getValue()',
-                [
-                    self::ARE_CLASSES_FROM_VENDOR_IGNORED => false,
-                ],
+                [self::ARE_CLASSES_FROM_VENDOR_IGNORED => false],
             ),
         ]);
     }
