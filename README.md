@@ -1,5 +1,5 @@
 # Brand Embassy Coding Standard
-- The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) and [cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) rules to check that
+- The [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) and [cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) rules to check that
 repositories are following the unified coding standard for Brand Embassy projects.
 - The [PHPStan](https://github.com/phpstan/phpstan) default configuration file.
 - PhpStorm code style and inspections (with [Php Inspections (EA Extended)](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) plugin) configuration files.
