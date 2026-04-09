@@ -46,7 +46,6 @@ class PhpUnitTestMethodRule implements Rule
             return [];
         }
 
-        /** @var ClassReflection $classReflection */
         $classReflection = $scope->getClassReflection();
         $className = $classReflection->getName();
 
