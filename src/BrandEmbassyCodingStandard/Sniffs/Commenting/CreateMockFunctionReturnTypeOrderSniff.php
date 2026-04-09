@@ -5,6 +5,8 @@ namespace BrandEmbassyCodingStandard\Sniffs\Commenting;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
+use function assert;
+use function is_string;
 use function preg_match;
 use const T_FUNCTION;
 
@@ -80,8 +82,9 @@ class CreateMockFunctionReturnTypeOrderSniff implements Sniff
         }
 
         $returnType = $tokens[$returnTypePtr]['content'];
+        assert(is_string($returnType));
 
-        if (preg_match('~^MockInterface&(\w+)$~', (string)$returnType, $matches) !== 1) {
+        if (preg_match('~^MockInterface&(\w+)$~', $returnType, $matches) !== 1) {
             return;
         }
 
