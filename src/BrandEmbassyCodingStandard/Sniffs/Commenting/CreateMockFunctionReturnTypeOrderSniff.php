@@ -81,7 +81,7 @@ class CreateMockFunctionReturnTypeOrderSniff implements Sniff
 
         $returnType = $tokens[$returnTypePtr]['content'];
 
-        if (preg_match('~^MockInterface&(\w+)$~', $returnType, $matches) !== 1) {
+        if (preg_match('~^MockInterface&(\w+)$~', (string) $returnType, $matches) !== 1) {
             return;
         }
 

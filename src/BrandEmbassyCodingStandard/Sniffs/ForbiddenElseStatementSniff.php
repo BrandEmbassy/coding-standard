@@ -37,7 +37,7 @@ class ForbiddenElseStatementSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $statement = strtolower($tokens[$stackPtr]['content']);
+        $statement = strtolower((string) $tokens[$stackPtr]['content']);
 
         $error = 'Use of ' . $statement . ' is forbidden. See: https://github.com/BrandEmbassy/developers-manifest/issues/365.';
 
