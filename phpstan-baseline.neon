@@ -31,8 +31,8 @@ parameters:
 			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUseSpacingSniffTest.php
 
 		-
-			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
-			identifier: argument.type
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
 			count: 1
 			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
 
@@ -43,8 +43,8 @@ parameters:
 			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
 
 		-
-			message: '#^Parameter \#1 \$string of function strtolower expects string, mixed given\.$#'
-			identifier: argument.type
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
 			count: 1
 			path: src/BrandEmbassyCodingStandard/Sniffs/ForbiddenElseStatementSniff.php
 
