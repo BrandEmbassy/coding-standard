@@ -5,7 +5,6 @@ namespace BrandEmbassyCodingStandard\PhpStan\Rules\Method;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -46,7 +45,6 @@ class PhpUnitTestMethodRule implements Rule
             return [];
         }
 
-        /** @var ClassReflection $classReflection */
         $classReflection = $scope->getClassReflection();
         $className = $classReflection->getName();
 
