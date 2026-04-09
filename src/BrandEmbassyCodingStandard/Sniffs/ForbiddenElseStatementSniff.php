@@ -4,6 +4,8 @@ namespace BrandEmbassyCodingStandard\Sniffs;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use function assert;
+use function is_string;
 use function strtolower;
 use const T_ELSE;
 use const T_ELSEIF;
@@ -37,7 +39,9 @@ class ForbiddenElseStatementSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $statement = strtolower($tokens[$stackPtr]['content']);
+        $content = $tokens[$stackPtr]['content'];
+        assert(is_string($content));
+        $statement = strtolower($content);
 
         $error = 'Use of ' . $statement . ' is forbidden. See: https://github.com/BrandEmbassy/developers-manifest/issues/365.';
 

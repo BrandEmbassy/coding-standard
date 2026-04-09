@@ -31,22 +31,10 @@ parameters:
 			path: src/BrandEmbassyCodingStandard/Sniffs/Classes/TraitUseSpacingSniffTest.php
 
 		-
-			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
-
-		-
 			message: '#^Parameter \#4 \$startPointer of static method SlevomatCodingStandard\\Helpers\\TokenHelper\:\:findNextContent\(\) expects int, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/BrandEmbassyCodingStandard/Sniffs/Commenting/CreateMockFunctionReturnTypeOrderSniff.php
-
-		-
-			message: '#^Parameter \#1 \$string of function strtolower expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/BrandEmbassyCodingStandard/Sniffs/ForbiddenElseStatementSniff.php
 
 		-
 			message: '#^Binary operation "\-" between mixed and 1 results in an error\.$#'
