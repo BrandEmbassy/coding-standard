@@ -146,10 +146,12 @@ CODE_SAMPLE
             return null;
         }
 
-        if ($this->fileInfoMatcher->doesFileInfoMatchPatterns(
+        // matchPattern() returns the matched pattern, or null when none matched. It replaces
+        // doesFileInfoMatchPatterns(), which Rector 2.5.9 removed.
+        if ($this->fileInfoMatcher->matchPattern(
             $constantClassReflection->getFileName() ?? '',
             $this->allowedPatterns,
-        )) {
+        ) !== null) {
             return null;
         }
 

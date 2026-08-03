@@ -9,12 +9,8 @@ includes:
 services:
     # Handy services from Rector package
     - Rector\NodeNameResolver\NodeNameResolver
-    - Rector\Skipper\Matcher\FileInfoMatcher
     - Rector\CodingStyle\Naming\ClassNaming
     - Rector\NodeAnalyzer\CallAnalyzer
-    - Rector\Skipper\FileSystem\FnMatchPathNormalizer
-    - Rector\Skipper\Fnmatcher
-    - Rector\Skipper\RealpathMatcher
 
     -
         class: BrandEmbassyCodingStandard\PhpStan\Rules\Mockery\TestsExtendMockeryTestCaseRule\TestsExtendMockeryTestCaseRule
