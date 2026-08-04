@@ -10,6 +10,7 @@ includes:
 services:
     # Handy services from Rector package
     - Rector\NodeNameResolver\NodeNameResolver
+    - Rector\Skipper\Matcher\FileInfoMatcher
     - Rector\CodingStyle\Naming\ClassNaming
     - Rector\NodeAnalyzer\CallAnalyzer
 
