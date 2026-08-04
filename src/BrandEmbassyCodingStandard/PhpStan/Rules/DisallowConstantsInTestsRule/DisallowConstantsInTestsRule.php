@@ -99,10 +99,10 @@ class DisallowConstantsInTestsRule implements Rule
             return [];
         }
 
-        if ($this->fileInfoMatcher->doesFileInfoMatchPatterns(
+        if ($this->fileInfoMatcher->matchPattern(
             $constantClassReflection->getFileName() ?? '',
             $this->allowedPatterns,
-        )) {
+        ) !== null) {
             return [];
         }
 

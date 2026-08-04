@@ -5,10 +5,7 @@ namespace BrandEmbassyCodingStandard\PhpStan\Rules\DisallowConstantsInTestsRule;
 use BrandEmbassyCodingStandard\PhpStan\Rules\DisallowConstantsInTestsRule\__fixtures__\AllowedConstant;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
-use Rector\Skipper\FileSystem\FnMatchPathNormalizer;
-use Rector\Skipper\Fnmatcher;
 use Rector\Skipper\Matcher\FileInfoMatcher;
-use Rector\Skipper\RealpathMatcher;
 
 /**
  * @extends RuleTestCase<DisallowConstantsInTestsRule>
@@ -19,7 +16,7 @@ class DisallowConstantsInTestsRuleTest extends RuleTestCase
     {
         return new DisallowConstantsInTestsRule(
             $this->createReflectionProvider(),
-            new FileInfoMatcher(new FnMatchPathNormalizer(), new Fnmatcher(), new RealpathMatcher()),
+            new FileInfoMatcher(),
             ['*AllowedPattern.php'],
             [AllowedConstant::class],
         );

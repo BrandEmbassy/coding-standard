@@ -146,10 +146,10 @@ CODE_SAMPLE
             return null;
         }
 
-        if ($this->fileInfoMatcher->doesFileInfoMatchPatterns(
+        if ($this->fileInfoMatcher->matchPattern(
             $constantClassReflection->getFileName() ?? '',
             $this->allowedPatterns,
-        )) {
+        ) !== null) {
             return null;
         }
 
