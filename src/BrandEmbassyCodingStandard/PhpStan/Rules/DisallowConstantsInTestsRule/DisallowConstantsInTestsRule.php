@@ -99,8 +99,6 @@ class DisallowConstantsInTestsRule implements Rule
             return [];
         }
 
-        // matchPattern() returns the matched pattern, or null when none matched. It replaces
-        // doesFileInfoMatchPatterns(), which Rector 2.5.9 removed.
         if ($this->fileInfoMatcher->matchPattern(
             $constantClassReflection->getFileName() ?? '',
             $this->allowedPatterns,
